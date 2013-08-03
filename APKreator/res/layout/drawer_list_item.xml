@@ -1,16 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+
+   Copyright (C) 2013  Louis Teboul (a.k.a Androguide)
+
+   admin@pimpmyrom.org  || louisteboul@gmail.com
+   http://pimpmyrom.org || http://androguide.fr
+   71 quai Clémenceau, 69300 Caluire-et-Cuire, FRANCE.
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License along
+   with this program; if not, write to the Free Software Foundation, Inc.,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+-->
+
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/pimped_item"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/coloured_touch_feedback"
-    android:gravity="center_vertical"
-    android:minHeight="?android:attr/listPreferredItemHeightSmall"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    android:paddingBottom="16dp"
-    android:textAppearance="?android:attr/textAppearanceListItemSmall"
-    android:drawableLeft="@drawable/ic_action_website"
-    android:drawablePadding="4dip"
-    android:textColor="#fff" />
+          android:id="@+id/pimped_item"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@drawable/coloured_touch_feedback"
+          android:gravity="center_vertical"
+          android:paddingLeft="16dp"
+          android:paddingRight="16dp"
+          android:paddingTop="16dp"
+          android:paddingBottom="16dp"
+          android:drawableLeft="@drawable/ic_action_website"
+          android:drawablePadding="4dip"
+          android:textColor="#fff"/>
