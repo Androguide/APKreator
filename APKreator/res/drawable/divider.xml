@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetLeft="@dimen/activity_half_margin"
+    android:insetRight="@dimen/activity_half_margin" >
+
+ <shape>
+    <solid android:color="@color/play_blue" />
+    <corners android:radius="8.0dip" />
+</shape>
+</inset>

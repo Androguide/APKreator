@@ -1,0 +1,4 @@
+include ':APKreator'
+include ':CardsUILib'
+include ':PagerSlidingStrip'
+include ':SwitchCompatLibrary'

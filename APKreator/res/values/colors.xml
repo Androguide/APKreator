@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background_window">#FFE5E5E5</color>
+    <color name="holoblue">#FF33b6ea</color>
+    <color name="play_blue">#FF3F9FE0</color>
+    <color name="play_green">#FF96AA39</color>
+    <color name="play_orange">#FFF4842D</color>
+    <color name="play_red">#FFC74B46</color>
+    <color name="play_gray">#FF666666</color>
+</resources>

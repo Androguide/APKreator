@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/APKreator/APKreator.iml" filepath="$PROJECT_DIR$/APKreator/APKreator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/APKreatorProject.iml" filepath="$PROJECT_DIR$/APKreatorProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CardsUILib/CardsUILib.iml" filepath="$PROJECT_DIR$/CardsUILib/CardsUILib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PagerSlidingStrip/PagerSlidingStrip.iml" filepath="$PROJECT_DIR$/PagerSlidingStrip/PagerSlidingStrip.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SwitchCompatLibrary/SwitchCompatLibrary.iml" filepath="$PROJECT_DIR$/SwitchCompatLibrary/SwitchCompatLibrary.iml" />
+    </modules>
+  </component>
+</project>
+
