@@ -74,6 +74,16 @@ public abstract class Card extends AbstractCard {
         this.imageRes = imageRes;
     }
 
+    public Card(String title, String desc, String titleColor, Boolean hasOverflow,
+                Boolean isClickable) {
+
+        this.title = title;
+        this.desc = desc;
+        this.titleColor = titleColor;
+        this.hasOverflow = hasOverflow;
+        this.isClickable = isClickable;
+    }
+
     // Card with Seekbar & EditText
     public Card(String title, String desc, String unit, int seekBarMax, int seekBarProgress, ActionBarActivity fa, ActionMode.Callback callback) {
         this.title = title;
@@ -95,6 +105,19 @@ public abstract class Card extends AbstractCard {
         this.seekBarProgress = seekBarProgress;
         this.fa = fa;
         this.prop = prop;
+    }
+
+
+    // Card with Seekbar & EditText for PmR build.prop Plugins
+    public Card(String title, String desc, String unit, String prop, int seekBarMax, int seekBarProgress, ActionBarActivity fa, ActionMode.Callback callback) {
+        this.title = title;
+        this.desc = desc;
+        this.unit = unit;
+        this.seekBarMax = seekBarMax;
+        this.seekBarProgress = seekBarProgress;
+        this.fa = fa;
+        this.prop = prop;
+        this.callback = callback;
     }
 
     // Card with Spinner

@@ -22,6 +22,8 @@
 package com.androguide.apkreator.cards;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +44,11 @@ public class CardSwitch extends Card {
     @Override
     public View getCardContent(Context context) {
         View v = LayoutInflater.from(context).inflate(R.layout.card_switch, null);
+        SharedPreferences config = fa.getSharedPreferences("CONFIG", 0);
+
+        assert v != null;
         ((TextView) v.findViewById(R.id.title)).setText(title);
+        ((TextView) v.findViewById(R.id.title)).setTextColor(Color.parseColor(config.getString("APP_COLOR", "#96AA39")));
         ((TextView) v.findViewById(R.id.desc)).setText(desc);
 
         Boolean b = (fa.getSharedPreferences(title, 0)).getBoolean("isChecked", false);

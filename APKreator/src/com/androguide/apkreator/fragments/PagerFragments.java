@@ -32,6 +32,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.view.ActionMode;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -42,12 +44,20 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 
-import com.androguide.apkreator.cards.CardSeekBarPlugin;
+import com.androguide.apkreator.R;
+import com.androguide.apkreator.cards.CardSeekBar;
+import com.androguide.apkreator.cards.CardSeekBarCombo;
 import com.androguide.apkreator.cards.CardSwitchPlugin;
+import com.androguide.apkreator.cards.TextCard;
+import com.androguide.apkreator.helpers.CMDProcessor.CMDProcessor;
+import com.androguide.apkreator.helpers.CMDProcessor.Shell;
 import com.androguide.apkreator.helpers.Helpers;
+import com.androguide.apkreator.helpers.SystemPropertiesReflection;
 import com.androguide.apkreator.pluggable.objects.Tweak;
 import com.androguide.apkreator.pluggable.parsers.PluginParser;
 import com.fima.cardsui.views.CardUI;
+
+import static com.androguide.apkreator.helpers.CMDProcessor.CMDProcessor.runSuCommand;
 
 public class PagerFragments extends Fragment {
 
@@ -55,6 +65,7 @@ public class PagerFragments extends Fragment {
     private int position;
     public static LinearLayout ll;
     private ActionBarActivity fa;
+    private ActionMode mActionMode;
     private CardUI mCardView;
     private ArrayList<String> name = new ArrayList<String>(), desc = new ArrayList<String>(), type = new ArrayList<String>(),
             control = new ArrayList<String>(), unit = new ArrayList<String>(), prop = new ArrayList<String>(),
@@ -126,9 +137,15 @@ public class PagerFragments extends Fragment {
             	
             	// SeekBar + EditText Combo Card
                 if (control.get(i).equalsIgnoreCase("seekbar-combo")) {
-                    CardSeekBarPlugin card = new CardSeekBarPlugin(name.get(i), desc.get(i), unit.get(i), prop.get(i),
+                    CardSeekBarCombo card = new CardSeekBarCombo(name.get(i), desc.get(i), unit.get(i), prop.get(i),
                             max.get(i), def.get(i), fa);
                     mCardsView.addCard(card, true);
+
+                // SeekBar Card
+                } else if (control.get(i).equalsIgnoreCase("seekbar")) {
+                        CardSeekBar card = new CardSeekBar(name.get(i), desc.get(i), unit.get(i), prop.get(i),
+                                max.get(i), def.get(i), fa, mActionModeCallback);
+                        mCardsView.addCard(card, true);
                     
                 // Switch Card
                 } else if (control.get(i).equalsIgnoreCase("switch")) {
@@ -150,6 +167,11 @@ public class PagerFragments extends Fragment {
 					});
                 mCardsView.addCard(card, true);
                 }
+
+            } else if (type.get(i).equalsIgnoreCase("text")) {
+                SharedPreferences p = fa.getSharedPreferences("CONFIG", 0);
+                TextCard card = new TextCard(name.get(i), desc.get(i), p.getString("APP_COLOR", "#96AA39"), false, false);
+                mCardsView.addCard(card, true);
             }
         }
 
@@ -166,4 +188,60 @@ public class PagerFragments extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    // Contextual ActionBar (CAB) callback
+    private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
+
+
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            MenuInflater inflater = mode.getMenuInflater();
+            assert inflater != null;
+            inflater.inflate(R.menu.contextual_menu, menu);
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.apply:
+                    mActionMode = mode;
+                    SharedPreferences p = fa.getSharedPreferences("TO_APPLY", 0);
+                    final String prop = p.getString("PROP", "");
+                    final int value = p.getInt("VALUE", 0);
+                    final String title = p.getString("TO_SAVE", "");
+                    new Thread(new Runnable() {
+                        public void run() {
+                            try {
+                                runSuCommand(Shell.MOUNT_SYSTEM_RW);
+                                runSuCommand(Shell.MOUNT_SYSTEM_RW);
+                                runSuCommand(Shell.SED + prop + "/d\" " + Shell.BUILD_PROP);
+                                runSuCommand(Shell.ECHO + "\"" + prop + "=" + value + "\" >> " + Shell.BUILD_PROP);
+                                runSuCommand("setprop " + prop + " " + value);
+                                SystemPropertiesReflection.set(fa, prop, value + "");
+                                runSuCommand(Shell.MOUNT_SYSTEM_RO);
+                                SharedPreferences pref = fa.getSharedPreferences(title, 0);
+                                pref.edit().putInt(title, value).commit();
+                            } catch (NullPointerException e) {
+                                Log.e("WIFI_SCAN", "NullPointerException: " + e);
+                            }
+                        }
+                    }).start();
+                    mActionMode.finish();
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            mActionMode = null;
+        }
+    };
 }

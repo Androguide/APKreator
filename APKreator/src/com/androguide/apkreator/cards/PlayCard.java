@@ -43,8 +43,9 @@ public class PlayCard extends Card {
 
     @Override
     public View getCardContent(Context context) {
-        View v = LayoutInflater.from(context).inflate(R.layout.card_play, null);
+        View v = LayoutInflater.from(context).inflate(R.layout.text_card, null);
 
+        assert v != null;
         ((TextView) v.findViewById(R.id.title)).setText(titlePlay);
         ((TextView) v.findViewById(R.id.title)).setTextColor(Color
                 .parseColor(titleColor));
@@ -55,22 +56,15 @@ public class PlayCard extends Card {
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(96, 16, 96, 0);
 
-        ((LinearLayout) v.findViewById(R.id.rootLayout))
+        (v.findViewById(R.id.rootLayout))
                 .setLayoutParams(layoutParams);
 
         ((ImageView) v.findViewById(R.id.icon)).setImageDrawable(context
                 .getResources().getDrawable(imageRes));
 
         if (isClickable)
-            ((LinearLayout) v.findViewById(R.id.contentLayout))
+            (v.findViewById(R.id.contentLayout))
                     .setBackgroundResource(R.drawable.selectable_background_cardbank);
-
-//		if (hasOverflow)
-//			((ImageView) v.findViewById(R.id.overflow))
-//					.setVisibility(View.VISIBLE);
-//		else
-//			((ImageView) v.findViewById(R.id.overflow))
-//					.setVisibility(View.GONE);
 
         return v;
     }

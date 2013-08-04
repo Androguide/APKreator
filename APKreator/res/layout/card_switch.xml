@@ -45,7 +45,7 @@
                 android:text="@string/card_title"
                 android:textColor="@color/play_blue"
                 android:layout_weight="99"
-                android:textSize="18sp"/>
+                android:textSize="19sp"/>
 
         <de.ankri.views.Switch
                 android:id="@+id/toggle"

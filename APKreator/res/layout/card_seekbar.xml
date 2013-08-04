@@ -42,7 +42,7 @@
                 android:fontFamily="sans-serif-condensed"
                 android:text="@string/card_title"
                 android:textColor="@color/play_blue"
-                android:textSize="18sp"/>
+                android:textSize="19sp"/>
 
         <TextView
                 android:id="@+id/desc"
@@ -64,15 +64,6 @@
                 android:layout_marginBottom="@dimen/activity_half_margin"
                 android:layout_gravity="center_horizontal">
 
-            <EditText
-                    android:id="@+id/seek_val"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="sans-serif-light"
-                    android:inputType="number"
-                    android:numeric="integer"
-                    android:textColor="@color/play_gray"/>
 
             <TextView
                     android:id="@+id/unit"
