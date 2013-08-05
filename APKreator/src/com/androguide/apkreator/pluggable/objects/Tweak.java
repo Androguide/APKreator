@@ -9,7 +9,7 @@ public class Tweak {
 
     private String name, desc, type, control, unit, prop, booleanOn, booleanOff;
     private int min, max, def;
-    private ArrayList<String> tabs = new ArrayList<String>();
+    private ArrayList<String> tabs = new ArrayList<String>(), spinnerEntries = new ArrayList<String>();
 
     public Tweak() {
     }
@@ -108,5 +108,13 @@ public class Tweak {
 
     public void setTabs(ArrayList<String> tabs) {
         this.tabs = tabs;
+    }
+
+    public ArrayList<String> getSpinnerEntries() {
+        return  spinnerEntries;
+    }
+
+    public void setSpinnerEntries(ArrayList<String> spinnerEntries) {
+        this.spinnerEntries = spinnerEntries;
     }
 }

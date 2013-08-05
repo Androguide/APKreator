@@ -85,15 +85,31 @@ public class PluginParser {
 
                         // OPENING TAG
                         case XmlPullParser.START_TAG:
+                            // <PLUGIN> TAG
                             if (tagName.equalsIgnoreCase("plugin"))
                                 tweak = new Tweak();
+
+                                // <TWEAK> TAG
                             else if (tagName.equalsIgnoreCase("tweak")) {
                                 tweak = new Tweak();
                                 tweak.setType(parser.getAttributeValue(null, "type"));
+
+                                // <CONTROL> TAG
                             } else if (tagName.equalsIgnoreCase("control")) {
+                                // seekbar attribute
                                 tweak.setControl(parser.getAttributeValue(null, "type"));
-                                tweak.setBooleanOn(parser.getAttributeValue(null, "on"));
-                                tweak.setBooleanOff(parser.getAttributeValue(null, "off"));
+                                // switch attribute
+                                if (parser.getAttributeValue(null, "type").equalsIgnoreCase("switch")) {
+                                    tweak.setBooleanOn(parser.getAttributeValue(null, "on"));
+                                    tweak.setBooleanOff(parser.getAttributeValue(null, "off"));
+                                    // spinner attribute
+                                } else if (parser.getAttributeValue(null, "type").equalsIgnoreCase("spinner")) {
+                                    ArrayList<String> entries = new ArrayList<String>();
+                                    int values = Integer.parseInt(parser.getAttributeValue(null, "values-amount"));
+                                    for (int i = 0; i < values; i++)
+                                        entries.add(parser.getAttributeValue(null, "value" + i));
+                                    tweak.setSpinnerEntries(entries);
+                                }
                             }
                             break;
 

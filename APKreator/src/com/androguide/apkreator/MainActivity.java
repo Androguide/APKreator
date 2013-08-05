@@ -58,7 +58,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.androguide.apkreator.fragments.PagerFragments;
+import com.androguide.apkreator.fragments.PluginFragment;
 import com.androguide.apkreator.pluggable.objects.Config;
 import com.androguide.apkreator.pluggable.parsers.PluginParser;
 import com.astuetz.viewpager.extensions.PagerSlidingTabStrip;
@@ -413,7 +413,7 @@ public class MainActivity extends ActionBarActivity implements
 
         @Override
         public Fragment getItem(int position) {
-            return PagerFragments.newInstance(position);
+            return PluginFragment.newInstance(position);
         }
 
     }

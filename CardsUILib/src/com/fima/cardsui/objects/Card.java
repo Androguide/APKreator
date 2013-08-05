@@ -129,6 +129,16 @@ public abstract class Card extends AbstractCard {
         this.onItemSelectedListener = onItemSelectedListener;
     }
 
+    // Card with Spinner
+    public Card (String title, String desc, String prop, ArrayList<String> spinnerEntries, ActionBarActivity fa, AdapterView.OnItemSelectedListener onItemSelectedListener) {
+        this.title = title;
+        this.desc = desc;
+        this.spinnerEntries = spinnerEntries;
+        this.fa = fa;
+        this.onItemSelectedListener = onItemSelectedListener;
+        this.prop = prop;
+    }
+
     // Card with Switch
     public Card (String title, String desc, ActionBarActivity fa, CompoundButton.OnCheckedChangeListener onCheckedChangeListener) {
         this.title = title;

@@ -1,27 +1,23 @@
-/**   Copyright (C) 2013  Louis Teboul (a.k.a Androguide)
+/**
+ * @author Louis Teboul (Androguide)
  *
- *    admin@pimpmyrom.org  || louisteboul@gmail.com
- *    http://pimpmyrom.org || http://androguide.fr
- *    71 quai Clémenceau, 69300 Caluire-et-Cuire, FRANCE.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is free software; you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation; either version 2 of the License, or
- *     (at your option) any later version.
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
- *
- *      You should have received a copy of the GNU General Public License along
- *      with this program; if not, write to the Free Software Foundation, Inc.,
- *      51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- **/
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.androguide.apkreator.cards;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,20 +33,25 @@ import java.util.ArrayList;
 
 public class CardSpinner extends Card {
 
-    public CardSpinner(String title, String desc, ArrayList<String> spinnerEntries, ActionBarActivity fa, AdapterView.OnItemSelectedListener onItemSelectedListener) {
-        super(title, desc, spinnerEntries, fa, onItemSelectedListener);
+    public CardSpinner(String title, String desc, String prop, ArrayList<String> spinnerEntries, ActionBarActivity fa, AdapterView.OnItemSelectedListener onItemSelectedListener) {
+        super(title, desc, prop, spinnerEntries, fa, onItemSelectedListener);
     }
 
     @Override
     public View getCardContent(Context context) {
         final View v = LayoutInflater.from(context).inflate(R.layout.card_spinner, null);
 
+        assert v != null;
         ((TextView) v.findViewById(R.id.title)).setText(title);
         ((TextView) v.findViewById(R.id.desc)).setText(desc);
 
+        SharedPreferences prefs = fa.getSharedPreferences(prop, 0);
+        int curr = prefs.getInt("CURRENT", 0);
+        Spinner spinner = (Spinner) v.findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(fa, android.R.layout.simple_spinner_dropdown_item, spinnerEntries);
-        ((Spinner) v.findViewById(R.id.spinner)).setOnItemSelectedListener(onItemSelectedListener);
-        ((Spinner) v.findViewById(R.id.spinner)).setAdapter(adapter);
+        spinner.setAdapter(adapter);
+        spinner.setSelection(curr);
+        spinner.setOnItemSelectedListener(onItemSelectedListener);
 
         return v;
     }
