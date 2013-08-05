@@ -61,6 +61,15 @@ import java.util.List;
 
 import static com.androguide.apkreator.helpers.CMDProcessor.CMDProcessor.runSuCommand;
 
+/**
+ * Every tab in the application contains an instance of this unique Fragment Object.
+ * I send & retrieve the desired position of the tab which each PluginFragment instance
+ * should belong to via the Activity Bundle.
+ * This 0-based index also determines which XML plugin file the PluginFragment instance
+ * will load (tab0.xml, tab1.xml, tab2.xml etc...)
+ *
+ * @see com.androguide.apkreator.MainActivity
+ */
 public class PluginFragment extends Fragment {
 
     private static final String ARG_POSITION = "position";
@@ -68,13 +77,17 @@ public class PluginFragment extends Fragment {
     public static LinearLayout ll;
     private ActionBarActivity fa;
     private ActionMode mActionMode;
-    private CardUI mCardView;
     private ArrayList<String> name = new ArrayList<String>(), desc = new ArrayList<String>(), type = new ArrayList<String>(),
             control = new ArrayList<String>(), unit = new ArrayList<String>(), prop = new ArrayList<String>(),
             on = new ArrayList<String>(), off = new ArrayList<String>();
     private ArrayList<Integer> min = new ArrayList<Integer>(), max = new ArrayList<Integer>(), def = new ArrayList<Integer>();
     private ArrayList<ArrayList<String>> spinners = new ArrayList<ArrayList<String>>();
 
+    /** PluginFragment constructor
+     * @param position : The 0-based index of the tab each instance of
+     *                   PluginFragment belongs to, passed-in via the parent Activity's Bundle.
+     *                   Determines which tab-?.xml file to load for each instance of PluginFragment.
+     */
     public static PluginFragment newInstance(int position) {
         PluginFragment f = new PluginFragment();
         Bundle b = new Bundle();
@@ -102,14 +115,13 @@ public class PluginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // UI & Context initialization
+
         fa = (ActionBarActivity) super.getActivity();
         ll = (LinearLayout) inflater.inflate(com.androguide.apkreator.R.layout.cardsui,
                 container, false);
 
         assert ll != null;
         CardUI mCardsView = (CardUI) ll.findViewById(com.androguide.apkreator.R.id.cardsui);
-        SharedPreferences prefs = fa.getSharedPreferences("CONFIG", 0);
 
         List<Tweak> pluginTweaks = null;
         try {
@@ -122,6 +134,8 @@ public class PluginFragment extends Fragment {
             e.printStackTrace();
         }
 
+        /* Retrieve the right attributes based on the position parameter passed to this instance of PluginFragment,
+         * and store them in the separate ArrayLists<?> we declared above the constructor */
         for (int i = 0; i < (pluginTweaks != null ? pluginTweaks.size() : 0); i++) {
             final int posHolder = i;
             name.add(i, pluginTweaks.get(i).getName());
@@ -137,30 +151,32 @@ public class PluginFragment extends Fragment {
             off.add(i, pluginTweaks.get(i).getBooleanOff());
             spinners.add(i, pluginTweaks.get(i).getSpinnerEntries());
 
-            ////////////////////////////////////////////////
-            //// Build.prop Tweak Cards
-            ///////////////////////////////////////////////
+            /************************************************
+             *               Plain Text Cards               *
+             ************************************************/
             if (type.get(i).equalsIgnoreCase("build.prop")) {
 
-            	/* SeekBar + EditText Combo Card */
+                /** SeekBar + EditText Combo Card
+                 **** @see com.androguide.apkreator.cards.CardSeekBarCombo */
                 if (control.get(i).equalsIgnoreCase("seekbar-combo")) {
                     CardSeekBarCombo card = new CardSeekBarCombo(name.get(i), desc.get(i), unit.get(i), prop.get(i),
                             max.get(i), def.get(i), fa);
                     mCardsView.addCard(card, true);
 
-                /* SeekBar Card */
+                    /** SeekBar Card
+                     **** @see com.androguide.apkreator.cards.CardSeekBar */
                 } else if (control.get(i).equalsIgnoreCase("seekbar")) {
                     CardSeekBar card = new CardSeekBar(name.get(i), desc.get(i), unit.get(i), prop.get(i),
                             max.get(i), def.get(i), fa, mActionModeCallback);
                     mCardsView.addCard(card, true);
 
-                /* Switch Card */
+                    /** Switch Card
+                     **** @see com.androguide.apkreator.cards.CardSwitchPlugin */
                 } else if (control.get(i).equalsIgnoreCase("switch")) {
                     CardSwitchPlugin card = new CardSwitchPlugin(name.get(i), desc.get(i), prop.get(i), fa, new OnCheckedChangeListener() {
 
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
                             if (isChecked) {
                                 Helpers.applyBuildPropTweak(prop.get(posHolder), on.get(posHolder));
                                 SharedPreferences prefs = fa.getSharedPreferences(prop.get(posHolder), 0);
@@ -174,17 +190,20 @@ public class PluginFragment extends Fragment {
                     });
                     mCardsView.addCard(card, true);
 
-                /* Spinner Card */
+                    /** Spinner Card
+                     **** @see com.androguide.apkreator.cards.CardSwitchPlugin */
                 } else if (control.get(i).equalsIgnoreCase("spinner")) {
-                    int increment = 0;
                     CardSpinner card = new CardSpinner(name.get(i), desc.get(i), prop.get(i), spinners.get(i), fa, new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                             final String bProp = prop.get(posHolder);
-                            final AdapterView<?> daddy = parent;
-                            final int pos = position;
+
+                            /* In order to avoid re-applying the current value in onCreate(),
+                               I compare the saved spinner position with the current one and only
+                               apply the value if they differ. This way root access isn't requested upon launch. */
                             SharedPreferences p = fa.getSharedPreferences(prop.get(posHolder), 0);
                             int curr = p.getInt("CURRENT", 0);
+                            final int pos = position;
                             if (pos != curr) {
                                 final String item = spinners.get(posHolder).get(pos);
                                 new Thread(new Runnable() {
@@ -205,16 +224,18 @@ public class PluginFragment extends Fragment {
 
                         @Override
                         public void onNothingSelected(AdapterView<?> parent) {
-
                         }
                     });
                     mCardsView.addCard(card, true);
                 }
 
-                ////////////////////////////////////////////////
-                //// Plain Text Cards
-                ///////////////////////////////////////////////
+                /************************************************
+                 *               Plain Text Cards               *
+                 ************************************************/
             } else if (type.get(i).equalsIgnoreCase("text")) {
+
+                /** Plain Text Card with colored stripe
+                 **** @see com.androguide.apkreator.cards.TextCard */
                 SharedPreferences p = fa.getSharedPreferences("CONFIG", 0);
                 TextCard card = new TextCard(name.get(i), desc.get(i), p.getString("APP_COLOR", "#96AA39"), false, false);
                 mCardsView.addCard(card, true);
@@ -234,7 +255,10 @@ public class PluginFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    // Contextual ActionBar (CAB) callback
+    /**
+     * Contextual ActionBar triggered by SeekBar-enabled cards
+     * *** @see com.androguide.apkreator.cards.CardSeekBar
+     * *** @see com.androguide.apkreator.cards.CardSeekBarCombo */
     private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
 
 
