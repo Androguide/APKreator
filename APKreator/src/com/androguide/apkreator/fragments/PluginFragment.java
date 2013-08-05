@@ -114,7 +114,7 @@ public class PluginFragment extends Fragment {
         List<Tweak> pluginTweaks = null;
         try {
             PluginParser parser = new PluginParser();
-            File file = new File(Environment.getExternalStorageDirectory() + "/PimpMyRom/tab" + position + ".xml");
+            File file = new File(Environment.getExternalStorageDirectory() + "/.APKreator/tab" + position + ".xml");
             FileInputStream fis = new FileInputStream(file);
             pluginTweaks = parser.parse(fis);
         } catch (IOException e) {
