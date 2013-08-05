@@ -1,0 +1,10 @@
+<plugin>
+    <config
+	    app-name="Insert ROM Name"
+    	app-color="#3F9FE0"
+    	tabs-amount="3"
+    	tab0="HOME"
+    	tab1="SECTION A"
+    	tab2="WHATEVER"
+		tab3="ANOTHER"/>
+</plugin>

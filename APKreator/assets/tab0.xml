@@ -1,0 +1,38 @@
+<plugin>
+	<tweak type="text">
+		<name>Text Card</name>
+		<description>Lorem ipsum dolor sit amet habitant pellentesque morbit</description>
+	</tweak>
+	
+	<tweak type="build.prop">
+		<name>Spinner Card</name>
+		<description>This is a dropdown card, each entry is a value for the prop tag you defined</description>
+        <prop>ro.spinner.card</prop>
+		<control type="spinner"
+			values-amount="3"
+			value0="Pimp"
+			value1="My"
+			value2="Rom"/>
+	</tweak>
+	
+    <tweak type="build.prop">
+        <name>Test Tweak</name>
+        <description>This is a test 3rd-party pluggable tweak</description>
+        <prop>ro.mytweak.pwns.ass</prop>
+        <control type="seekbar"/>
+        <min-value>0</min-value>
+        <max-value>150</max-value>
+        <default-value>45</default-value>
+        <unit>MB</unit>
+    </tweak>
+	
+    <tweak type="build.prop">
+		<control
+			type="switch"
+			on="true"
+			off="false"/>
+        <name>My Tweak</name>
+        <description>Lorem ipsum dolor sit amet sin et alpha beta epsilon</description>
+        <prop>ro.boolean.tweak</prop>
+    </tweak>
+</plugin>
