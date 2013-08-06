@@ -44,7 +44,8 @@ import com.androguide.apkreator.cards.CardSeekBar;
 import com.androguide.apkreator.cards.CardSeekBarCombo;
 import com.androguide.apkreator.cards.CardSpinner;
 import com.androguide.apkreator.cards.CardSwitchPlugin;
-import com.androguide.apkreator.cards.TextCard;
+import com.androguide.apkreator.cards.CardText;
+import com.androguide.apkreator.cards.CardTextStripe;
 import com.androguide.apkreator.helpers.CMDProcessor.CMDProcessor;
 import com.androguide.apkreator.helpers.CMDProcessor.Shell;
 import com.androguide.apkreator.helpers.Helpers;
@@ -83,10 +84,12 @@ public class PluginFragment extends Fragment {
     private ArrayList<Integer> min = new ArrayList<Integer>(), max = new ArrayList<Integer>(), def = new ArrayList<Integer>();
     private ArrayList<ArrayList<String>> spinners = new ArrayList<ArrayList<String>>();
 
-    /** PluginFragment constructor
+    /**
+     * PluginFragment constructor
+     *
      * @param position : The 0-based index of the tab each instance of
-     *                   PluginFragment belongs to, passed-in via the parent Activity's Bundle.
-     *                   Determines which tab-?.xml file to load for each instance of PluginFragment.
+     *                 PluginFragment belongs to, passed-in via the parent Activity's Bundle.
+     *                 Determines which tab-?.xml file to load for each instance of PluginFragment.
      */
     public static PluginFragment newInstance(int position) {
         PluginFragment f = new PluginFragment();
@@ -152,7 +155,7 @@ public class PluginFragment extends Fragment {
             spinners.add(i, pluginTweaks.get(i).getSpinnerEntries());
 
             /************************************************
-             *               Plain Text Cards               *
+             *               Build.prop Cards               *
              ************************************************/
             if (type.get(i).equalsIgnoreCase("build.prop")) {
 
@@ -234,10 +237,18 @@ public class PluginFragment extends Fragment {
                  ************************************************/
             } else if (type.get(i).equalsIgnoreCase("text")) {
 
-                /** Plain Text Card with colored stripe
-                 **** @see com.androguide.apkreator.cards.TextCard */
+                /** Plain Text Card
+                 **** @see com.androguide.apkreator.cards.CardText */
                 SharedPreferences p = fa.getSharedPreferences("CONFIG", 0);
-                TextCard card = new TextCard(name.get(i), desc.get(i), p.getString("APP_COLOR", "#96AA39"), false, false);
+                CardText card = new CardText(name.get(i), desc.get(i), p.getString("APP_COLOR", "#96AA39"), false, false);
+                mCardsView.addCard(card, true);
+
+            } else if (type.get(i).equalsIgnoreCase("stripe")) {
+
+                /** Plain Text Card with colored stripe
+                 **** @see com.androguide.apkreator.cards.CardTextStripe */
+                SharedPreferences p = fa.getSharedPreferences("CONFIG", 0);
+                CardTextStripe card = new CardTextStripe(name.get(i), desc.get(i), p.getString("APP_COLOR", "#96AA39"), false, false);
                 mCardsView.addCard(card, true);
             }
         }
@@ -258,7 +269,8 @@ public class PluginFragment extends Fragment {
     /**
      * Contextual ActionBar triggered by SeekBar-enabled cards
      * *** @see com.androguide.apkreator.cards.CardSeekBar
-     * *** @see com.androguide.apkreator.cards.CardSeekBarCombo */
+     * *** @see com.androguide.apkreator.cards.CardSeekBarCombo
+     */
     private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
 
 

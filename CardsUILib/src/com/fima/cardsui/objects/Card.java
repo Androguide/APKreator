@@ -35,6 +35,12 @@ public abstract class Card extends AbstractCard {
         this.desc = desc;
     }
 
+    public Card(String title, String desc, ActionBarActivity fa) {
+        this.title = title;
+        this.desc = desc;
+        this.fa = fa;
+    }
+
     public Card(String title, String desc, String type) {
         this.title = title;
         this.desc = desc;
