@@ -27,12 +27,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.TargetApi;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -69,14 +71,11 @@ public class MainActivity extends ActionBarActivity implements
     private final Handler handler = new Handler();
     private ArrayList<String> headers = new ArrayList<String>();
     private PagerSlidingTabStrip tabs;
-    private ViewPager pager;
-    private MyPagerAdapter adapter;
     private Drawable oldBackground = null;
     private int currentColor = 0xFF3F9FE0;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
-    private CharSequence mTitle;
     private String mDrawerHeaders[] = {"Website", "XDA Thread",
             "Follow Me on Twitter", "Follow Me on Google+", "Become a Fan"};
     private Drawable.Callback drawableCallback = new Drawable.Callback() {
@@ -153,8 +152,8 @@ public class MainActivity extends ActionBarActivity implements
         // }
 
         tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
-        pager = (ViewPager) findViewById(R.id.pager);
-        adapter = new MyPagerAdapter(this.getSupportFragmentManager());
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        MyPagerAdapter adapter = new MyPagerAdapter(this.getSupportFragmentManager());
         pager.setAdapter(adapter);
         pager.setOffscreenPageLimit(3);
         pager.setOnPageChangeListener(new OnPageChangeListener() {
@@ -362,14 +361,14 @@ public class MainActivity extends ActionBarActivity implements
         // update the main content by replacing fragments
         Log.v("DEBUG", "Selected item " + position);
 
-        // update selected item and title, then close the drawer
-        mDrawerList.setItemChecked(position, true);
+//        // update selected item and title, then close the drawer
+//        mDrawerList.setItemChecked(position, true);
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
     @Override
     public void setTitle(CharSequence title) {
-        mTitle = title;
+        CharSequence mTitle = title;
         try {
             getSupportActionBar().setTitle(mTitle);
         } catch (NullPointerException ignored) {
@@ -420,9 +419,20 @@ public class MainActivity extends ActionBarActivity implements
 
     private class DrawerItemClickListener implements
             ListView.OnItemClickListener {
+        @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
                                 long id) {
+            for (int i = 0; i < parent.getCount(); i++) {
+                StateListDrawable states = new StateListDrawable();
+                states.addState(new int[] {android.R.attr.state_pressed},
+                        new ColorDrawable(Color.parseColor(getPluginColor())));
+                states.addState(new int[] {android.R.attr.state_focused},
+                        new ColorDrawable(Color.parseColor(getPluginColor())));
+                states.addState(new int[] { },
+                        getResources().getDrawable(android.R.color.transparent));
+                view.setBackground(states);
+            }
             selectItem(position);
         }
     }

@@ -27,7 +27,7 @@
           android:id="@+id/pimped_item"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:background="@drawable/coloured_touch_feedback"
+          android:background="@drawable/selectable_background_cardbank"
           android:gravity="center_vertical"
           android:paddingLeft="16dp"
           android:paddingRight="16dp"
@@ -35,4 +35,7 @@
           android:paddingBottom="16dp"
           android:drawableLeft="@drawable/ic_action_website"
           android:drawablePadding="4dip"
+          android:text="@string/card_title"
+          android:fontFamily="sans-serif-condensed"
+          android:textSize="16sp"
           android:textColor="#fff"/>
