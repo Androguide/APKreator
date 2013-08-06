@@ -18,6 +18,7 @@ package com.androguide.apkreator.cards;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -47,9 +48,12 @@ public class CardSeekBarCombo extends Card {
         final View v = LayoutInflater.from(context).inflate(R.layout.card_seekbar_combo, null);
 
         prefs = fa.getSharedPreferences(title, 0);
+        SharedPreferences config = fa.getSharedPreferences("CONFIG", 0);
+        assert v != null;
         ((TextView) v.findViewById(R.id.title)).setText(title);
         ((TextView) v.findViewById(R.id.desc)).setText(desc);
         ((TextView) v.findViewById(R.id.unit)).setText(unit);
+        ((TextView) v.findViewById(R.id.title)).setTextColor(Color.parseColor(config.getString("APP_COLOR", "#96AA39")));
 
         final EditText e = (EditText) v.findViewById(R.id.seek_val);
         final SeekBar seekBar = (SeekBar) v.findViewById(R.id.seek);

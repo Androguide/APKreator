@@ -41,11 +41,11 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed"
+                android:fontFamily="sans-serif-light"
                 android:text="@string/card_title"
                 android:textColor="@color/play_blue"
                 android:layout_weight="99"
-                android:textSize="19sp"/>
+                android:textSize="20sp"/>
 
         <de.ankri.views.Switch
                 android:id="@+id/toggle"
@@ -60,8 +60,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/lorem_ipsum"
+            android:fontFamily="sans-serif-light"
+            android:textSize="15sp"
             android:layout_marginTop="@dimen/activity_quarter_margin"
-            android:layout_marginBottom="@dimen/activity_3quarter_margin"
-            android:textColor="@color/play_gray"/>
+            android:layout_marginBottom="@dimen/activity_3quarter_margin"/>
 
 </LinearLayout>

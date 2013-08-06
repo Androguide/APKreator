@@ -35,10 +35,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dip"
-                    android:fontFamily="sans-serif-condensed"
+                    android:fontFamily="sans-serif-light"
                     android:text="@string/card_title"
                     android:textColor="#33B6EA"
-                    android:textSize="19sp"/>
+                    android:textSize="20sp"/>
 
             <TextView
                     android:id="@+id/description"
@@ -49,6 +49,8 @@
                     android:layout_marginRight="48dip"
                     android:ellipsize="end"
                     android:maxLines="50"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="15sp"
                     android:text="@string/lorem_ipsum"/>
         </LinearLayout>
 

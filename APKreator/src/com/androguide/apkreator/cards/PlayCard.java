@@ -43,7 +43,7 @@ public class PlayCard extends Card {
 
     @Override
     public View getCardContent(Context context) {
-        View v = LayoutInflater.from(context).inflate(R.layout.text_card, null);
+        View v = LayoutInflater.from(context).inflate(R.layout.card_text_stripe, null);
 
         assert v != null;
         ((TextView) v.findViewById(R.id.title)).setText(titlePlay);

@@ -18,6 +18,7 @@ package com.androguide.apkreator.cards;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,12 +41,14 @@ public class CardSpinner extends Card {
     @Override
     public View getCardContent(Context context) {
         final View v = LayoutInflater.from(context).inflate(R.layout.card_spinner, null);
+        SharedPreferences prefs = fa.getSharedPreferences(prop, 0);
+        SharedPreferences config = fa.getSharedPreferences("CONFIG", 0);
 
         assert v != null;
         ((TextView) v.findViewById(R.id.title)).setText(title);
         ((TextView) v.findViewById(R.id.desc)).setText(desc);
+        ((TextView) v.findViewById(R.id.title)).setTextColor(Color.parseColor(config.getString("APP_COLOR", "#96AA39")));
 
-        SharedPreferences prefs = fa.getSharedPreferences(prop, 0);
         int curr = prefs.getInt("CURRENT", 0);
         Spinner spinner = (Spinner) v.findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(fa, android.R.layout.simple_spinner_dropdown_item, spinnerEntries);

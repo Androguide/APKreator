@@ -39,17 +39,18 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed"
+                android:fontFamily="sans-serif-light"
                 android:text="@string/card_title"
                 android:textColor="@color/play_blue"
-                android:textSize="19sp"/>
+                android:textSize="20sp"/>
 
         <TextView
                 android:id="@+id/desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lorem_ipsum"
-                android:textColor="@color/play_gray"/>
+                android:fontFamily="sans-serif-light"
+                android:textSize="15sp"/>
 
         <SeekBar
                 android:id="@+id/seek"

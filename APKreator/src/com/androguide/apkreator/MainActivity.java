@@ -216,7 +216,7 @@ public class MainActivity extends ActionBarActivity implements
         List<Config> pluginConfigs = null;
         try {
             PluginParser parser = new PluginParser();
-            File file = new File(Environment.getExternalStorageDirectory() + "/PimpMyRom/config.xml");
+            File file = new File(Environment.getExternalStorageDirectory() + "/.APKreator/config.xml");
             FileInputStream fis = new FileInputStream(file);
             pluginConfigs = parser.parseConfig(fis);
         } catch (IOException e) {
@@ -239,7 +239,7 @@ public class MainActivity extends ActionBarActivity implements
         ArrayList<String> tabs = new ArrayList<String>();
         try {
             PluginParser parser = new PluginParser();
-            File file = new File(Environment.getExternalStorageDirectory() + "/PimpMyRom/config.xml");
+            File file = new File(Environment.getExternalStorageDirectory() + "/.APKreator/config.xml");
             FileInputStream fis = new FileInputStream(file);
             pluginConfigs = parser.parseConfig(fis);
         } catch (IOException e) {
@@ -257,7 +257,7 @@ public class MainActivity extends ActionBarActivity implements
         List<Config> pluginConfigs = null;
         try {
             PluginParser parser = new PluginParser();
-            File file = new File(Environment.getExternalStorageDirectory() + "/PimpMyRom/config.xml");
+            File file = new File(Environment.getExternalStorageDirectory() + "/.APKreator/config.xml");
             FileInputStream fis = new FileInputStream(file);
             pluginConfigs = parser.parseConfig(fis);
         } catch (IOException e) {
