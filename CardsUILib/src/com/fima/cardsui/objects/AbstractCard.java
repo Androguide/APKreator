@@ -11,7 +11,7 @@ import android.widget.SeekBar;
 
 public abstract class AbstractCard {
 
-    protected String description, color, titleColor, desc, title, titlePlay, unit, type, prop;
+    protected String description, color, titleColor, desc, title, titlePlay, unit, type, prop, cmd, buttonText;
     protected ArrayList<String> spinnerEntries;
     protected Boolean hasOverflow, isClickable;
     protected int imageRes, image, seekBarMax, seekBarProgress, marginBottom = 0;
@@ -20,6 +20,7 @@ public abstract class AbstractCard {
     protected CompoundButton.OnCheckedChangeListener onCheckedChangeListener;
     protected android.support.v7.view.ActionMode.Callback callback;
     protected SeekBar.OnSeekBarChangeListener listener;
+    protected View.OnClickListener clickListener;
 
     public abstract View getView(Context context);
 
@@ -35,10 +36,6 @@ public abstract class AbstractCard {
 
     public String getDesc() {
         return desc;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public int getImage() {
@@ -59,6 +56,22 @@ public abstract class AbstractCard {
 
     public String getUnit() {
         return unit;
+    }
+
+    public String getCmd() {
+        return cmd;
+    }
+
+    public void setCmd(String cmd) {
+        this.cmd = cmd;
+    }
+
+    public String getButtonText() {
+        return buttonText;
+    }
+
+    public void setButtonText(String buttonText) {
+        this.buttonText = buttonText;
     }
 
     public ArrayList<String> getSpinnerEntries() {
@@ -115,5 +128,13 @@ public abstract class AbstractCard {
 
     public void setListener(SeekBar.OnSeekBarChangeListener listener) {
         this.listener = listener;
+    }
+
+    public View.OnClickListener getClickListener() {
+        return clickListener;
+    }
+
+    public void setClickListener(View.OnClickListener clickListener) {
+        this.clickListener = clickListener;
     }
 }

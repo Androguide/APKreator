@@ -24,7 +24,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="vertical"
-              android:paddingBottom="6dp">
+              android:paddingBottom="8dp">
 
 
     <LinearLayout
@@ -47,7 +47,7 @@
                 android:textSize="20sp"/>
 
         <TextView
-                android:id="@+id/description"
+                android:id="@+id/desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -58,6 +58,15 @@
                 android:fontFamily="sans-serif-light"
                 android:textSize="15sp"
                 android:text="@string/lorem_ipsum"/>
+
+        <Button
+                android:id="@+id/button"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="16dip"
+                android:layout_gravity="center"
+                style="@style/ButtonBlue"
+                android:text="Button Text"/>
     </LinearLayout>
 
 </LinearLayout>

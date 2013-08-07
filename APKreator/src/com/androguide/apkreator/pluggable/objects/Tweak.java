@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class Tweak {
 
-    private String name, desc, type, control, unit, prop, booleanOn, booleanOff;
+    private String name, desc, type, control, unit, prop, booleanOn, booleanOff, shellCmd, buttonText;
     private int min, max, def;
     private ArrayList<String> tabs = new ArrayList<String>(), spinnerEntries = new ArrayList<String>();
 
@@ -75,6 +75,10 @@ public class Tweak {
     public String getProp() {
         return prop;
     }
+
+    public void setProp(String prop) {
+        this.prop = prop;
+    }
     
     public String getBooleanOn() {
     	return booleanOn;
@@ -92,8 +96,20 @@ public class Tweak {
     	this.booleanOff = booleanOff;
     }
 
-    public void setProp(String prop) {
-        this.prop = prop;
+    public String getShellCmd() {
+        return shellCmd;
+    }
+
+    public void setShellCmd(String shellCmd) {
+        this.shellCmd = shellCmd;
+    }
+
+    public String getButtonText() {
+        return buttonText;
+    }
+
+    public void setButtonText(String buttonText) {
+        this.buttonText = buttonText;
     }
 
     public int getMin() {

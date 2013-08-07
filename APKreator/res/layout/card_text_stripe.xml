@@ -27,7 +27,7 @@
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dip"
-                android:layout_weight="90"
+                android:layout_weight="95"
                 android:orientation="vertical">
 
             <TextView
@@ -42,7 +42,7 @@
 
             <TextView
                     android:id="@+id/description"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="8dip"

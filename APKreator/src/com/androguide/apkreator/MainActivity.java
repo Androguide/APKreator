@@ -23,7 +23,6 @@ package com.androguide.apkreator;
 
 import android.annotation.TargetApi;
 import android.content.SharedPreferences;
-import android.content.res.AssetFileDescriptor;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -66,7 +65,6 @@ import com.astuetz.viewpager.extensions.PagerSlidingTabStrip;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -128,16 +126,19 @@ public class MainActivity extends ActionBarActivity implements
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         // enable ActionBar app icon to behave as action to toggle nav drawer
-        try {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeButtonEnabled(true);
-            Uri iconUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/.APKreator/icon.png"));
-            Bitmap icon = BitmapFactory.decodeFile(iconUri.getPath());
-            Drawable ic = new BitmapDrawable(icon);
-            getSupportActionBar().setIcon(ic);
-        } catch (NullPointerException ignored) {
+        // and if the plugin defines an icon then use it, otherwise use the default APKreator icon
+        File file = new File(Environment.getExternalStorageDirectory() + "/.APKreator/icon.png");
+        if (file.exists()) {
+            try {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setHomeButtonEnabled(true);
+                Uri iconUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/.APKreator/icon.png"));
+                Bitmap icon = BitmapFactory.decodeFile(iconUri.getPath());
+                Drawable ic = new BitmapDrawable(icon);
+                getSupportActionBar().setIcon(ic);
+            } catch (NullPointerException e) {
+            }
         }
-
         // ActionBarDrawerToggle ties together the the proper interactions
         // between the sliding drawer and the action bar app icon
         mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
@@ -157,10 +158,6 @@ public class MainActivity extends ActionBarActivity implements
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        // if (savedInstanceState == null) {
-        // selectItem(0);
-        // }
-
         tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
         MyPagerAdapter adapter = new MyPagerAdapter(this.getSupportFragmentManager());
@@ -178,8 +175,6 @@ public class MainActivity extends ActionBarActivity implements
 
             @Override
             public void onPageScrollStateChanged(int arg0) {
-                // TODO Auto-generated method stub
-
             }
         });
 
@@ -208,7 +203,7 @@ public class MainActivity extends ActionBarActivity implements
         Log.d("hai", "Screen inches : " + screenInches + "");
     }
 
-    /* Called whenever we call invalidateOptionsMenu() */
+    // Called whenever we call invalidateOptionsMenu()
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         return super.onPrepareOptionsMenu(menu);
@@ -284,7 +279,6 @@ public class MainActivity extends ActionBarActivity implements
     }
 
     public void changeColor(int newColor) {
-
         tabs.setIndicatorColor(newColor);
         Drawable colorDrawable = new ColorDrawable(newColor);
         Drawable bottomDrawable = getResources().getDrawable(
@@ -293,25 +287,26 @@ public class MainActivity extends ActionBarActivity implements
                 bottomDrawable});
 
         if (oldBackground == null) {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1)
                 ld.setCallback(drawableCallback);
-            } else
+            else
                 getSupportActionBar().setBackgroundDrawable(ld);
 
         } else {
             TransitionDrawable td = new TransitionDrawable(new Drawable[]{
                     oldBackground, ld});
 
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1)
                 td.setCallback(drawableCallback);
-            } else
+            else
                 getSupportActionBar().setBackgroundDrawable(td);
             td.startTransition(200);
         }
         oldBackground = ld;
         currentColor = newColor;
-        // This is a workaround to avoid NPE, see the following thread :
-        // http://stackoverflow.com/questions/11002691/actionbar-setbackgrounddrawable-nulling-background-from-thread-handler
+
+        /** The following is a work-around to avoid NPE, see the following thread :
+         *  http://stackoverflow.com/questions/11002691/actionbar-setbackgrounddrawable-nulling-background-from-thread-handler */
         try {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
             getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -368,19 +363,18 @@ public class MainActivity extends ActionBarActivity implements
     }
 
     private void selectItem(int position) {
-        // update the main content by replacing fragments
+        //TODO: Remove in RC/stable releases
         Log.v("DEBUG", "Selected item " + position);
 
-//        // update selected item and title, then close the drawer
-//        mDrawerList.setItemChecked(position, true);
+        // update selected item and title, then close the drawer
+        mDrawerList.setItemChecked(position, true);
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
     @Override
     public void setTitle(CharSequence title) {
-        CharSequence mTitle = title;
         try {
-            getSupportActionBar().setTitle(mTitle);
+            getSupportActionBar().setTitle(title);
         } catch (NullPointerException ignored) {
         }
     }
@@ -402,28 +396,6 @@ public class MainActivity extends ActionBarActivity implements
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggle
         mDrawerToggle.onConfigurationChanged(newConfig);
-    }
-
-    public Bitmap readBitmap(Uri selectedImage) {
-        Bitmap bm = null;
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 2; //reduce quality
-        AssetFileDescriptor fileDescriptor = null;
-        try {
-            fileDescriptor = getContentResolver().openAssetFileDescriptor(selectedImage, "r");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (fileDescriptor != null) {
-                    bm = BitmapFactory.decodeFileDescriptor(fileDescriptor.getFileDescriptor(), null, options);
-                    fileDescriptor.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return bm;
     }
 
     public class MyPagerAdapter extends FragmentPagerAdapter {

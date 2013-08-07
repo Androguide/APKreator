@@ -117,19 +117,24 @@ public class PluginParser {
 
                                 // <CONTROL> TAG
                             } else if (tagName.equalsIgnoreCase("control")) {
-                                // seekbar attribute
                                 tweak.setControl(parser.getAttributeValue(null, "type"));
-                                // switch attribute
+
+                                // switch type
                                 if (parser.getAttributeValue(null, "type").equalsIgnoreCase("switch")) {
                                     tweak.setBooleanOn(parser.getAttributeValue(null, "on"));
                                     tweak.setBooleanOff(parser.getAttributeValue(null, "off"));
-                                    // spinner attribute
+
+                                    // spinner type
                                 } else if (parser.getAttributeValue(null, "type").equalsIgnoreCase("spinner")) {
                                     ArrayList<String> entries = new ArrayList<String>();
                                     int values = Integer.parseInt(parser.getAttributeValue(null, "values-amount"));
                                     for (int i = 0; i < values; i++)
                                         entries.add(parser.getAttributeValue(null, "value" + i));
                                     tweak.setSpinnerEntries(entries);
+
+                                    // button type
+                                } else if (parser.getAttributeValue(null, "type").equalsIgnoreCase("button")) {
+                                    tweak.setButtonText(parser.getAttributeValue(null, "text"));
                                 }
                             }
                             break;
@@ -151,6 +156,8 @@ public class PluginParser {
                                 tweak.setUnit(text);
                             else if (tagName.equalsIgnoreCase("prop"))
                                 tweak.setProp(text);
+                            else if (tagName.equalsIgnoreCase("command"))
+                                tweak.setShellCmd(text);
                             else if (tagName.equalsIgnoreCase("min-value"))
                                 tweak.setMin(Integer.parseInt(text));
                             else if (tagName.equalsIgnoreCase("max-value"))

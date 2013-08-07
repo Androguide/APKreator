@@ -40,6 +40,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 
 import com.androguide.apkreator.R;
+import com.androguide.apkreator.cards.CardButton;
 import com.androguide.apkreator.cards.CardSeekBar;
 import com.androguide.apkreator.cards.CardSeekBarCombo;
 import com.androguide.apkreator.cards.CardSpinner;
@@ -79,8 +80,8 @@ public class PluginFragment extends Fragment {
     private ActionBarActivity fa;
     private ActionMode mActionMode;
     private ArrayList<String> name = new ArrayList<String>(), desc = new ArrayList<String>(), type = new ArrayList<String>(),
-            control = new ArrayList<String>(), unit = new ArrayList<String>(), prop = new ArrayList<String>(),
-            on = new ArrayList<String>(), off = new ArrayList<String>();
+            control = new ArrayList<String>(), unit = new ArrayList<String>(), prop = new ArrayList<String>(), shellCmds = new ArrayList<String>(),
+            on = new ArrayList<String>(), off = new ArrayList<String>(), buttons = new ArrayList<String>();
     private ArrayList<Integer> min = new ArrayList<Integer>(), max = new ArrayList<Integer>(), def = new ArrayList<Integer>();
     private ArrayList<ArrayList<String>> spinners = new ArrayList<ArrayList<String>>();
 
@@ -150,8 +151,10 @@ public class PluginFragment extends Fragment {
             max.add(i, pluginTweaks.get(i).getMax());
             def.add(i, pluginTweaks.get(i).getDef());
             prop.add(i, pluginTweaks.get(i).getProp());
+            shellCmds.add(i, pluginTweaks.get(i).getShellCmd());
             on.add(i, pluginTweaks.get(i).getBooleanOn());
             off.add(i, pluginTweaks.get(i).getBooleanOff());
+            buttons.add(i, pluginTweaks.get(i).getButtonText());
             spinners.add(i, pluginTweaks.get(i).getSpinnerEntries());
 
             /************************************************
@@ -232,6 +235,22 @@ public class PluginFragment extends Fragment {
                     mCardsView.addCard(card, true);
                 }
 
+
+                /************************************************
+                 *             Shell Commands Cards             *
+                 ************************************************/
+            } else if (type.get(i).equalsIgnoreCase("shell")) {
+
+                if (control.get(i).equalsIgnoreCase("button")) {
+
+                    /** Card with Button, which executes a shell command on click
+                     **** @see com.androguide.apkreator.cards.CardButton */
+                    final int pos = i;
+                    CardButton card = new CardButton(name.get(i), desc.get(i), buttons.get(i), shellCmds.get(i), fa);
+                    mCardsView.addCard(card, true);
+                }
+
+
                 /************************************************
                  *               Plain Text Cards               *
                  ************************************************/
@@ -243,7 +262,7 @@ public class PluginFragment extends Fragment {
                 CardText card = new CardText(name.get(i), desc.get(i), p.getString("APP_COLOR", "#96AA39"), false, false);
                 mCardsView.addCard(card, true);
 
-            } else if (type.get(i).equalsIgnoreCase("stripe")) {
+            } else if (type.get(i).equalsIgnoreCase("text-stripe")) {
 
                 /** Plain Text Card with colored stripe
                  **** @see com.androguide.apkreator.cards.CardTextStripe */
@@ -272,7 +291,6 @@ public class PluginFragment extends Fragment {
      * *** @see com.androguide.apkreator.cards.CardSeekBarCombo
      */
     private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
-
 
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {

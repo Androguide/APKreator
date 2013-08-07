@@ -162,6 +162,15 @@ public abstract class Card extends AbstractCard {
         this.onCheckedChangeListener = onCheckedChangeListener;
     }
 
+    // Card with Button
+    public Card (String title, String desc, String buttonText, String cmd, ActionBarActivity fa) {
+        this.title = title;
+        this.desc = desc;
+        this.buttonText = buttonText;
+        this.fa = fa;
+        this.cmd = cmd;
+    }
+
     public void setMarginBottom(int marginBottom) {
         this.marginBottom = marginBottom;
     }
