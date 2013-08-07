@@ -24,49 +24,36 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="vertical"
+              android:paddingLeft="12dip"
+              android:paddingRight="12dip"
               android:paddingBottom="8dp">
 
+    <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/card_title"
+            android:textColor="#33B6EA"
+            android:textSize="20sp"/>
 
-    <LinearLayout
-            android:id="@+id/contentLayout"
+    <TextView
+            android:id="@+id/desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dip"
-            android:layout_marginRight="8dip"
-            android:layout_weight="90"
-            android:orientation="vertical">
+            android:layout_gravity="center_vertical"
+            android:ellipsize="end"
+            android:maxLines="50"
+            android:fontFamily="sans-serif-light"
+            android:textSize="15sp"
+            android:text="@string/lorem_ipsum"/>
 
-        <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dip"
-                android:fontFamily="sans-serif-light"
-                android:text="@string/card_title"
-                android:textColor="#33B6EA"
-                android:textSize="20sp"/>
-
-        <TextView
-                android:id="@+id/desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dip"
-                android:layout_marginRight="48dip"
-                android:ellipsize="end"
-                android:maxLines="50"
-                android:fontFamily="sans-serif-light"
-                android:textSize="15sp"
-                android:text="@string/lorem_ipsum"/>
-
-        <Button
-                android:id="@+id/button"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_marginTop="16dip"
-                android:layout_gravity="center"
-                style="@style/ButtonBlue"
-                android:text="Button Text"/>
-    </LinearLayout>
-
+    <Button
+            android:id="@+id/button"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="8dip"
+            android:textColor="@color/play_gray"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Button Text"/>
 </LinearLayout>

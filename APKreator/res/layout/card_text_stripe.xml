@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:paddingRight="8dip"
               android:orientation="vertical"
               android:paddingBottom="6dp">
 
@@ -15,7 +16,7 @@
                 android:id="@+id/stripe"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:layout_weight="3"
+                android:layout_weight="2"
                 android:adjustViewBounds="true"
                 android:background="@color/play_red"
                 android:baselineAlignBottom="true"
@@ -27,14 +28,13 @@
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dip"
-                android:layout_weight="95"
+                android:layout_weight="98"
                 android:orientation="vertical">
 
             <TextView
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dip"
                     android:fontFamily="sans-serif-light"
                     android:text="@string/card_title"
                     android:textColor="#33B6EA"
@@ -45,8 +45,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="8dip"
-                    android:layout_marginRight="48dip"
                     android:ellipsize="end"
                     android:maxLines="50"
                     android:fontFamily="sans-serif-light"

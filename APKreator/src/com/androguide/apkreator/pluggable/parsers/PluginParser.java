@@ -212,6 +212,11 @@ public class PluginParser {
                                 config = new Config();
                                 config.setAppName(parser.getAttributeValue(null, "app-name"));
                                 config.setAppColor(parser.getAttributeValue(null, "app-color"));
+                                config.setWebsite(parser.getAttributeValue(null, "website"));
+                                config.setXda(parser.getAttributeValue(null, "xda"));
+                                config.setTwitter(parser.getAttributeValue(null, "twitter"));
+                                config.setGplus(parser.getAttributeValue(null, "g-plus"));
+                                config.setFacebook(parser.getAttributeValue(null, "facebook"));
                                 config.setTabsAmount(Integer.parseInt(parser.getAttributeValue(null, "tabs-amount")));
                                 ArrayList<String> tabs = new ArrayList<String>();
                                 for (int i = 0; i < config.getTabsAmount(); i++)

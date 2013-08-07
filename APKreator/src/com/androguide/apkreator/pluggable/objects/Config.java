@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class Config {
 
-    private String appName, appColor;
+    private String appName, appColor, website, xda, twitter, gplus, facebook;
     private int tabsAmount;
     private ArrayList<String> tabs = new ArrayList<String>();
 
@@ -46,6 +46,46 @@ public class Config {
 
     public void setAppColor(String appColor) {
         this.appColor = appColor;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getXda() {
+        return xda;
+    }
+
+    public void setXda(String xda) {
+        this.xda = xda;
+    }
+
+    public String getTwitter() {
+        return twitter;
+    }
+
+    public void setTwitter(String twitter) {
+        this.twitter = twitter;
+    }
+
+    public String getGplus() {
+        return gplus;
+    }
+
+    public void setGplus(String gplus) {
+        this.gplus = gplus;
+    }
+
+    public String getFacebook() {
+        return facebook;
+    }
+
+    public void setFacebook(String facebook) {
+        this.facebook = facebook;
     }
 
     public int getTabsAmount() {

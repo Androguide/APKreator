@@ -52,6 +52,7 @@ import com.androguide.apkreator.helpers.CMDProcessor.Shell;
 import com.androguide.apkreator.helpers.Helpers;
 import com.androguide.apkreator.helpers.SystemPropertiesReflection;
 import com.androguide.apkreator.pluggable.objects.Tweak;
+import com.androguide.apkreator.pluggable.parsers.ParserInterface;
 import com.androguide.apkreator.pluggable.parsers.PluginParser;
 import com.fima.cardsui.views.CardUI;
 
@@ -72,18 +73,13 @@ import static com.androguide.apkreator.helpers.CMDProcessor.CMDProcessor.runSuCo
  *
  * @see com.androguide.apkreator.MainActivity
  */
-public class PluginFragment extends Fragment {
+public class PluginFragment extends Fragment implements ParserInterface {
 
     private static final String ARG_POSITION = "position";
     private int position;
     public static LinearLayout ll;
     private ActionBarActivity fa;
     private ActionMode mActionMode;
-    private ArrayList<String> name = new ArrayList<String>(), desc = new ArrayList<String>(), type = new ArrayList<String>(),
-            control = new ArrayList<String>(), unit = new ArrayList<String>(), prop = new ArrayList<String>(), shellCmds = new ArrayList<String>(),
-            on = new ArrayList<String>(), off = new ArrayList<String>(), buttons = new ArrayList<String>();
-    private ArrayList<Integer> min = new ArrayList<Integer>(), max = new ArrayList<Integer>(), def = new ArrayList<Integer>();
-    private ArrayList<ArrayList<String>> spinners = new ArrayList<ArrayList<String>>();
 
     /**
      * PluginFragment constructor

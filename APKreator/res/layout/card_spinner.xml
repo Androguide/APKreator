@@ -26,38 +26,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:paddingLeft="12dip"
+              android:paddingRight="12dip"
               android:orientation="vertical">
 
-    <LinearLayout
+    <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/card_title"
+            android:textColor="@color/play_blue"
+            android:textSize="20sp"/>
+
+    <TextView
+            android:id="@+id/desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lorem_ipsum"
+            android:fontFamily="sans-serif-light"
+            android:textSize="15sp"/>
+
+    <Spinner
+            android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:orientation="vertical">
-
-        <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:text="@string/card_title"
-                android:textColor="@color/play_blue"
-                android:textSize="20sp"/>
-
-        <TextView
-                android:id="@+id/desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lorem_ipsum"
-                android:fontFamily="sans-serif-light"
-                android:textSize="15sp"/>
-
-        <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_3quarter_margin"/>
-
-    </LinearLayout>
+            android:layout_marginTop="2dip"/>
 
 </LinearLayout>
+

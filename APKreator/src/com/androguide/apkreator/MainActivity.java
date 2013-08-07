@@ -22,6 +22,7 @@
 package com.androguide.apkreator;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -267,14 +268,16 @@ public class MainActivity extends ActionBarActivity implements
         } catch (IOException e) {
             e.printStackTrace();
         }
+        SharedPreferences prefs = getSharedPreferences("CONFIG", 0);
         for (int i = 0; i < (pluginConfigs != null ? pluginConfigs.size() : 0); i++) {
-            String appName = pluginConfigs.get(i).getAppName();
-            String appColor = pluginConfigs.get(i).getAppColor();
-            int tabsAmount = pluginConfigs.get(i).getTabsAmount();
-            SharedPreferences prefs = getSharedPreferences("CONFIG", 0);
-            prefs.edit().putString("APP_NAME", appName).commit();
-            prefs.edit().putString("APP_COLOR", appColor).commit();
-            prefs.edit().putInt("TABS_AMOUNT", tabsAmount).commit();
+            prefs.edit().putString("APP_NAME", pluginConfigs.get(i).getAppName()).commit();
+            prefs.edit().putString("APP_COLOR", pluginConfigs.get(i).getAppColor()).commit();
+            prefs.edit().putString("WEBSITE", pluginConfigs.get(i).getWebsite()).commit();
+            prefs.edit().putString("XDA", pluginConfigs.get(i).getXda()).commit();
+            prefs.edit().putString("TWITTER", pluginConfigs.get(i).getTwitter()).commit();
+            prefs.edit().putString("GOOGLE+", pluginConfigs.get(i).getGplus()).commit();
+            prefs.edit().putString("FACEBOOK", pluginConfigs.get(i).getFacebook()).commit();
+            prefs.edit().putInt("TABS_AMOUNT", pluginConfigs.get(i).getTabsAmount()).commit();
         }
     }
 
@@ -365,10 +368,35 @@ public class MainActivity extends ActionBarActivity implements
     private void selectItem(int position) {
         //TODO: Remove in RC/stable releases
         Log.v("DEBUG", "Selected item " + position);
-
         // update selected item and title, then close the drawer
+        SharedPreferences prefs = getSharedPreferences("CONFIG", 0);
+        switch (position) {
+            case 0:
+                goToUrl(prefs.getString("WEBSITE", "http://apkreator.com"));
+                break;
+            case 1:
+                goToUrl(prefs.getString("XDA", "http://forum.xda-developers.com/member.php?u=4752917"));
+                break;
+            case 2:
+                goToUrl(prefs.getString("TWITTER", "https://twitter.com/androguidefr"));
+                break;
+            case 3:
+                goToUrl(prefs.getString("GOOGLE+", "https://plus.google.com/u/0/116104837766524942436/posts"));
+                break;
+            case 4:
+                goToUrl(prefs.getString("FACEBOOK", "https://www.facebook.com/andro.guidefr"));
+                break;
+            default:
+                return;
+        }
         mDrawerList.setItemChecked(position, true);
         mDrawerLayout.closeDrawer(mDrawerList);
+    }
+
+    private void goToUrl (String url) {
+        Uri uriUrl = Uri.parse(url);
+        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+        startActivity(launchBrowser);
     }
 
     @Override
@@ -421,23 +449,26 @@ public class MainActivity extends ActionBarActivity implements
 
     }
 
-    private class DrawerItemClickListener implements
-            ListView.OnItemClickListener {
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+
         @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
                                 long id) {
-            for (int i = 0; i < parent.getCount(); i++) {
-                StateListDrawable states = new StateListDrawable();
-                states.addState(new int[]{android.R.attr.state_pressed},
-                        new ColorDrawable(Color.parseColor(getPluginColor())));
-                states.addState(new int[]{android.R.attr.state_focused},
-                        new ColorDrawable(Color.parseColor(getPluginColor())));
-                states.addState(new int[]{},
-                        getResources().getDrawable(android.R.color.transparent));
-                view.setBackground(states);
-            }
+            for (int i = 0; i < parent.getCount(); i++)
+                view.setBackground(getColouredTouchFeedback());
             selectItem(position);
+        }
+
+        private StateListDrawable getColouredTouchFeedback() {
+            StateListDrawable states = new StateListDrawable();
+            states.addState(new int[]{android.R.attr.state_pressed},
+                    new ColorDrawable(Color.parseColor(getPluginColor())));
+            states.addState(new int[]{android.R.attr.state_focused},
+                    new ColorDrawable(Color.parseColor(getPluginColor())));
+            states.addState(new int[]{},
+                    getResources().getDrawable(android.R.color.transparent));
+            return states;
         }
     }
 

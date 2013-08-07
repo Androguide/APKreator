@@ -24,40 +24,27 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="vertical"
+              android:paddingLeft="12dip"
+              android:paddingRight="12dip"
               android:paddingBottom="6dp">
 
-
-    <LinearLayout
-            android:id="@+id/contentLayout"
-            android:layout_width="match_parent"
+    <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dip"
-            android:layout_marginRight="8dip"
-            android:layout_weight="90"
-            android:orientation="vertical">
+            android:fontFamily="sans-serif-light"
+            android:text="@string/card_title"
+            android:textColor="#33B6EA"
+            android:textSize="20sp"/>
 
-        <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dip"
-                android:fontFamily="sans-serif-light"
-                android:text="@string/card_title"
-                android:textColor="#33B6EA"
-                android:textSize="20sp"/>
-
-        <TextView
-                android:id="@+id/description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dip"
-                android:layout_marginRight="48dip"
-                android:ellipsize="end"
-                android:maxLines="50"
-                android:fontFamily="sans-serif-light"
-                android:textSize="15sp"
-                android:text="@string/lorem_ipsum"/>
-    </LinearLayout>
-
+    <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:ellipsize="end"
+            android:maxLines="50"
+            android:fontFamily="sans-serif-light"
+            android:textSize="15sp"
+            android:text="@string/lorem_ipsum"/>
 </LinearLayout>

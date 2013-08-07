@@ -13,8 +13,8 @@ dependencies {
     compile project(':PagerSlidingStrip')
     compile project(':SwitchCompatLibrary')
     compile project(':CardsUILib')
-    compile ('com.android.support:appcompat-v7:18.0.+')
-    compile ('com.android.support:support-v4:18.0.+')
+    compile('com.android.support:appcompat-v7:18.0.+')
+    compile('com.android.support:support-v4:18.0.+')
 }
 
 android {
@@ -33,5 +33,15 @@ android {
         }
 
         instrumentTest.setRoot('tests')
+    }
+
+    buildTypes {
+        release {
+            runProguard true
+            proguardFile getDefaultProguardFile('proguard-android-optimize.txt')
+        }
+        debug {
+            packageNameSuffix ".debug"
+        }
     }
 }

@@ -26,8 +26,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:paddingLeft="@dimen/activity_horizontal_margin"
-              android:paddingRight="@dimen/activity_horizontal_margin"
+              android:paddingLeft="12dip"
+              android:paddingRight="12dip"
               android:orientation="vertical">
 
     <LinearLayout
@@ -43,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
                 android:text="@string/card_title"
+                android:layout_marginTop="4dip"
                 android:textColor="@color/play_blue"
                 android:layout_weight="99"
                 android:textSize="20sp"/>
