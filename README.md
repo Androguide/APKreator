@@ -1,7 +1,7 @@
 APKreator
 =========
 
-####Create gorgeous Android apps in seconds with a few lines of XML!
+####Create gorgeous Android root apps in seconds with a few lines of XML!
 APKreator abstracts Android application development through an XML-driven Domain-Specific Language (DSL).
 This abstraction layer is based on the plugin system I developed for [Pimp My Rom](http://pimpmyrom.org).
 It is divided in two distinct parts:
