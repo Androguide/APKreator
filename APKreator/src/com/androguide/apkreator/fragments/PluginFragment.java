@@ -129,7 +129,7 @@ public class PluginFragment extends Fragment {
         List<Tweak> pluginTweaks = null;
         try {
             PluginParser parser = new PluginParser();
-            File file = new File(Environment.getExternalStorageDirectory() + "/.APKreator/tab" + position + ".xml");
+            File file = new File(Environment.getExternalStorageDirectory() + "/.APKreator/tabs/tab" + position + ".xml");
             FileInputStream fis = new FileInputStream(file);
             pluginTweaks = parser.parse(fis);
         } catch (IOException e) {

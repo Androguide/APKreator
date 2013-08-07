@@ -21,21 +21,20 @@
 
 package com.androguide.apkreator;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import android.annotation.TargetApi;
 import android.content.SharedPreferences;
+import android.content.res.AssetFileDescriptor;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.TransitionDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -64,6 +63,13 @@ import com.androguide.apkreator.fragments.PluginFragment;
 import com.androguide.apkreator.pluggable.objects.Config;
 import com.androguide.apkreator.pluggable.parsers.PluginParser;
 import com.astuetz.viewpager.extensions.PagerSlidingTabStrip;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends ActionBarActivity implements
         OnPageChangeListener {
@@ -125,6 +131,10 @@ public class MainActivity extends ActionBarActivity implements
         try {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
+            Uri iconUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/.APKreator/icon.png"));
+            Bitmap icon = BitmapFactory.decodeFile(iconUri.getPath());
+            Drawable ic = new BitmapDrawable(icon);
+            getSupportActionBar().setIcon(ic);
         } catch (NullPointerException ignored) {
         }
 
@@ -394,6 +404,28 @@ public class MainActivity extends ActionBarActivity implements
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    public Bitmap readBitmap(Uri selectedImage) {
+        Bitmap bm = null;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 2; //reduce quality
+        AssetFileDescriptor fileDescriptor = null;
+        try {
+            fileDescriptor = getContentResolver().openAssetFileDescriptor(selectedImage, "r");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fileDescriptor != null) {
+                    bm = BitmapFactory.decodeFileDescriptor(fileDescriptor.getFileDescriptor(), null, options);
+                    fileDescriptor.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return bm;
+    }
+
     public class MyPagerAdapter extends FragmentPagerAdapter {
 
         public MyPagerAdapter(FragmentManager fm) {
@@ -425,11 +457,11 @@ public class MainActivity extends ActionBarActivity implements
                                 long id) {
             for (int i = 0; i < parent.getCount(); i++) {
                 StateListDrawable states = new StateListDrawable();
-                states.addState(new int[] {android.R.attr.state_pressed},
+                states.addState(new int[]{android.R.attr.state_pressed},
                         new ColorDrawable(Color.parseColor(getPluginColor())));
-                states.addState(new int[] {android.R.attr.state_focused},
+                states.addState(new int[]{android.R.attr.state_focused},
                         new ColorDrawable(Color.parseColor(getPluginColor())));
-                states.addState(new int[] { },
+                states.addState(new int[]{},
                         getResources().getDrawable(android.R.color.transparent));
                 view.setBackground(states);
             }
