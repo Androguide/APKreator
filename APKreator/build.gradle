@@ -21,6 +21,10 @@ android {
     compileSdkVersion 18
     buildToolsVersion "18.0.1"
 
+    defaultConfig {
+        packageName 'com.androguide.apkreator'
+    }
+
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
