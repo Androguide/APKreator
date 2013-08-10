@@ -53,7 +53,7 @@ public class CardButton extends Card {
         t.setText(title);
         t.setTextColor(Color.parseColor(config.getString("APP_COLOR", "#96AA39")));
         Button btn = (Button) v.findViewById(R.id.button);
-        btn.setText(buttonText);
+        btn.setText(buttonText1);
         btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -61,7 +61,7 @@ public class CardButton extends Card {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        CMDProcessor.runSuCommand(cmd);
+                        CMDProcessor.runSuCommand(cmd1);
                     }
                 }).start();
             }

@@ -110,8 +110,8 @@ public class PluginParser {
                             if (tagName.equalsIgnoreCase("plugin"))
                                 tweak = new Tweak();
 
-                                // <TWEAK> TAG
-                            else if (tagName.equalsIgnoreCase("tweak")) {
+                                // <CARD> TAG
+                            else if (tagName.equalsIgnoreCase("card")) {
                                 tweak = new Tweak();
                                 tweak.setType(parser.getAttributeValue(null, "type"));
 
@@ -135,6 +135,9 @@ public class PluginParser {
                                     // button type
                                 } else if (parser.getAttributeValue(null, "type").equalsIgnoreCase("button")) {
                                     tweak.setButtonText(parser.getAttributeValue(null, "text"));
+                                } else if (parser.getAttributeValue(null, "type").equalsIgnoreCase("double-button")) {
+                                    tweak.setButtonText(parser.getAttributeValue(null, "text1"));
+                                    tweak.setButtonText2(parser.getAttributeValue(null, "text2"));
                                 }
                             }
                             break;
@@ -146,7 +149,7 @@ public class PluginParser {
 
                         // CLOSING TAG
                         case XmlPullParser.END_TAG:
-                            if (tagName.equalsIgnoreCase("tweak"))
+                            if (tagName.equalsIgnoreCase("card"))
                                 tweaks.add(tweak);
                             else if (tagName.equalsIgnoreCase("name"))
                                 tweak.setName(text);
@@ -158,6 +161,10 @@ public class PluginParser {
                                 tweak.setProp(text);
                             else if (tagName.equalsIgnoreCase("command"))
                                 tweak.setShellCmd(text);
+                            else if (tagName.equalsIgnoreCase("command1"))
+                                tweak.setShellCmd(text);
+                            else if (tagName.equalsIgnoreCase("command2"))
+                                tweak.setShellCmd2(text);
                             else if (tagName.equalsIgnoreCase("min-value"))
                                 tweak.setMin(Integer.parseInt(text));
                             else if (tagName.equalsIgnoreCase("max-value"))

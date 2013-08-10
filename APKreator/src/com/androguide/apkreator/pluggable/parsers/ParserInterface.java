@@ -32,9 +32,11 @@ public interface ParserInterface {
             unit = new ArrayList<String>(),
             prop = new ArrayList<String>(),
             shellCmds = new ArrayList<String>(),
+            shellCmds2 = new ArrayList<String>(),
             on = new ArrayList<String>(),
             off = new ArrayList<String>(),
-            buttons = new ArrayList<String>();
+            buttons = new ArrayList<String>(),
+            buttons2 = new ArrayList<String>();
 
     public ArrayList<Integer> min = new ArrayList<Integer>(),
             max = new ArrayList<Integer>(),

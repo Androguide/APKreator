@@ -39,5 +39,5 @@ if [[ $input == 'Y' || $input == 'y'  ]]; then
 "
 read commit
 git commit -m $commit
-git push origin master
+git push -u origin master
 fi

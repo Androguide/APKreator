@@ -11,7 +11,7 @@ import android.widget.SeekBar;
 
 public abstract class AbstractCard {
 
-    protected String description, color, titleColor, desc, title, titlePlay, unit, type, prop, cmd, buttonText;
+    protected String description, color, titleColor, desc, title, titlePlay, unit, type, prop, cmd1, cmd2, buttonText1, buttonText2;
     protected ArrayList<String> spinnerEntries;
     protected Boolean hasOverflow, isClickable;
     protected int imageRes, image, seekBarMax, seekBarProgress, marginBottom = 0;
@@ -58,20 +58,36 @@ public abstract class AbstractCard {
         return unit;
     }
 
-    public String getCmd() {
-        return cmd;
+    public String getCmd1() {
+        return cmd1;
     }
 
-    public void setCmd(String cmd) {
-        this.cmd = cmd;
+    public void setCmd1(String cmd1) {
+        this.cmd1 = cmd1;
     }
 
-    public String getButtonText() {
-        return buttonText;
+    public String getCmd2() {
+        return cmd2;
     }
 
-    public void setButtonText(String buttonText) {
-        this.buttonText = buttonText;
+    public void setCmd2(String cmd2) {
+        this.cmd2 = cmd2;
+    }
+
+    public String getButtonText1() {
+        return buttonText1;
+    }
+
+    public void setButtonText1(String buttonText1) {
+        this.buttonText1 = buttonText1;
+    }
+
+    public String getButtonText2() {
+        return buttonText2;
+    }
+
+    public void setButtonText2(String buttonText2) {
+        this.buttonText2 = buttonText2;
     }
 
     public ArrayList<String> getSpinnerEntries() {

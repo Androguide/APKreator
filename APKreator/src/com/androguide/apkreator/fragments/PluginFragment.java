@@ -41,6 +41,7 @@ import android.widget.LinearLayout;
 
 import com.androguide.apkreator.R;
 import com.androguide.apkreator.cards.CardButton;
+import com.androguide.apkreator.cards.CardButtonDouble;
 import com.androguide.apkreator.cards.CardSeekBar;
 import com.androguide.apkreator.cards.CardSeekBarCombo;
 import com.androguide.apkreator.cards.CardSpinner;
@@ -59,7 +60,6 @@ import com.fima.cardsui.views.CardUI;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.androguide.apkreator.helpers.CMDProcessor.CMDProcessor.runSuCommand;
@@ -148,9 +148,11 @@ public class PluginFragment extends Fragment implements ParserInterface {
             def.add(i, pluginTweaks.get(i).getDef());
             prop.add(i, pluginTweaks.get(i).getProp());
             shellCmds.add(i, pluginTweaks.get(i).getShellCmd());
+            shellCmds2.add(i, pluginTweaks.get(i).getShellCmd2());
             on.add(i, pluginTweaks.get(i).getBooleanOn());
             off.add(i, pluginTweaks.get(i).getBooleanOff());
             buttons.add(i, pluginTweaks.get(i).getButtonText());
+            buttons2.add(i, pluginTweaks.get(i).getButtonText2());
             spinners.add(i, pluginTweaks.get(i).getSpinnerEntries());
 
             /************************************************
@@ -198,7 +200,10 @@ public class PluginFragment extends Fragment implements ParserInterface {
                     CardSpinner card = new CardSpinner(name.get(i), desc.get(i), prop.get(i), spinners.get(i), fa, new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            final String bProp = prop.get(posHolder);
+                            String bp = "";
+                            if (posHolder <= prop.size())
+                                bp = prop.get(posHolder);
+                            final String bProp = bp;
 
                             /* In order to avoid re-applying the current value in onCreate(),
                                I compare the saved spinner position with the current one and only
@@ -241,8 +246,15 @@ public class PluginFragment extends Fragment implements ParserInterface {
 
                     /** Card with Button, which executes a shell command on click
                      **** @see com.androguide.apkreator.cards.CardButton */
-                    final int pos = i;
                     CardButton card = new CardButton(name.get(i), desc.get(i), buttons.get(i), shellCmds.get(i), fa);
+                    mCardsView.addCard(card, true);
+
+                } else if (control.get(i).equalsIgnoreCase("double-button")) {
+
+                    /** Card with 2 Buttons, which executes a shell command on click
+                     **** @see com.androguide.apkreator.cards.CardButtonDouble */
+                    CardButtonDouble card = new CardButtonDouble(name.get(i), desc.get(i), buttons.get(i), buttons2.get(i),
+                            shellCmds.get(i), shellCmds2.get(i), fa);
                     mCardsView.addCard(card, true);
                 }
 

@@ -163,12 +163,23 @@ public abstract class Card extends AbstractCard {
     }
 
     // Card with Button
-    public Card (String title, String desc, String buttonText, String cmd, ActionBarActivity fa) {
+    public Card (String title, String desc, String buttonText1, String cmd1, ActionBarActivity fa) {
         this.title = title;
         this.desc = desc;
-        this.buttonText = buttonText;
+        this.buttonText1 = buttonText1;
         this.fa = fa;
-        this.cmd = cmd;
+        this.cmd1 = cmd1;
+    }
+
+    // Card with 2 Buttons
+    public Card (String title, String desc, String buttonText1, String buttonText2, String cmd1, String cmd2, ActionBarActivity fa) {
+        this.title = title;
+        this.desc = desc;
+        this.buttonText1 = buttonText1;
+        this.buttonText2 = buttonText2;
+        this.fa = fa;
+        this.cmd1 = cmd1;
+        this.cmd2 = cmd2;
     }
 
     public void setMarginBottom(int marginBottom) {

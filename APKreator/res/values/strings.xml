@@ -53,4 +53,5 @@
 
     <!-- ================= Menu ================= -->
     <string name="menu_apply">Apply</string>
+    <string name="button_text">Button Text</string>
 </resources>
