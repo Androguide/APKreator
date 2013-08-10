@@ -62,7 +62,7 @@ In our first tab (Network & Internet), we want to mimic some Pimp My Rom feature
 * **Wifi Scan Interval**: this is a build.prop tweak which takes a numerical value, so we will control it with a SeekBar to give the user full control. _(wifi.supplicant_scan_interval)_
 * **HSUPA** : We want to allow the user to enable or disable HSUPA network mode to their liking. So we are going to use a switch and declare the values we want for the ON and OFF states respectively. _(ro.ril.hsxpa)_
 * **Block Redirects** : A shell command which blocks network redirections using sysctl. For this we only need a button which will execute our command on click. _(busybox sysctl -e -w net.ipv4.conf.default.accept_redirects=0;)_
-* **Wifi Connect Speed** : a build.prop tweak for which we want to provide several choices for the value. We are thus going to use a spinner, where ach entry is a value for the build property declared in the ```<prop>``` tag
+* **Wifi Connect Speed** : a build.prop tweak for which we want to provide several choices for the value. We are thus going to use a spinner, where each entry is a value for the build property declared in the ```<prop>``` tag
 
 Here is our tab0.xml:  
 ```xml
