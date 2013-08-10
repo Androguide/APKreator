@@ -67,7 +67,7 @@ In our first tab (Network & Internet), we want to mimic some Pimp My Rom feature
 Here is our tab0.xml:  
 ```xml
 <plugin>
-    <tweak type="build.prop">
+    <card type="build.prop">
         <name>Wifi Scan Interval</name>
         <description>This determines the interval of time at which the system automatically scans for available Wi-Fi networks. A high value will help with battery life.
         </description>
@@ -77,9 +77,9 @@ Here is our tab0.xml:
         <max-value>120</max-value>
         <default-value>15</default-value>
         <unit>sec.</unit>
-    </tweak>
+    </card>
 
-    <tweak type="build.prop">
+    <card type="build.prop">
         <control
                 type="switch"
                 on="3"
@@ -87,17 +87,17 @@ Here is our tab0.xml:
         <name>Enable HSUPA</name>
         <description>Enable or disable HSUPA network mode</description>
         <prop>ro.ril.hsxpa</prop>
-    </tweak>
+    </card>
     
-    <tweak type="shell">
+    <card type="shell">
         <control type="button"
-                 text="APPLY"/>
+                 text="Apply"/>
         <command>busybox sysctl -e -w net.ipv4.conf.default.accept_redirects=0;</command>
         <name>Block Redirects</name>
         <description>Blocks all internet redirections. Warning: some websites might become unavailable.</description>
-    </tweak>
+    </card>
     
-    <tweak type="build.prop">
+    <card type="build.prop">
         <name>Wifi Connect Speed</name>
         <description>Reduces or increases the built-in delay for connecting to Wi-Fi</description>
         <prop>ro.mot.eri.losalert.delay</prop>
@@ -109,7 +109,7 @@ Here is our tab0.xml:
                  value3="800"
                  value4="1000"
                  value5="1200"/>
-    </tweak>
+    </card>
 </plugin>
 ```
 
