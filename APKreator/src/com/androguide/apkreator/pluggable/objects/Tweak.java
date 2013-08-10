@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class Tweak {
 
-    private String name, desc, type, control, unit, prop, booleanOn, booleanOff, shellCmd, shellCmd2, buttonText, buttonText2;
+    private String name, desc, type, control, unit, prop, booleanOn, booleanOff, shellCmd, shellCmd2, buttonText, buttonText2, url, filePath;
     private int min, max, def;
     private ArrayList<String> tabs = new ArrayList<String>(), spinnerEntries = new ArrayList<String>();
 
@@ -126,6 +126,22 @@ public class Tweak {
 
     public void setButtonText2(String buttonText2) {
         this.buttonText2 = buttonText2;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
     public int getMin() {

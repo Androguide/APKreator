@@ -182,6 +182,16 @@ public abstract class Card extends AbstractCard {
         this.cmd2 = cmd2;
     }
 
+    // Card for downloading files
+    public Card (String title, String desc, String url, String filePath, String buttonText1, ActionBarActivity fa) {
+        this.title = title;
+        this.desc = desc;
+        this.fa = fa;
+        this.url = url;
+        this.filePath = filePath;
+        this.buttonText1 = buttonText1;
+    }
+
     public void setMarginBottom(int marginBottom) {
         this.marginBottom = marginBottom;
     }

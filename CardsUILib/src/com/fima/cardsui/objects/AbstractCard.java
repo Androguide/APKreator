@@ -11,10 +11,11 @@ import android.widget.SeekBar;
 
 public abstract class AbstractCard {
 
-    protected String description, color, titleColor, desc, title, titlePlay, unit, type, prop, cmd1, cmd2, buttonText1, buttonText2;
+    protected String description, color, titleColor, desc, title, titlePlay, unit, type,
+            prop, cmd1, cmd2, buttonText1, buttonText2, url, filePath;
     protected ArrayList<String> spinnerEntries;
     protected Boolean hasOverflow, isClickable;
-    protected int imageRes, image, seekBarMax, seekBarProgress, marginBottom = 0;
+    protected int imageRes, image, seekBarMax, seekBarProgress, marginBottom = 0, differenciator;
     protected ActionBarActivity fa;
     protected AdapterView.OnItemSelectedListener onItemSelectedListener;
     protected CompoundButton.OnCheckedChangeListener onCheckedChangeListener;
@@ -34,7 +35,7 @@ public abstract class AbstractCard {
         return titlePlay;
     }
 
-    public String getDesc() {
+    public String getDescription() {
         return desc;
     }
 
@@ -88,6 +89,14 @@ public abstract class AbstractCard {
 
     public void setButtonText2(String buttonText2) {
         this.buttonText2 = buttonText2;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public ArrayList<String> getSpinnerEntries() {

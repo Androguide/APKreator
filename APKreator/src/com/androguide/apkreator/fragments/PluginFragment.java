@@ -42,6 +42,7 @@ import android.widget.LinearLayout;
 import com.androguide.apkreator.R;
 import com.androguide.apkreator.cards.CardButton;
 import com.androguide.apkreator.cards.CardButtonDouble;
+import com.androguide.apkreator.cards.CardDownload;
 import com.androguide.apkreator.cards.CardSeekBar;
 import com.androguide.apkreator.cards.CardSeekBarCombo;
 import com.androguide.apkreator.cards.CardSpinner;
@@ -154,6 +155,8 @@ public class PluginFragment extends Fragment implements ParserInterface {
             buttons.add(i, pluginTweaks.get(i).getButtonText());
             buttons2.add(i, pluginTweaks.get(i).getButtonText2());
             spinners.add(i, pluginTweaks.get(i).getSpinnerEntries());
+            urls.add(i, pluginTweaks.get(i).getUrl());
+            paths.add(i, pluginTweaks.get(i).getFilePath());
 
             /************************************************
              *               Build.prop Cards               *
@@ -258,6 +261,15 @@ public class PluginFragment extends Fragment implements ParserInterface {
                     mCardsView.addCard(card, true);
                 }
 
+                /************************************************
+                 *              Miscellaneous Cards             *
+                 ************************************************/
+            } else if (type.get(i).equalsIgnoreCase("download")) {
+
+                /** Card for downloading from a URL
+                 **** @see com.androguide.apkreator.cards.CardDownload */
+                CardDownload card = new CardDownload(name.get(i), desc.get(i), urls.get(i), paths.get(i), buttons.get(i), fa);
+                mCardsView.addCard(card, true);
 
                 /************************************************
                  *               Plain Text Cards               *
@@ -279,7 +291,7 @@ public class PluginFragment extends Fragment implements ParserInterface {
                 mCardsView.addCard(card, true);
             }
         }
-
+        
         return ll;
     }
 

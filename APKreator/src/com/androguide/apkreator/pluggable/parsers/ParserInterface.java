@@ -36,7 +36,9 @@ public interface ParserInterface {
             on = new ArrayList<String>(),
             off = new ArrayList<String>(),
             buttons = new ArrayList<String>(),
-            buttons2 = new ArrayList<String>();
+            buttons2 = new ArrayList<String>(),
+            urls = new ArrayList<String>(),
+            paths = new ArrayList<String>();
 
     public ArrayList<Integer> min = new ArrayList<Integer>(),
             max = new ArrayList<Integer>(),

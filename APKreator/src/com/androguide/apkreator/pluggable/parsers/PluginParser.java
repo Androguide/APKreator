@@ -135,6 +135,8 @@ public class PluginParser {
                                     // button type
                                 } else if (parser.getAttributeValue(null, "type").equalsIgnoreCase("button")) {
                                     tweak.setButtonText(parser.getAttributeValue(null, "text"));
+
+                                    // double-button type
                                 } else if (parser.getAttributeValue(null, "type").equalsIgnoreCase("double-button")) {
                                     tweak.setButtonText(parser.getAttributeValue(null, "text1"));
                                     tweak.setButtonText2(parser.getAttributeValue(null, "text2"));
@@ -159,6 +161,12 @@ public class PluginParser {
                                 tweak.setUnit(text);
                             else if (tagName.equalsIgnoreCase("prop"))
                                 tweak.setProp(text);
+                            else if (tagName.equalsIgnoreCase("url"))
+                                tweak.setUrl(text);
+                            else if (tagName.equalsIgnoreCase("path"))
+                                tweak.setFilePath(text);
+                            else if (tagName.equalsIgnoreCase("button"))
+                                tweak.setButtonText(text);
                             else if (tagName.equalsIgnoreCase("command"))
                                 tweak.setShellCmd(text);
                             else if (tagName.equalsIgnoreCase("command1"))
