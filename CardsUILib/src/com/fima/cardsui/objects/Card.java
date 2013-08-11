@@ -30,6 +30,10 @@ public abstract class Card extends AbstractCard {
         this.title = title;
     }
 
+    public Card(ActionBarActivity fa) {
+        this.fa = fa;
+    }
+
     public Card(String title, String desc) {
         this.title = title;
         this.desc = desc;
@@ -209,7 +213,7 @@ public abstract class Card extends AbstractCard {
         mCardLayout = view;
 
         try {
-            ((FrameLayout) view.findViewById(R.id.cardContent))
+            if (view != null) ((FrameLayout) view.findViewById(R.id.cardContent))
                     .addView(getCardContent(context));
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -223,7 +227,7 @@ public abstract class Card extends AbstractCard {
         int bottom = Utils.convertDpToPixelInt(context, 12);
         lp.setMargins(0, 0, 0, bottom);
 
-        view.setLayoutParams(lp);
+        if (view != null) view.setLayoutParams(lp);
 
         return view;
     }
@@ -236,7 +240,7 @@ public abstract class Card extends AbstractCard {
         mCardLayout = view;
 
         try {
-            ((FrameLayout) view.findViewById(R.id.cardContent))
+            if (view != null) ((FrameLayout) view.findViewById(R.id.cardContent))
                     .addView(getCardContent(context));
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -250,7 +254,7 @@ public abstract class Card extends AbstractCard {
         int bottom = Utils.convertDpToPixelInt(context, 12);
         lp.setMargins(0, 0, 0, bottom);
 
-        view.setLayoutParams(lp);
+        if (view != null) view.setLayoutParams(lp);
 
         return view;
     }
@@ -263,7 +267,7 @@ public abstract class Card extends AbstractCard {
         mCardLayout = view;
 
         try {
-            ((FrameLayout) view.findViewById(R.id.cardContent))
+            if (view != null) ((FrameLayout) view.findViewById(R.id.cardContent))
                     .addView(getCardContent(context));
         } catch (NullPointerException e) {
             e.printStackTrace();

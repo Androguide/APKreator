@@ -33,8 +33,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.androguide.apkreator.R;
 import com.fima.cardsui.objects.Card;
+import com.androguide.apkreator.R;
 
 import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
@@ -51,7 +51,7 @@ public class CardDownload extends Card {
 
     @Override
     public View getCardContent(Context context) {
-        View v = LayoutInflater.from(context).inflate(R.layout.card_button, null);
+        View v = LayoutInflater.from(context).inflate(R.layout.card_download, null);
         SharedPreferences config = fa.getSharedPreferences("CONFIG", 0);
 
         assert v != null;

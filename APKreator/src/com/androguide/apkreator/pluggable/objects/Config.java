@@ -26,7 +26,7 @@ import java.util.ArrayList;
 public class Config {
 
     private String appName, appColor, website, xda, twitter, gplus, facebook;
-    private int tabsAmount;
+    private int tabsAmount, cpuControlPos;
     private ArrayList<String> tabs = new ArrayList<String>();
 
     public Config() {
@@ -94,6 +94,14 @@ public class Config {
 
     public void setTabsAmount(int tabsAmount) {
         this.tabsAmount = tabsAmount;
+    }
+
+    public int getCpuControlPos() {
+        return cpuControlPos;
+    }
+
+    public void setCpuControlPos(int cpuControlPos) {
+        this.cpuControlPos = cpuControlPos;
     }
 
     public ArrayList<String> getTabs() {

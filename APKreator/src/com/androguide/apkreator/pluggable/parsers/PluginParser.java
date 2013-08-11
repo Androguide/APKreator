@@ -237,7 +237,8 @@ public class PluginParser {
                                 for (int i = 0; i < config.getTabsAmount(); i++)
                                     tabs.add(i, parser.getAttributeValue(null, "tab" + i));
                                 config.setTabs(tabs);
-                            }
+                            } else if (tagName.equalsIgnoreCase("cpu-control"))
+                                config.setCpuControlPos(Integer.parseInt(parser.getAttributeValue(null, "position")));
                             break;
 
                         // ENCLOSED TEXT

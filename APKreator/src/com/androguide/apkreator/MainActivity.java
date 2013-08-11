@@ -59,6 +59,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.androguide.apkreator.fragments.CPUControl;
 import com.androguide.apkreator.fragments.PluginFragment;
 import com.androguide.apkreator.pluggable.objects.Config;
 import com.androguide.apkreator.pluggable.parsers.PluginParser;
@@ -228,7 +229,7 @@ public class MainActivity extends ActionBarActivity implements
             e.printStackTrace();
         }
 
-        String color = "";
+        String color = "#96AA39";
         for (int i = 0; i < (pluginConfigs != null ? pluginConfigs.size() : 0); i++) {
             String appName = pluginConfigs.get(i).getAppName();
             String appColor = pluginConfigs.get(i).getAppColor();
@@ -278,6 +279,7 @@ public class MainActivity extends ActionBarActivity implements
             prefs.edit().putString("GOOGLE+", pluginConfigs.get(i).getGplus()).commit();
             prefs.edit().putString("FACEBOOK", pluginConfigs.get(i).getFacebook()).commit();
             prefs.edit().putInt("TABS_AMOUNT", pluginConfigs.get(i).getTabsAmount()).commit();
+            prefs.edit().putInt("CPU_CONTROL_POS", pluginConfigs.get(i).getCpuControlPos()).commit();
         }
     }
 
@@ -393,7 +395,7 @@ public class MainActivity extends ActionBarActivity implements
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
-    private void goToUrl (String url) {
+    private void goToUrl(String url) {
         Uri uriUrl = Uri.parse(url);
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);
@@ -444,7 +446,11 @@ public class MainActivity extends ActionBarActivity implements
 
         @Override
         public Fragment getItem(int position) {
-            return PluginFragment.newInstance(position);
+            SharedPreferences prefs = getSharedPreferences("CONFIG", 0);
+            if (position == prefs.getInt("CPU_CONTROL_POS", 0) && position != 0)
+                return new CPUControl();
+            else
+                return PluginFragment.newInstance(position);
         }
 
     }
