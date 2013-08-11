@@ -271,13 +271,6 @@ public class PluginFragment extends Fragment implements ParserInterface {
                 CardDownload card = new CardDownload(name.get(i), desc.get(i), urls.get(i), paths.get(i), buttons.get(i), fa);
                 mCardsView.addCard(card, true);
 
-
-            } else if (type.get(i).equalsIgnoreCase("cpu-control")) {
-
-                /** Card for CPU Frequencies, Governor & I/O Scheduler control
-                 **** @see com.androguide.apkreator.cards.CardCPUControl */
-
-
                 /************************************************
                  *               Plain Text Cards               *
                  ************************************************/
