@@ -27,7 +27,7 @@ public class Tweak {
 
     private String name, desc, type, control, unit, prop, booleanOn, booleanOff, shellCmd, shellCmd2, buttonText, buttonText2, url, filePath;
     private int min, max, def;
-    private ArrayList<String> tabs = new ArrayList<String>(), spinnerEntries = new ArrayList<String>();
+    private ArrayList<String> tabs = new ArrayList<String>(), spinnerEntries = new ArrayList<String>(), spinnerCommands = new ArrayList<String>();
 
     public Tweak() {
     }
@@ -182,5 +182,13 @@ public class Tweak {
 
     public void setSpinnerEntries(ArrayList<String> spinnerEntries) {
         this.spinnerEntries = spinnerEntries;
+    }
+
+    public ArrayList<String> getSpinnerCommands() {
+        return  spinnerCommands;
+    }
+
+    public void setSpinnerCommands(ArrayList<String> spinnerCommands) {
+        this.spinnerCommands = spinnerCommands;
     }
 }

@@ -61,6 +61,7 @@ import com.fima.cardsui.views.CardUI;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.androguide.apkreator.helpers.CMDProcessor.CMDProcessor.runSuCommand;
@@ -155,6 +156,7 @@ public class PluginFragment extends Fragment implements ParserInterface {
             buttons.add(i, pluginTweaks.get(i).getButtonText());
             buttons2.add(i, pluginTweaks.get(i).getButtonText2());
             spinners.add(i, pluginTweaks.get(i).getSpinnerEntries());
+            spinnerCmds.add(i, pluginTweaks.get(i).getSpinnerCommands());
             urls.add(i, pluginTweaks.get(i).getUrl());
             paths.add(i, pluginTweaks.get(i).getFilePath());
 
@@ -259,6 +261,35 @@ public class PluginFragment extends Fragment implements ParserInterface {
                     CardButtonDouble card = new CardButtonDouble(name.get(i), desc.get(i), buttons.get(i), buttons2.get(i),
                             shellCmds.get(i), shellCmds2.get(i), fa);
                     mCardsView.addCard(card, true);
+
+                } else if (control.get(i).equalsIgnoreCase("spinner")) {
+                    /** Card with a Spinner, which executes a different shell command for each entry
+                     **** @see com.androguide.apkreator.cards.CardSpinner */
+
+                    CardSpinner card = new CardSpinner(name.get(i), desc.get(i), prop.get(i), spinners.get(i), fa, new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            /* In order to avoid re-applying the current value in onCreate(),
+                               I compare the saved spinner position with the current one and only
+                               apply the value if they differ. This way root access isn't requested upon launch. */
+                            final int pos = position;
+                            final ArrayList<String> item = spinnerCmds.get(posHolder);
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    SharedPreferences prefs = fa.getSharedPreferences(name.get(posHolder), 0);
+                                    prefs.edit().putInt("CURRENT", pos).commit();
+                                    for (int i = 0; i < item.size(); i++)
+                                        CMDProcessor.runSuCommand(item.get(pos));
+                                }
+                            }).start();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+                        }
+                    });
+                    mCardsView.addCard(card, true);
                 }
 
                 /************************************************
@@ -299,7 +330,6 @@ public class PluginFragment extends Fragment implements ParserInterface {
     public void onDestroy() {
         super.onDestroy();
     }
-
 
 
     @Override

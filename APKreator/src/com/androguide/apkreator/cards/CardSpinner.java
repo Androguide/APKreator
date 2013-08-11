@@ -41,7 +41,7 @@ public class CardSpinner extends Card {
     @Override
     public View getCardContent(Context context) {
         final View v = LayoutInflater.from(context).inflate(R.layout.card_spinner, null);
-        SharedPreferences prefs = fa.getSharedPreferences(prop, 0);
+        SharedPreferences prefs = fa.getSharedPreferences(title, 0);
         SharedPreferences config = fa.getSharedPreferences("CONFIG", 0);
 
         assert v != null;

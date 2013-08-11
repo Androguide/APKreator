@@ -44,5 +44,5 @@ public interface ParserInterface {
             max = new ArrayList<Integer>(),
             def = new ArrayList<Integer>();
 
-    public ArrayList<ArrayList<String>> spinners = new ArrayList<ArrayList<String>>();
+    public ArrayList<ArrayList<String>> spinners = new ArrayList<ArrayList<String>>(), spinnerCmds = new ArrayList<ArrayList<String>>();
 }

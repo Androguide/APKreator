@@ -127,10 +127,14 @@ public class PluginParser {
                                     // spinner type
                                 } else if (parser.getAttributeValue(null, "type").equalsIgnoreCase("spinner")) {
                                     ArrayList<String> entries = new ArrayList<String>();
-                                    int values = Integer.parseInt(parser.getAttributeValue(null, "values-amount"));
-                                    for (int i = 0; i < values; i++)
-                                        entries.add(parser.getAttributeValue(null, "value" + i));
+                                    ArrayList<String> cmds = new ArrayList<String>();
+                                    int values = Integer.parseInt(parser.getAttributeValue(null, "entries-amount"));
+                                    for (int i = 0; i < values; i++) {
+                                        entries.add(parser.getAttributeValue(null, "entry" + i));
+                                        cmds.add(parser.getAttributeValue(null, "command" + i));
+                                    }
                                     tweak.setSpinnerEntries(entries);
+                                    tweak.setSpinnerCommands(cmds);
 
                                     // button type
                                 } else if (parser.getAttributeValue(null, "type").equalsIgnoreCase("button")) {
