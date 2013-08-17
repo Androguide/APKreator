@@ -80,10 +80,9 @@ Here is our tab0.xml:
     </card>
 
     <card type="build.prop">
-        <control
-                type="switch"
-                on="3"
-                off="2"/>
+        <control type="switch"
+                 on="3"
+                 off="2"/>
         <name>Enable HSUPA</name>
         <description>Enable or disable HSUPA network mode</description>
         <prop>ro.ril.hsxpa</prop>
