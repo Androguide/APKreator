@@ -14,7 +14,7 @@ It is divided in two distinct parts:
 Before diving into the documentation, let me show you how quick and easy it is to create a beautiful root app with APKreator.
 For this example, we will mimic some functionnalities of the "Network & Internet" section of [Pimp My Rom](https://play.google.com/store/apps/details?id=com.androguide.pimpmyrom).
 
-Here is what the "empty" container looks like before we do any work:
+Here is what the "blank" container looks like before we do any work:
 
 ![blank-container](http://imageshack.us/a/img835/8608/271v.png)
 
@@ -80,10 +80,9 @@ Here is our tab0.xml:
     </card>
 
     <card type="build.prop">
-        <control
-                type="switch"
-                on="3"
-                off="2"/>
+        <control type="switch"
+                 on="3"
+                 off="2"/>
         <name>Enable HSUPA</name>
         <description>Enable or disable HSUPA network mode</description>
         <prop>ro.ril.hsxpa</prop>
