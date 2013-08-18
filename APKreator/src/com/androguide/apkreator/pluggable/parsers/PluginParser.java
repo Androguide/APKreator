@@ -115,6 +115,9 @@ public class PluginParser {
                                 tweak = new Tweak();
                                 tweak.setType(parser.getAttributeValue(null, "type"));
 
+                                if (parser.getAttributeValue(null, "type").equalsIgnoreCase("image"))
+                                    tweak.setUrl(parser.getAttributeValue(null, "url"));
+
                                 // <CONTROL> TAG
                             } else if (tagName.equalsIgnoreCase("control")) {
                                 tweak.setControl(parser.getAttributeValue(null, "type"));

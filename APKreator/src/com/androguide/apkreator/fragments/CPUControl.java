@@ -355,7 +355,6 @@ public class CPUControl extends Fragment implements
         }
     }
 
-    ;
 
     // Update real-time current frequency & stats in a separate thread
     protected static Handler mCurCPUHandler = new Handler() {

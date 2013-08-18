@@ -43,6 +43,7 @@ import com.androguide.apkreator.R;
 import com.androguide.apkreator.cards.CardButton;
 import com.androguide.apkreator.cards.CardButtonDouble;
 import com.androguide.apkreator.cards.CardDownload;
+import com.androguide.apkreator.cards.CardImage;
 import com.androguide.apkreator.cards.CardSeekBar;
 import com.androguide.apkreator.cards.CardSeekBarCombo;
 import com.androguide.apkreator.cards.CardSpinner;
@@ -213,7 +214,7 @@ public class PluginFragment extends Fragment implements ParserInterface {
                             /* In order to avoid re-applying the current value in onCreate(),
                                I compare the saved spinner position with the current one and only
                                apply the value if they differ. This way root access isn't requested upon launch. */
-                            SharedPreferences p = fa.getSharedPreferences(prop.get(posHolder), 0);
+                            SharedPreferences p = fa.getSharedPreferences(name.get(posHolder), 0);
                             int curr = p.getInt("CURRENT", 0);
                             final int pos = position;
                             if (pos != curr) {
@@ -319,6 +320,11 @@ public class PluginFragment extends Fragment implements ParserInterface {
                  **** @see com.androguide.apkreator.cards.CardTextStripe */
                 SharedPreferences p = fa.getSharedPreferences("CONFIG", 0);
                 CardTextStripe card = new CardTextStripe(name.get(i), desc.get(i), p.getString("APP_COLOR", "#96AA39"), false, false);
+                mCardsView.addCard(card, true);
+
+            } else if (type.get(i).equalsIgnoreCase("image")) {
+                SharedPreferences p = fa.getSharedPreferences("CONFIG", 0);
+                CardImage card = new CardImage(name.get(i), desc.get(i), p.getString("APP_COLOR", "#96AA39"), urls.get(i));
                 mCardsView.addCard(card, true);
             }
         }

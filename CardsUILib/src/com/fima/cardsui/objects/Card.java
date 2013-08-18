@@ -196,6 +196,14 @@ public abstract class Card extends AbstractCard {
         this.buttonText1 = buttonText1;
     }
 
+    // Card with dynamic image loading using Picasso by Square
+    public Card(String title, String desc, String titleColor, String url) {
+        this.title = title;
+        this.desc = desc;
+        this.titleColor = titleColor;
+        this.url = url;
+    }
+
     public void setMarginBottom(int marginBottom) {
         this.marginBottom = marginBottom;
     }

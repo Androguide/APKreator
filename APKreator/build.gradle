@@ -14,6 +14,7 @@ dependencies {
     compile project(':SwitchCompatLibrary')
     compile project(':CardsUILib')
     compile project(':HoloGraphLibrary')
+    compile files('libs/picasso-1.1.1.jar')
     compile('com.android.support:appcompat-v7:18.0.+')
     compile('com.android.support:support-v4:18.0.+')
 }
