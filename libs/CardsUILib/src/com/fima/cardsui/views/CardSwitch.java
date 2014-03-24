@@ -38,8 +38,8 @@ import de.ankri.views.Switch;
 
 public class CardSwitch extends Card {
 
-    public CardSwitch(String title, String desc, String[] props, ActionBarActivity fa, CompoundButton.OnCheckedChangeListener onCheckedChangeListener) {
-        super(title, desc, props, fa, onCheckedChangeListener);
+    public CardSwitch(String title, String desc, String prop, ActionBarActivity fa, CompoundButton.OnCheckedChangeListener onCheckedChangeListener) {
+        super(title, desc, prop, fa, onCheckedChangeListener);
     }
 
     @Override

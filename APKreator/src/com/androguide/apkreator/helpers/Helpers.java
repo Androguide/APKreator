@@ -429,26 +429,18 @@ public class Helpers {
         else
             runSuCommand("setprop " + prop + " false");
     }
-    
+
     public static void applyBuildPropTweak(String buildProp, String propValue) {
-    	final String prop = buildProp;
-    	final String value = propValue;
-    	new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				CMDProcessor.runSuCommand(Shell.MOUNT_SYSTEM_RW);
-		        CMDProcessor.runSuCommand(Shell.SED + prop + "/d\" " + Shell.BUILD_PROP);
-		        CMDProcessor.runSuCommand(Shell.ECHO + "\"" + prop + "=" + value + "\" >> " + Shell.BUILD_PROP);
-		        CMDProcessor.runSuCommand("setprop " + prop + " " + value);
-		        CMDProcessor.runSuCommand(Shell.MOUNT_SYSTEM_RO);
-			}
-		}).start();
-    	
+        CMDProcessorWrapper.runSuCommand(Shell.MOUNT_SYSTEM_RW + "\n" +
+                Shell.SED + buildProp + "/d\" " + Shell.BUILD_PROP + "\n" +
+                Shell.ECHO + "\"" + buildProp + "=" + propValue + "\" >> " + Shell.BUILD_PROP + "\n" +
+                "setprop " + buildProp + " " + propValue + "\n" +
+                Shell.MOUNT_SYSTEM_RO);
     }
 
     /**
      * This method takes a square bitmap and clips it into a circle
+     *
      * @param bitmap : the image to clip
      * @return the clipped bitmap
      */

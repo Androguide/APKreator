@@ -1,6 +1,6 @@
 <plugin>
     <config app-name="APKreator"
-        app-color="#3F9FE0"
+        app-color="#1abc9c"
         tabs-amount="5"
         tab0="Welcome"
         tab1="YouTube"

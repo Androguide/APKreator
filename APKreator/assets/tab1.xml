@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <plugin>
-    <card
-        description="Welcome to APKreator.\nNo configuration files were found, so we created these basic ones for you."
-        title="No Configuration Found!" type="text-stripe">
-        <stripe-color>#444444</stripe-color>
-    </card>
+    <!--<card-->
+        <!--description="Welcome to APKreator.\nNo configuration files were found, so we created these basic ones for you."-->
+        <!--title="No Configuration Found!" type="text-stripe">-->
+        <!--<stripe-color>#444444</stripe-color>-->
+    <!--</card>-->
 
-    <card
-        description="To get started, head-over to the documentation or start modifying the default configuration files right-away in %sdcard%.APKreator"
-        title="Get Started" type="text" />
+    <!--<card-->
+        <!--description="To get started, head-over to the documentation or start modifying the default configuration files right-away in %sdcard%.APKreator"-->
+        <!--title="Get Started" type="text" />-->
 
-    <card button="Start" control="presentation"
-        description="This card will launch a RevealJS presentation, or any index.html file packed in the container's assets"
-        title="Presentation" type="special" />
+    <!--<card button="Start" control="presentation"-->
+        <!--description="This card will launch a RevealJS presentation, or any index.html file packed in the container's assets"-->
+        <!--title="Presentation" type="special" />-->
 
-    <card control="switch"
-        description="This card will toggle any build.prop value between any on/off values defined"
-        off="off" on="on" prop="ro.apkreator.switch" title="Switch Card" type="build.prop" />
+    <!--<card control="switch"-->
+        <!--description="This card will toggle any build.prop value between any on/off values defined"-->
+        <!--off="off" on="on" prop="ro.apkreator.switch" title="Switch Card" type="build.prop" />-->
 
     <!--<card control="button" type="shell">-->
     <!--<button>Create File</button>-->

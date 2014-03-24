@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <plugin>
     <card description="Welcome to APKreator. No configuration files were found, so we created these
-            basic ones for you." title="No Configuration Found!" type="text-stripe">
-        <stripe-color>#444444</stripe-color>
-    </card>
+            basic ones for you." stripe-color="#444444" title="No Configuration Found!"
+        type="text-stripe" />
 
     <card description="To get started, head-over to the documentation or start modifying the default
             configuration files right-away in %sdcard%.APKreator" title="Get Started" type="text" />
 
-    <card button="Start" control="presentation" description="This card will launch a RevealJS presentation, or any index.html file packed in
-            the container's assets" title="Presentation" type="special" />
-
     <card control="switch"
-        description="This card will toggle any build.prop value between any on/off values defined"
-        title="Switch Card" type="build.prop">
-        <prop>ro.apkreator.switch</prop>
-        <on>on</on>
-        <off>off</off>
-    </card>
+        description="This card will toggle any build.prop values between any on/off values defined"
+        off="off" on="on" prop="ro.apkreator.switch" title="Switch Card" type="build.prop" />
 
-    <card button="Create File" command="@su: echo root > /sdcard/file.txt" control="button"
+    <card button="Button Card" command="@su: echo root > /sdcard/file.txt" control="button"
         description="This card will execute a shell command when its button is clicked"
         title="Button Card" type="shell" />
 
@@ -48,15 +40,11 @@
         <prop>ro.ril.hsxpa</prop>
     </card>
 
-    <card control="button" description="Blocks all internet redirections. Warning: some websites might become
-            unavailable." title="Block Redirects" type="shell">
-        <button>Apply</button>
-        <command>busybox sysctl -e -w net.ipv4.conf.default.accept_redirects=0;</command>
-    </card>
+    <card button="Apply" command="busybox sysctl -e -w net.ipv4.conf.default.accept_redirects=0;" control="button" description="Blocks all internet redirections. Warning: some websites might become
+            unavailable." title="Block Redirects" type="shell"/>
 
     <card control="spinner"
         description="Reduces or increases the built-in delay for connecting to Wi-Fi"
-        entries="200|400|600|800|1000" title="Wifi Connect Speed" type="build.prop">
-        <prop>ro.mot.eri.losalert.delay</prop>
-    </card>
+        entries="200|400|600|800|1000" prop="ro.mot.eri.losalert.delay" title="Wifi Connect Speed"
+        type="build.prop" />
 </plugin>

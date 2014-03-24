@@ -196,29 +196,25 @@ public class PluginFragment extends Fragment implements ParserInterface {
                         /** Switch Card
                          **** @see com.androguide.apkreator.cards.CardSwitchPlugin */
                     } else if (control.get(i).equalsIgnoreCase("switch")) {
-                        CardSwitch card = new CardSwitch(title.get(i), desc.get(i), props.get(i), fa, new OnCheckedChangeListener() {
+                        CardSwitch card = new CardSwitch(title.get(i), desc.get(i), prop.get(i), fa, new OnCheckedChangeListener() {
 
                             @Override
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if (isChecked) {
-                                    for (int i = 0; i < props.get(posHolder).length; i++) {
-                                        Helpers.applyBuildPropTweak(props.get(posHolder)[i], on.get(posHolder));
-                                        SharedPreferences prefs = fa.getSharedPreferences(props.get(posHolder)[i], 0);
-                                        prefs.edit().putBoolean("isChecked", true).commit();
-                                    }
+                                    Helpers.applyBuildPropTweak(prop.get(posHolder), on.get(posHolder));
+                                    SharedPreferences prefs = fa.getSharedPreferences(prop.get(posHolder), 0);
+                                    prefs.edit().putBoolean("isChecked", true).commit();
                                 } else {
-                                    for (int i = 0; i < props.get(i).length; i++) {
-                                        Helpers.applyBuildPropTweak(props.get(posHolder)[i], off.get(posHolder));
-                                        SharedPreferences prefs = fa.getSharedPreferences(props.get(posHolder)[i], 0);
-                                        prefs.edit().putBoolean("isChecked", false).commit();
-                                    }
+                                    Helpers.applyBuildPropTweak(prop.get(posHolder), off.get(posHolder));
+                                    SharedPreferences prefs = fa.getSharedPreferences(prop.get(posHolder), 0);
+                                    prefs.edit().putBoolean("isChecked", false).commit();
                                 }
                             }
                         });
                         mCardsView.addCard(card, true);
 
                         /** Spinner Card
-                         **** @see com.androguide.apkreator.cards.CardSwitchPlugin */
+                         **** @see com.androguide.apkreator.cards.CardSpinnerPlugin */
                     } else if (control.get(i).equalsIgnoreCase("spinner")) {
                         CardSpinner card = new CardSpinner(title.get(i), desc.get(i), prop.get(i), spinners.get(i), fa, new AdapterView.OnItemSelectedListener() {
                             @Override
@@ -297,8 +293,8 @@ public class PluginFragment extends Fragment implements ParserInterface {
                                     public void run() {
                                         SharedPreferences prefs = fa.getSharedPreferences(title.get(posHolder), 0);
                                         prefs.edit().putInt("CURRENT", pos).commit();
-                                        for (int i = 0; i < item.size(); i++)
-                                            CMDProcessor.runSuCommand(item.get(pos));
+                                        for (String anItem : item)
+                                            CMDProcessor.runSuCommand(anItem);
                                     }
                                 }).start();
                             }
@@ -344,7 +340,6 @@ public class PluginFragment extends Fragment implements ParserInterface {
 
                     /** Plain Text Card with colored stripe
                      **** @see com.androguide.apkreator.cards.CardTextStripe */
-                    SharedPreferences p = fa.getSharedPreferences("CONFIG", 0);
                     CardTextStripe card = new CardTextStripe(title.get(i), desc.get(i), stripeColor.get(i), false, false);
                     mCardsView.addCard(card, true);
 
