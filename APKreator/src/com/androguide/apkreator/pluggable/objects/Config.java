@@ -25,8 +25,8 @@ import java.util.ArrayList;
 
 public class Config {
 
-    private String appName, appColor, website, xda, twitter, gplus, facebook;
-    private int tabsAmount, cpuControlPos;
+    private String appName, appColor, website, xda, twitter, gplus, facebook, youtubeUser, welcomeTitle, welcomeDesc;
+    private int tabsAmount, cpuControlPos, phoneGapFragmentPos;
     private ArrayList<String> tabs = new ArrayList<String>();
 
     public Config() {
@@ -88,6 +88,30 @@ public class Config {
         this.facebook = facebook;
     }
 
+    public String getYoutubeUser() {
+        return youtubeUser;
+    }
+
+    public void setYoutubeUser(String youtubeUser) {
+        this.youtubeUser = youtubeUser;
+    }
+
+    public String getWelcomeTitle() {
+        return welcomeTitle;
+    }
+
+    public void setWelcomeTitle(String welcomeTitle) {
+        this.welcomeTitle = welcomeTitle;
+    }
+
+    public String getWelcomeDesc() {
+        return welcomeDesc;
+    }
+
+    public void setWelcomeDesc(String welcomeDesc) {
+        this.welcomeDesc = welcomeDesc;
+    }
+
     public int getTabsAmount() {
         return tabsAmount;
     }
@@ -102,6 +126,14 @@ public class Config {
 
     public void setCpuControlPos(int cpuControlPos) {
         this.cpuControlPos = cpuControlPos;
+    }
+
+    public int getPhoneGapFragmentPos() {
+        return phoneGapFragmentPos;
+    }
+
+    public void setPhoneGapFragmentPos(int phoneGapFragmentPos) {
+        this.phoneGapFragmentPos = phoneGapFragmentPos;
     }
 
     public ArrayList<String> getTabs() {

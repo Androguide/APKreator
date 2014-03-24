@@ -1,10 +1,17 @@
 <plugin>
-    <config
-	    app-name="Insert ROM Name"
-    	app-color="#3F9FE0"
-    	tabs-amount="3"
-    	tab0="HOME"
-    	tab1="SECTION A"
-    	tab2="WHATEVER"
-		tab3="ANOTHER"/>
+    <config app-name="APKreator"
+        app-color="#3F9FE0"
+        tabs-amount="5"
+        tab0="Welcome"
+        tab1="YouTube"
+        tab2="Google+"
+        tab3="Twitter"
+        tab4="Maps"
+        youtube-user="marquesbrownlee"
+        website="http://androguide.fr"
+        xda="http://xda-developers.com"
+        twitter="http://twitter.com/AndroguideFr"
+        g-plus="http://plus.google.com/u/0/116104837766524942436/posts"
+        facebook="http://facebook.com/andro.guidefr">
+    </config>
 </plugin>

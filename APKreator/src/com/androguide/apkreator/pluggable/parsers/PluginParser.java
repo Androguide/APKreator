@@ -22,9 +22,10 @@
 package com.androguide.apkreator.pluggable.parsers;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
+import com.androguide.apkreator.pluggable.objects.CardPlugin;
 import com.androguide.apkreator.pluggable.objects.Config;
-import com.androguide.apkreator.pluggable.objects.Tweak;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -38,26 +39,26 @@ import java.util.concurrent.ExecutionException;
 
 
 public class PluginParser {
-    ArrayList<Tweak> tweaks;
+    ArrayList<CardPlugin> cardPlugins;
     ArrayList<Config> configs;
-    private Tweak tweak;
+    private CardPlugin cardPlugin;
     private Config config;
     private String text;
 
     public PluginParser() {
-        tweaks = new ArrayList<Tweak>();
+        cardPlugins = new ArrayList<CardPlugin>();
         configs = new ArrayList<Config>();
     }
 
-    public List<Tweak> getTweaks() {
-        return tweaks;
+    public List<CardPlugin> getCardPlugins() {
+        return cardPlugins;
     }
 
     /**
      * @param is An InputStream of the XML file we want to open
-     * @return a Collection of Tweak Objects, each delimited by <tweak></tweak> tags in the XML
+     * @return a Collection of CardPlugin Objects, each delimited by <cardPlugin></cardPlugin> tags in the XML
      */
-    public List<Tweak> parse(InputStream is) {
+    public List<CardPlugin> parse(InputStream is) {
         try {
             return new AsyncTweaksParsing().execute(is).get();
         } catch (InterruptedException e) {
@@ -65,12 +66,12 @@ public class PluginParser {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        return new ArrayList<Tweak>();
+        return new ArrayList<CardPlugin>();
     }
 
     /**
      * @param is An InputStream of the XML file we want to open
-     * @return a Collection of Config Object, each delimited by <tweak></tweak> tags in the XML
+     * @return a Collection of Config Object, each delimited by <cardPlugin></cardPlugin> tags in the XML
      */
     public List<Config> parseConfig(InputStream is) {
         try {
@@ -87,10 +88,10 @@ public class PluginParser {
      * Do the parsing in an AsyncTask in order to avoid blocking the UI thread
      * (parsing is an expensive operation)
      */
-    private class AsyncTweaksParsing extends AsyncTask<InputStream, Void, ArrayList<Tweak>> {
+    private class AsyncTweaksParsing extends AsyncTask<InputStream, Void, ArrayList<CardPlugin>> {
 
         @Override
-        protected ArrayList<Tweak> doInBackground(InputStream... streams) {
+        protected ArrayList<CardPlugin> doInBackground(InputStream... streams) {
             XmlPullParserFactory factory;
             XmlPullParser parser;
             try {
@@ -108,45 +109,40 @@ public class PluginParser {
                         case XmlPullParser.START_TAG:
                             // <PLUGIN> TAG
                             if (tagName.equalsIgnoreCase("plugin"))
-                                tweak = new Tweak();
+                                cardPlugin = new CardPlugin();
 
                                 // <CARD> TAG
                             else if (tagName.equalsIgnoreCase("card")) {
-                                tweak = new Tweak();
-                                tweak.setType(parser.getAttributeValue(null, "type"));
+                                cardPlugin = new CardPlugin();
+                                try {
+                                    cardPlugin.setType(parser.getAttributeValue(null, "type"));
+                                    cardPlugin.setControl(parser.getAttributeValue(null, "control"));
+                                    cardPlugin.setProp(parser.getAttributeValue(null, "prop"));
+                                    cardPlugin.setProps(parser.getAttributeValue(null, "prop").split("#"));
+                                    cardPlugin.setTitle(parser.getAttributeValue(null, "title"));
+                                    cardPlugin.setDesc(parser.getAttributeValue(null, "description"));
+                                    cardPlugin.setUrl(parser.getAttributeValue(null, "url"));
+                                    cardPlugin.setBooleanOn(parser.getAttributeValue(null, "on"));
+                                    cardPlugin.setBooleanOff(parser.getAttributeValue(null, "off"));
+                                    cardPlugin.setButtonText(parser.getAttributeValue(null, "button"));
+                                    cardPlugin.setButtonText2(parser.getAttributeValue(null, "button2"));
+                                    cardPlugin.setShellCmd(parser.getAttributeValue(null, "command"));
+                                    cardPlugin.setShellCmd2(parser.getAttributeValue(null, "command2"));
+                                    cardPlugin.setStripeColor(parser.getAttributeValue(null, "stripe-color"));
 
-                                if (parser.getAttributeValue(null, "type").equalsIgnoreCase("image"))
-                                    tweak.setUrl(parser.getAttributeValue(null, "url"));
-
-                                // <CONTROL> TAG
-                            } else if (tagName.equalsIgnoreCase("control")) {
-                                tweak.setControl(parser.getAttributeValue(null, "type"));
-
-                                // switch type
-                                if (parser.getAttributeValue(null, "type").equalsIgnoreCase("switch")) {
-                                    tweak.setBooleanOn(parser.getAttributeValue(null, "on"));
-                                    tweak.setBooleanOff(parser.getAttributeValue(null, "off"));
-
-                                    // spinner type
-                                } else if (parser.getAttributeValue(null, "type").equalsIgnoreCase("spinner")) {
                                     ArrayList<String> entries = new ArrayList<String>();
                                     ArrayList<String> cmds = new ArrayList<String>();
-                                    int values = Integer.parseInt(parser.getAttributeValue(null, "entries-amount"));
-                                    for (int i = 0; i < values; i++) {
-                                        entries.add(parser.getAttributeValue(null, "entry" + i));
-                                        cmds.add(parser.getAttributeValue(null, "command" + i));
-                                    }
-                                    tweak.setSpinnerEntries(entries);
-                                    tweak.setSpinnerCommands(cmds);
+                                    String[] e = parser.getAttributeValue(null, "entries").split("|");
+                                    String[] c = parser.getAttributeValue(null, "entries").split("|");
+                                    for (int i = 0; i < e.length; i++)
+                                        entries.add(i, e[i]);
+                                    for (int i = 0; i < c.length; i++)
+                                        entries.add(i, c[i]);
 
-                                    // button type
-                                } else if (parser.getAttributeValue(null, "type").equalsIgnoreCase("button")) {
-                                    tweak.setButtonText(parser.getAttributeValue(null, "text"));
-
-                                    // double-button type
-                                } else if (parser.getAttributeValue(null, "type").equalsIgnoreCase("double-button")) {
-                                    tweak.setButtonText(parser.getAttributeValue(null, "text1"));
-                                    tweak.setButtonText2(parser.getAttributeValue(null, "text2"));
+                                    cardPlugin.setSpinnerEntries(entries);
+                                    cardPlugin.setSpinnerCommands(cmds);
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
                                 }
                             }
                             break;
@@ -158,35 +154,43 @@ public class PluginParser {
 
                         // CLOSING TAG
                         case XmlPullParser.END_TAG:
-                            if (tagName.equalsIgnoreCase("card"))
-                                tweaks.add(tweak);
-                            else if (tagName.equalsIgnoreCase("name"))
-                                tweak.setName(text);
+                            if (tagName.equalsIgnoreCase("title"))
+                                cardPlugin.setTitle(text);
                             else if (tagName.equalsIgnoreCase("description"))
-                                tweak.setDesc(text);
+                                cardPlugin.setDesc(text);
                             else if (tagName.equalsIgnoreCase("unit"))
-                                tweak.setUnit(text);
-                            else if (tagName.equalsIgnoreCase("prop"))
-                                tweak.setProp(text);
+                                cardPlugin.setUnit(text);
                             else if (tagName.equalsIgnoreCase("url"))
-                                tweak.setUrl(text);
+                                cardPlugin.setUrl(text);
                             else if (tagName.equalsIgnoreCase("path"))
-                                tweak.setFilePath(text);
+                                cardPlugin.setFilePath(text);
                             else if (tagName.equalsIgnoreCase("button"))
-                                tweak.setButtonText(text);
+                                cardPlugin.setButtonText(text);
                             else if (tagName.equalsIgnoreCase("command"))
-                                tweak.setShellCmd(text);
+                                cardPlugin.setShellCmd(text);
                             else if (tagName.equalsIgnoreCase("command1"))
-                                tweak.setShellCmd(text);
+                                cardPlugin.setShellCmd(text);
                             else if (tagName.equalsIgnoreCase("command2"))
-                                tweak.setShellCmd2(text);
+                                cardPlugin.setShellCmd2(text);
+                            else if (tagName.equalsIgnoreCase("stripe-color"))
+                                cardPlugin.setStripeColor(text);
                             else if (tagName.equalsIgnoreCase("min-value"))
-                                tweak.setMin(Integer.parseInt(text));
+                                cardPlugin.setMin(Integer.parseInt(text));
                             else if (tagName.equalsIgnoreCase("max-value"))
-                                tweak.setMax(Integer.parseInt(text));
+                                cardPlugin.setMax(Integer.parseInt(text));
                             else if (tagName.equalsIgnoreCase("default-value"))
-                                tweak.setDef(Integer.parseInt(text));
+                                cardPlugin.setDef(Integer.parseInt(text));
+                            else if (tagName.equalsIgnoreCase("entries")) {
+                                ArrayList<String> entries = new ArrayList<String>();
+                                String[] e = text.split("\\|");
+                                for (int i = 0; i < e.length; i++)
+                                    entries.add(i, e[i]);
+                                cardPlugin.setSpinnerEntries(entries);
+                            }
+                            else if (tagName.equalsIgnoreCase("card"))
+                                cardPlugins.add(cardPlugin);
                             break;
+
                         default:
                             break;
                     }
@@ -199,11 +203,11 @@ public class PluginParser {
                 e.printStackTrace();
             }
 
-            return tweaks;
+            return cardPlugins;
         }
 
-        protected void onPostExecute(ArrayList<Tweak> result) {
-            tweaks = result;
+        protected void onPostExecute(ArrayList<CardPlugin> result) {
+            cardPlugins = result;
         }
 
     }
@@ -228,7 +232,7 @@ public class PluginParser {
                     String tagName = parser.getName();
                     switch (eventType) {
 
-                        // OPENING TAG
+                        /** OPENING TAG */
                         case XmlPullParser.START_TAG:
                             if (tagName.equalsIgnoreCase("config")) {
                                 config = new Config();
@@ -239,28 +243,31 @@ public class PluginParser {
                                 config.setTwitter(parser.getAttributeValue(null, "twitter"));
                                 config.setGplus(parser.getAttributeValue(null, "g-plus"));
                                 config.setFacebook(parser.getAttributeValue(null, "facebook"));
+                                config.setYoutubeUser(parser.getAttributeValue(null, "youtube-user"));
+                                config.setWelcomeTitle(parser.getAttributeValue(null, "welcome-title"));
+                                config.setWelcomeDesc(parser.getAttributeValue(null, "welcome-desc"));
                                 config.setTabsAmount(Integer.parseInt(parser.getAttributeValue(null, "tabs-amount")));
                                 ArrayList<String> tabs = new ArrayList<String>();
                                 for (int i = 0; i < config.getTabsAmount(); i++)
                                     tabs.add(i, parser.getAttributeValue(null, "tab" + i));
                                 config.setTabs(tabs);
-                            } else if (tagName.equalsIgnoreCase("cpu-control"))
+                            } else if (tagName.equalsIgnoreCase("cpu-control")) {
                                 config.setCpuControlPos(Integer.parseInt(parser.getAttributeValue(null, "position")));
+                            } else if (tagName.equalsIgnoreCase("cordova"))
+                                config.setPhoneGapFragmentPos(Integer.parseInt(parser.getAttributeValue(null, "position")));
                             break;
 
-                        // ENCLOSED TEXT
+                        /** ENCLOSED TEXT */
                         case XmlPullParser.TEXT:
                             text = parser.getText();
                             break;
 
-                        // CLOSING TAG
+                        /** CLOSING TAG */
                         case XmlPullParser.END_TAG:
-                            if (text != null) {
+                            if (text != null)
                                 if (tagName.equalsIgnoreCase("config"))
                                     configs.add(config);
-                                break;
-                            }
-
+                            break;
                         default:
                             break;
                     }

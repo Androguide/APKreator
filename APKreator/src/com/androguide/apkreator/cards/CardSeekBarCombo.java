@@ -29,11 +29,11 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.androguide.apkreator.R;
 import com.androguide.apkreator.helpers.CMDProcessor.CMDProcessor;
 import com.androguide.apkreator.helpers.CMDProcessor.Shell;
 import com.androguide.apkreator.helpers.Helpers;
 import com.androguide.apkreator.helpers.SystemPropertiesReflection;
+import com.fima.cardsui.R;
 import com.fima.cardsui.objects.Card;
 
 public class CardSeekBarCombo extends Card {
@@ -121,6 +121,15 @@ public class CardSeekBarCombo extends Card {
         });
 
         return v;
+    }
+
+    public int getCardContentId() {
+        return R.layout.card_seekbar_combo;
+    }
+
+    @Override
+    public boolean convert(View convertCardView) {
+        return true;
     }
 
 }

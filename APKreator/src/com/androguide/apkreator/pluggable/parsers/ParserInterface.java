@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public interface ParserInterface {
 
-    public ArrayList<String> name = new ArrayList<String>(),
+    public ArrayList<String> title = new ArrayList<String>(),
             desc = new ArrayList<String>(),
             type = new ArrayList<String>(),
             control = new ArrayList<String>(),
@@ -38,11 +38,14 @@ public interface ParserInterface {
             buttons = new ArrayList<String>(),
             buttons2 = new ArrayList<String>(),
             urls = new ArrayList<String>(),
-            paths = new ArrayList<String>();
+            paths = new ArrayList<String>(),
+            stripeColor = new ArrayList<String>();
 
     public ArrayList<Integer> min = new ArrayList<Integer>(),
             max = new ArrayList<Integer>(),
             def = new ArrayList<Integer>();
 
-    public ArrayList<ArrayList<String>> spinners = new ArrayList<ArrayList<String>>(), spinnerCmds = new ArrayList<ArrayList<String>>();
+    public ArrayList<String[]> props = new ArrayList<String[]>();
+
+    public ArrayList<ArrayList<String>> spinners = new ArrayList<ArrayList<String>>(), spinnerCmds = new ArrayList<ArrayList<String>>(),  spinnerEntries = new ArrayList<ArrayList<String>>();
 }

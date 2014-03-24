@@ -27,6 +27,7 @@
 
     <!-- ================= General Stuff ================= -->
     <string name="app_name">APKreator</string>
+    <string name="presentation">Presentation</string>
     <string name="action_settings">Settings</string>
 
     <!-- ================= Colours in String form ================= -->
@@ -54,4 +55,7 @@
     <!-- ================= Menu ================= -->
     <string name="menu_apply">Apply</string>
     <string name="button_text">Button Text</string>
+    <string name="video_title">Video Title</string>
+    <string name="username">Username</string>
+    <string name="subscribe">Subscribe</string>
 </resources>

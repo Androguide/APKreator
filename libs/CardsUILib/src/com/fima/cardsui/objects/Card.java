@@ -1,6 +1,9 @@
 package com.fima.cardsui.objects;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.view.ActionMode;
 import android.view.LayoutInflater;
@@ -42,6 +45,13 @@ public abstract class Card extends AbstractCard {
     public Card(String title, String desc, ActionBarActivity fa) {
         this.title = title;
         this.desc = desc;
+        this.fa = fa;
+    }
+
+    public Card(String title, String desc, String url, ActionBarActivity fa) {
+        this.title = title;
+        this.desc = desc;
+        this.url = url;
         this.fa = fa;
     }
 
@@ -94,6 +104,17 @@ public abstract class Card extends AbstractCard {
         this.isClickable = isClickable;
     }
 
+    public Card(String title, String desc, String titleColor, String url, int duration, int rating, int likes, int comments) {
+        this.title = title;
+        this.desc = desc;
+        this.titleColor = titleColor;
+        this.url = url;
+        this.duration = duration;
+        this.rating = rating;
+        this.likes = likes;
+        this.comments = comments;
+    }
+
     // Card with Seekbar & EditText
     public Card(String title, String desc, String unit, int seekBarMax, int seekBarProgress, ActionBarActivity fa, ActionMode.Callback callback) {
         this.title = title;
@@ -117,7 +138,6 @@ public abstract class Card extends AbstractCard {
         this.prop = prop;
     }
 
-
     // Card with Seekbar & EditText for PmR build.prop Plugins
     public Card(String title, String desc, String unit, String prop, int seekBarMax, int seekBarProgress, ActionBarActivity fa, ActionMode.Callback callback) {
         this.title = title;
@@ -131,7 +151,7 @@ public abstract class Card extends AbstractCard {
     }
 
     // Card with Spinner
-    public Card (String title, String desc, ArrayList<String> spinnerEntries, ActionBarActivity fa, AdapterView.OnItemSelectedListener onItemSelectedListener) {
+    public Card(String title, String desc, ArrayList<String> spinnerEntries, ActionBarActivity fa, AdapterView.OnItemSelectedListener onItemSelectedListener) {
         this.title = title;
         this.desc = desc;
         this.spinnerEntries = spinnerEntries;
@@ -140,7 +160,7 @@ public abstract class Card extends AbstractCard {
     }
 
     // Card with Spinner
-    public Card (String title, String desc, String prop, ArrayList<String> spinnerEntries, ActionBarActivity fa, AdapterView.OnItemSelectedListener onItemSelectedListener) {
+    public Card(String title, String desc, String prop, ArrayList<String> spinnerEntries, ActionBarActivity fa, AdapterView.OnItemSelectedListener onItemSelectedListener) {
         this.title = title;
         this.desc = desc;
         this.spinnerEntries = spinnerEntries;
@@ -150,7 +170,7 @@ public abstract class Card extends AbstractCard {
     }
 
     // Card with Switch
-    public Card (String title, String desc, ActionBarActivity fa, CompoundButton.OnCheckedChangeListener onCheckedChangeListener) {
+    public Card(String title, String desc, ActionBarActivity fa, CompoundButton.OnCheckedChangeListener onCheckedChangeListener) {
         this.title = title;
         this.desc = desc;
         this.fa = fa;
@@ -158,16 +178,25 @@ public abstract class Card extends AbstractCard {
     }
 
     // Card with Switch
-    public Card (String title, String desc, String prop, ActionBarActivity fa, CompoundButton.OnCheckedChangeListener onCheckedChangeListener) {
+    public Card(String title, String desc, String[] props, ActionBarActivity fa, CompoundButton.OnCheckedChangeListener onCheckedChangeListener) {
         this.title = title;
         this.desc = desc;
         this.fa = fa;
-        this.prop = prop;
+        this.props = props;
+        this.onCheckedChangeListener = onCheckedChangeListener;
+    }
+
+    // Card with Switch (Shell variant)
+    public Card(String title, String desc, String cmd1, ActionBarActivity fa, CompoundButton.OnCheckedChangeListener onCheckedChangeListener) {
+        this.title = title;
+        this.desc = desc;
+        this.fa = fa;
+        this.cmd1 = cmd1;
         this.onCheckedChangeListener = onCheckedChangeListener;
     }
 
     // Card with Button
-    public Card (String title, String desc, String buttonText1, String cmd1, ActionBarActivity fa) {
+    public Card(String title, String desc, String buttonText1, String cmd1, ActionBarActivity fa) {
         this.title = title;
         this.desc = desc;
         this.buttonText1 = buttonText1;
@@ -176,7 +205,7 @@ public abstract class Card extends AbstractCard {
     }
 
     // Card with 2 Buttons
-    public Card (String title, String desc, String buttonText1, String buttonText2, String cmd1, String cmd2, ActionBarActivity fa) {
+    public Card(String title, String desc, String buttonText1, String buttonText2, String cmd1, String cmd2, ActionBarActivity fa) {
         this.title = title;
         this.desc = desc;
         this.buttonText1 = buttonText1;
@@ -187,7 +216,7 @@ public abstract class Card extends AbstractCard {
     }
 
     // Card for downloading files
-    public Card (String title, String desc, String url, String filePath, String buttonText1, ActionBarActivity fa) {
+    public Card(String title, String desc, String url, String filePath, String buttonText1, ActionBarActivity fa) {
         this.title = title;
         this.desc = desc;
         this.fa = fa;
@@ -204,15 +233,56 @@ public abstract class Card extends AbstractCard {
         this.url = url;
     }
 
+    public Card(String username, String annotation, String avatarUrl, String imageUrl, String imageTitle, String resharedDesc,
+                String resharedFrom, String originalTitle, int plusOnes, Boolean isReshared) {
+        this.username = username;
+        this.annotation = annotation;
+        this.avatarUrl = avatarUrl;
+        this.imageUrl = imageUrl;
+        this.imageTitle = imageTitle;
+        this.resharedDesc = resharedDesc;
+        this.resharedFrom = resharedFrom;
+        this.originalTitle = originalTitle;
+        this.plusOnes = plusOnes;
+        this.isReshared = isReshared;
+    }
+
     public void setMarginBottom(int marginBottom) {
         this.marginBottom = marginBottom;
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
-    public View getView(Context context, boolean swipeable) {
-        return getView(context, false);
+    public View getView(Context context, boolean swipable) {
+
+        View view = LayoutInflater.from(context).inflate(getCardLayout(), null);
+
+        mCardLayout = view;
+
+        try {
+            if (view != null) ((FrameLayout) view.findViewById(R.id.cardContent))
+                    .addView(getCardContent(context));
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
+        // ((TextView) view.findViewById(R.id.title)).setText(this.title);
+
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        int bottom = Utils.convertDpToPixelInt(context, 12);
+        lp.setMargins(0, 0, 0, bottom);
+
+        if (view != null) {
+            view.setLayoutParams(lp);
+            view.setHasTransientState(true);
+        }
+
+        return view;
     }
 
+    @SuppressLint("NewApi")
     @Override
     public View getView(Context context) {
 
@@ -235,11 +305,15 @@ public abstract class Card extends AbstractCard {
         int bottom = Utils.convertDpToPixelInt(context, 12);
         lp.setMargins(0, 0, 0, bottom);
 
-        if (view != null) view.setLayoutParams(lp);
+        if (view != null) {
+            view.setLayoutParams(lp);
+            view.setHasTransientState(true);
+        }
 
         return view;
     }
 
+    @SuppressLint("NewApi")
     public View getViewLast(Context context) {
 
         View view = LayoutInflater.from(context).inflate(getLastCardLayout(),
@@ -262,11 +336,14 @@ public abstract class Card extends AbstractCard {
         int bottom = Utils.convertDpToPixelInt(context, 12);
         lp.setMargins(0, 0, 0, bottom);
 
-        if (view != null) view.setLayoutParams(lp);
-
+        if (view != null) {
+            view.setLayoutParams(lp);
+            view.setHasTransientState(true);
+        }
         return view;
     }
 
+    @SuppressLint("NewApi")
     public View getViewFirst(Context context) {
 
         View view = LayoutInflater.from(context).inflate(getFirstCardLayout(),
@@ -283,13 +360,16 @@ public abstract class Card extends AbstractCard {
 
         // ((TextView) view.findViewById(R.id.title)).setText(this.title);
 
-        /*LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         int bottom = Utils.convertDpToPixelInt(context, 12);
         lp.setMargins(0, 0, 0, bottom);
 
-        view.setLayoutParams(lp);*/
+        if (view != null) {
+            view.setLayoutParams(lp);
+            view.setHasTransientState(true);
+        }
 
         return view;
     }
@@ -323,6 +403,10 @@ public abstract class Card extends AbstractCard {
         return R.layout.item_card;
     }
 
+    protected int getId() {
+        return R.id.cardContent;
+    }
+
     protected int getLastCardLayout() {
         return R.layout.item_card_empty_last;
     }
@@ -330,6 +414,16 @@ public abstract class Card extends AbstractCard {
     protected int getFirstCardLayout() {
         return R.layout.item_play_card_empty_first;
     }
+
+    /**
+     * Attempt to reuse convertCardView.  Should not modify convertCardView if it's
+     * not compatible.  The implementer should check the card content part and
+     * verify that it matches.
+     *
+     * @param convertCardView the view to convert, with root Id equal to Card.getId()
+     * @return true on success, false if not compatible
+     */
+    public abstract boolean convert(View convertCardView);
 
     public interface OnCardSwiped {
         public void onCardSwiped(Card card, View layout);

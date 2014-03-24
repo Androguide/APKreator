@@ -1,23 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <plugin>
-    <tweak type="build.prop">
-        <name>2nd Tab Tweak</name>
-        <description>This is a test 3rd-party pluggable tweak</description>
-        <prop>ro.mytweak.pwns.ass</prop>
-        <control type="seekbar-combo"/>
-        <min-value>0</min-value>
-        <max-value>150</max-value>
-        <default-value>45</default-value>
-        <unit>€</unit>
-    </tweak>
-	
-    <tweak type="build.prop">
-        <name>It Works!</name>
-        <description>Lorem ipsum dolor sit amet sin et alpha beta epsilon</description>
-        <prop>ro.lorem.ipsum</prop>
-        <control type="seekbar-combo"/>
-        <min-value>0</min-value>
-        <max-value>80</max-value>
-        <default-value>10</default-value>
-        <unit>$</unit>
-    </tweak>
+    <card
+        description="Welcome to APKreator.\nNo configuration files were found, so we created these basic ones for you."
+        title="No Configuration Found!" type="text-stripe">
+        <stripe-color>#444444</stripe-color>
+    </card>
+
+    <card
+        description="To get started, head-over to the documentation or start modifying the default configuration files right-away in %sdcard%.APKreator"
+        title="Get Started" type="text" />
+
+    <card button="Start" control="presentation"
+        description="This card will launch a RevealJS presentation, or any index.html file packed in the container's assets"
+        title="Presentation" type="special" />
+
+    <card control="switch"
+        description="This card will toggle any build.prop value between any on/off values defined"
+        off="off" on="on" prop="ro.apkreator.switch" title="Switch Card" type="build.prop" />
+
+    <!--<card control="button" type="shell">-->
+    <!--<button>Create File</button>-->
+    <!--<command>@su: echo root > /sdcard/file.txt</command>-->
+    <!--<title>Button Card</title>-->
+    <!--<description>card will execute a shell command when its button is clicked</description>-->
+    <!--</card>-->
+
+    <!--<card type="shell">-->
+    <!--<title>Double Button Card</title>-->
+    <!--<description>This card's two buttons can each execute a separate command.</description>-->
+    <!--<control>double-button</control>-->
+    <!--<button>Button 1</button>-->
+    <!--<button2>Button 2</button2>-->
+    <!--<command>touch %sdcard%btn1.txt</command>-->
+    <!--<command2>@root touch %sdcard% root.txt</command2>-->
+    <!--</card>-->
+
+    <!--<card type="build.prop">-->
+    <!--<name>Wifi Scan Interval</name>-->
+    <!--<description>This determines the interval of time at which the system automatically scans-->
+    <!--for available Wi-Fi networks. A high value will help with battery life.-->
+    <!--</description>-->
+    <!--<prop>wifi.supplicant_scan_interval</prop>-->
+    <!--<control type="seekbar" />-->
+    <!--<min-value>0</min-value>-->
+    <!--<max-value>120</max-value>-->
+    <!--<default-value>15</default-value>-->
+    <!--<unit>sec.</unit>-->
+    <!--</card>-->
+
+    <!--<card type="build.prop">-->
+    <!--<control off="2" on="3" type="switch" />-->
+    <!--<name>Enable HSUPA</name>-->
+    <!--<description>Enable or disable HSUPA network mode</description>-->
+    <!--<prop>ro.ril.hsxpa</prop>-->
+    <!--</card>-->
+
+    <!--<card type="shell">-->
+    <!--<control text="Apply" type="button" />-->
+    <!--<command>busybox sysctl -e -w net.ipv4.conf.default.accept_redirects=0;</command>-->
+    <!--<name>Block Redirects</name>-->
+    <!--<description>Blocks all internet redirections. Warning: some websites might become-->
+    <!--unavailable.-->
+    <!--</description>-->
+    <!--</card>-->
+
+    <!--<card type="build.prop">-->
+    <!--<name>Wifi Connect Speed</name>-->
+    <!--<description>Reduces or increases the built-in delay for connecting to Wi-Fi</description>-->
+    <!--<prop>ro.mot.eri.losalert.delay</prop>-->
+    <!--<control type="spinner" value0="200" value1="400" value2="600" value3="800" value4="1000"-->
+    <!--value5="1200" values-amount="6" />-->
+    <!--</card>-->
 </plugin>

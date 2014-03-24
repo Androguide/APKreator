@@ -1,7 +1,5 @@
 package com.fima.cardsui.objects;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -9,13 +7,17 @@ import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
 
+import java.util.ArrayList;
+
 public abstract class AbstractCard {
 
-    protected String description, color, titleColor, desc, title, titlePlay, unit, type,
-            prop, cmd1, cmd2, buttonText1, buttonText2, url, filePath;
+    protected String description, color, titleColor, stripeColor, desc, title, titlePlay, unit, type,
+            prop, cmd1, cmd2, buttonText1, buttonText2, url, filePath, videoId;
+    protected String[] props;
+    protected String username, annotation, avatarUrl, imageUrl, imageTitle, resharedDesc, resharedFrom, originalTitle;
     protected ArrayList<String> spinnerEntries;
-    protected Boolean hasOverflow, isClickable;
-    protected int imageRes, image, seekBarMax, seekBarProgress, marginBottom = 0, differenciator;
+    protected Boolean hasOverflow, isClickable, isReshared;
+    protected int imageRes, image, seekBarMax, seekBarProgress, marginBottom = 0, differenciator, duration, rating, likes, comments, plusOnes;
     protected ActionBarActivity fa;
     protected AdapterView.OnItemSelectedListener onItemSelectedListener;
     protected CompoundButton.OnCheckedChangeListener onCheckedChangeListener;
@@ -71,6 +73,10 @@ public abstract class AbstractCard {
         return cmd2;
     }
 
+    public String getResharedDesc() {
+        return resharedDesc;
+    }
+
     public void setCmd2(String cmd2) {
         this.cmd2 = cmd2;
     }
@@ -89,6 +95,14 @@ public abstract class AbstractCard {
 
     public void setButtonText2(String buttonText2) {
         this.buttonText2 = buttonText2;
+    }
+
+    public String getStripeColor() {
+        return stripeColor;
+    }
+
+    public void setStripeColor(String stripeColor) {
+        this.stripeColor = stripeColor;
     }
 
     public String getUrl() {
@@ -111,6 +125,10 @@ public abstract class AbstractCard {
         return isClickable;
     }
 
+    public Boolean getPostIsReshared() {
+        return isReshared;
+    }
+
     public int getImageRes() {
         return imageRes;
     }
@@ -119,7 +137,15 @@ public abstract class AbstractCard {
         return seekBarMax;
     }
 
-    public String getProp(){
+    public String[] getProps() {
+        return props;
+    }
+
+    public void setProps(String[] props) {
+        this.props = props;
+    }
+
+    public String getProp() {
         return prop;
     }
 

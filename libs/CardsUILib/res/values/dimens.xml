@@ -172,4 +172,20 @@
     <dimen name="histogram_bar_size">16.0dip</dimen>
     <dimen name="histogram_bar_padding">0.0dip</dimen>
     <dimen name="histogram_width">100.0dip</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_half_margin">8dp</dimen>
+    <dimen name="activity_3quarter_margin">12dp</dimen>
+    <dimen name="activity_quarter_margin">4dp</dimen>
+
+    <!-- Drawer -->
+    <dimen name="list_divider">0.3dp</dimen>
+
+    <!-- Cards -->
+    <dimen name="card_height">116dp</dimen>
+    <dimen name="card_title_font">20.5sp</dimen>
+    <dimen name="card_desc_font">16sp</dimen>
+    <dimen name="card_desc_left_margin">32dp</dimen>
 </resources>

@@ -1,0 +1,14 @@
+<plugin>
+    <config app-name="APKreator Demo"
+        app-color="#96AA39"
+        tabs-amount="3"
+        tab0="No"
+        tab1="Configuration"
+        tab2="Found!"
+        website="http://androguide.fr"
+        xda="http://xda-developers.com"
+        twitter="http://twitter.com/AndroguideFr"
+        g-plus="http://plus.google.com/u/0/116104837766524942436/posts"
+        facebook="http://facebook.com/andro.guidefr">
+    </config>
+</plugin>

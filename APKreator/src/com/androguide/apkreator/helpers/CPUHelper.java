@@ -23,6 +23,7 @@ import java.util.Date;
 public class CPUHelper {
 
     private static final String TAG = "CPUHelper";
+	private static BufferedReader br;
 
     /**
      * Checks device for SuperUser permission
@@ -37,7 +38,9 @@ public class CPUHelper {
         }
 
         try {
-            if ((new CMDProcessor().runSuCommand("ls /data/app-private")).success()) {
+            new CMDProcessor();
+			CommandResult commandResult = CMDProcessor.runSuCommand("ls /data/app-private");
+			if (commandResult.success()) {
                 Log.i(TAG, " SU exists and we have permission");
                 return true;
             } else {
@@ -85,7 +88,8 @@ public class CPUHelper {
         }
 
         try {
-            if (!new CMDProcessor().runSuCommand("busybox mount").success()) {
+            new CMDProcessor();
+			if (!CMDProcessor.runSuCommand("busybox mount").success()) {
                 Log.e(TAG, " Busybox is there but it is borked! ");
                 return false;
             }
@@ -98,7 +102,7 @@ public class CPUHelper {
 
     public static String[] getMounts(final String path) {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("/proc/mounts"), 256);
+            br = new BufferedReader(new FileReader("/proc/mounts"), 256);
             String line = null;
             while ((line = br.readLine()) != null) {
                 if (line.contains(path)) {
@@ -115,20 +119,20 @@ public class CPUHelper {
     }
 
     public static boolean getMount(final String mount) {
-        final CMDProcessor cmd = new CMDProcessor();
+        new CMDProcessor();
         final String mounts[] = getMounts("/system");
         if (mounts != null
                 && mounts.length >= 3) {
             final String device = mounts[0];
             final String path = mounts[1];
             final String point = mounts[2];
-            if (cmd.runSuCommand(
+            if (CMDProcessor.runSuCommand(
                     "mount -o " + mount + ",remount -t " + point + " " + device + " " + path)
                     .success()) {
                 return true;
             }
         }
-        return (cmd.runSuCommand("busybox mount -o remount," + mount + " /system").success());
+        return (CMDProcessor.runSuCommand("busybox mount -o remount," + mount + " /system").success());
     }
 
     public static String readOneLine(String fname) {
@@ -152,9 +156,11 @@ public class CPUHelper {
     public static String readFileViaShell(String filePath, boolean useSu) {
         CommandResult cr = null;
         if (useSu) {
-            cr = new CMDProcessor().runSuCommand("cat " + filePath);
+            new CMDProcessor();
+			cr = CMDProcessor.runSuCommand("cat " + filePath);
         } else {
-            cr = new CMDProcessor().runShellCommand("cat " + filePath);
+            new CMDProcessor();
+			cr = CMDProcessor.runShellCommand("cat " + filePath);
         }
         if (cr.success())
             return cr.getStdout();
@@ -283,11 +289,13 @@ public class CPUHelper {
     }
 
     public static void restartSystemUI() {
-        new CMDProcessor().runSuCommand("pkill -TERM -f com.android.systemui");
+        new CMDProcessor();
+		CMDProcessor.runSuCommand("pkill -TERM -f com.android.systemui");
     }
 
     public static void setSystemProp(String prop, String val) {
-        new CMDProcessor().runSuCommand("setprop " + prop + " " + val);
+        new CMDProcessor();
+		CMDProcessor.runSuCommand("setprop " + prop + " " + val);
     }
 
     public static String getSystemProp(String prop, String def) {
@@ -296,7 +304,8 @@ public class CPUHelper {
     }
 
     private static String getSystemProp(String prop) {
-        CommandResult cr = new CMDProcessor().runShellCommand("getprop " + prop);
+        new CMDProcessor();
+		CommandResult cr = CMDProcessor.runShellCommand("getprop " + prop);
         if (cr.success()) {
             return cr.getStdout();
         } else {

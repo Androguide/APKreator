@@ -1,0 +1,45 @@
+$title_black: #333333;
+$code_color: #3f3f3f;
+$regular_font: 0.9em;
+$mid_font: 0.7em;
+
+@mixin setFontSize($size : 0.9em) {
+	font-size: $size !important;
+}
+
+@mixin setFontColor($color : #FFF) {
+	color: $color !important;
+}
+
+@mixin setMarginTop($pixels : 15px) {
+	margin-top: $pixels;
+}
+
+@mixin setBgColor($color : $code_color) {
+	background-color: $color;
+}
+
+h2 {
+	@include setFontColor($title_black);
+}
+
+p  {
+	@include setFontSize($regular_font);
+}
+
+code {
+	@include setFontSize($regular_font);
+}
+
+.mid_font {
+	@include setFontSize($mid_font);
+}
+
+.mid_code  {
+	@include setFontSize($mid_font);
+	@include setBgColor;
+}
+
+.marg_top15 {
+	@include setMarginTop;
+}

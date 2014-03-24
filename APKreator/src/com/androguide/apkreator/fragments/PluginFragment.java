@@ -23,7 +23,6 @@ package com.androguide.apkreator.fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.view.ActionMode;
@@ -42,21 +41,24 @@ import android.widget.LinearLayout;
 import com.androguide.apkreator.R;
 import com.androguide.apkreator.cards.CardButton;
 import com.androguide.apkreator.cards.CardButtonDouble;
-import com.androguide.apkreator.cards.CardDownload;
-import com.androguide.apkreator.cards.CardImage;
-import com.androguide.apkreator.cards.CardSeekBar;
 import com.androguide.apkreator.cards.CardSeekBarCombo;
-import com.androguide.apkreator.cards.CardSpinner;
-import com.androguide.apkreator.cards.CardSwitchPlugin;
-import com.androguide.apkreator.cards.CardText;
-import com.androguide.apkreator.cards.CardTextStripe;
 import com.androguide.apkreator.helpers.CMDProcessor.CMDProcessor;
 import com.androguide.apkreator.helpers.CMDProcessor.Shell;
 import com.androguide.apkreator.helpers.Helpers;
 import com.androguide.apkreator.helpers.SystemPropertiesReflection;
-import com.androguide.apkreator.pluggable.objects.Tweak;
+import com.androguide.apkreator.pluggable.objects.CardPlugin;
 import com.androguide.apkreator.pluggable.parsers.ParserInterface;
 import com.androguide.apkreator.pluggable.parsers.PluginParser;
+import com.fima.cardsui.objects.CardStack;
+import com.fima.cardsui.views.CardDownload;
+import com.fima.cardsui.views.CardEditText;
+import com.fima.cardsui.views.CardImage;
+import com.fima.cardsui.views.CardPresentation;
+import com.fima.cardsui.views.CardSeekBar;
+import com.fima.cardsui.views.CardSpinner;
+import com.fima.cardsui.views.CardSwitch;
+import com.fima.cardsui.views.CardText;
+import com.fima.cardsui.views.CardTextStripe;
 import com.fima.cardsui.views.CardUI;
 
 import java.io.File;
@@ -125,210 +127,236 @@ public class PluginFragment extends Fragment implements ParserInterface {
 
         assert ll != null;
         CardUI mCardsView = (CardUI) ll.findViewById(com.androguide.apkreator.R.id.cardsui);
+        mCardsView.addStack(new CardStack(""));
 
-        List<Tweak> pluginTweaks = null;
+        List<CardPlugin> cardPlugins = null;
         try {
             PluginParser parser = new PluginParser();
-            File file = new File(Environment.getExternalStorageDirectory() + "/.APKreator/tabs/tab" + position + ".xml");
+            File file = new File(fa.getFilesDir() + "/.APKreator/tabs/tab" + position + ".xml");
             FileInputStream fis = new FileInputStream(file);
-            pluginTweaks = parser.parse(fis);
+            cardPlugins = parser.parse(fis);
         } catch (IOException e) {
-            Helpers.sendMsg(fa, "Couldn't load plugin file: tab" + position + ".xml");
+            /*Helpers.sendMsg(fa, "Couldn't load plugin file: tab" + position + ".xml");*/
             e.printStackTrace();
         }
 
+        try {
         /* Retrieve the right attributes based on the position parameter passed to this instance of PluginFragment,
          * and store them in the separate ArrayLists<?> we declared above the constructor */
-        for (int i = 0; i < (pluginTweaks != null ? pluginTweaks.size() : 0); i++) {
-            final int posHolder = i;
-            name.add(i, pluginTweaks.get(i).getName());
-            desc.add(i, pluginTweaks.get(i).getDesc());
-            type.add(i, pluginTweaks.get(i).getType());
-            unit.add(i, pluginTweaks.get(i).getUnit());
-            control.add(i, pluginTweaks.get(i).getControl());
-            min.add(i, pluginTweaks.get(i).getMin());
-            max.add(i, pluginTweaks.get(i).getMax());
-            def.add(i, pluginTweaks.get(i).getDef());
-            prop.add(i, pluginTweaks.get(i).getProp());
-            shellCmds.add(i, pluginTweaks.get(i).getShellCmd());
-            shellCmds2.add(i, pluginTweaks.get(i).getShellCmd2());
-            on.add(i, pluginTweaks.get(i).getBooleanOn());
-            off.add(i, pluginTweaks.get(i).getBooleanOff());
-            buttons.add(i, pluginTweaks.get(i).getButtonText());
-            buttons2.add(i, pluginTweaks.get(i).getButtonText2());
-            spinners.add(i, pluginTweaks.get(i).getSpinnerEntries());
-            spinnerCmds.add(i, pluginTweaks.get(i).getSpinnerCommands());
-            urls.add(i, pluginTweaks.get(i).getUrl());
-            paths.add(i, pluginTweaks.get(i).getFilePath());
+            for (int i = 0; i < (cardPlugins != null ? cardPlugins.size() : 0); i++) {
+                final int posHolder = i;
+                title.add(i, cardPlugins.get(i).getTitle());
+                desc.add(i, cardPlugins.get(i).getDesc());
+                type.add(i, cardPlugins.get(i).getType());
+                unit.add(i, cardPlugins.get(i).getUnit());
+                control.add(i, cardPlugins.get(i).getControl());
+                min.add(i, cardPlugins.get(i).getMin());
+                max.add(i, cardPlugins.get(i).getMax());
+                def.add(i, cardPlugins.get(i).getDef());
+                prop.add(i, cardPlugins.get(i).getProp());
+                props.add(i, cardPlugins.get(i).getProps());
+                shellCmds.add(i, cardPlugins.get(i).getShellCmd());
+                shellCmds2.add(i, cardPlugins.get(i).getShellCmd2());
+                on.add(i, cardPlugins.get(i).getBooleanOn());
+                off.add(i, cardPlugins.get(i).getBooleanOff());
+                buttons.add(i, cardPlugins.get(i).getButtonText());
+                buttons2.add(i, cardPlugins.get(i).getButtonText2());
+                spinners.add(i, cardPlugins.get(i).getSpinnerEntries());
+                spinnerCmds.add(i, cardPlugins.get(i).getSpinnerCommands());
+                urls.add(i, cardPlugins.get(i).getUrl());
+                paths.add(i, cardPlugins.get(i).getFilePath());
+                stripeColor.add(i, cardPlugins.get(i).getStripeColor());
 
-            /************************************************
-             *               Build.prop Cards               *
-             ************************************************/
-            if (type.get(i).equalsIgnoreCase("build.prop")) {
+                /************************************************
+                 *               Build.prop Cards               *
+                 ************************************************/
+                if (type.get(i).equalsIgnoreCase("build.prop")) {
 
-                /** SeekBar + EditText Combo Card
-                 **** @see com.androguide.apkreator.cards.CardSeekBarCombo */
-                if (control.get(i).equalsIgnoreCase("seekbar-combo")) {
-                    CardSeekBarCombo card = new CardSeekBarCombo(name.get(i), desc.get(i), unit.get(i), prop.get(i),
-                            max.get(i), def.get(i), fa);
-                    mCardsView.addCard(card, true);
+                    /** SeekBar + EditText Combo Card
+                     **** @see com.androguide.apkreator.cards.CardSeekBarCombo */
+                    if (control.get(i).equalsIgnoreCase("seekbar-combo")) {
+                        CardSeekBarCombo card = new CardSeekBarCombo(title.get(i), desc.get(i), unit.get(i), prop.get(i),
+                                max.get(i), def.get(i), fa);
+                        mCardsView.addCard(card, true);
 
-                    /** SeekBar Card
-                     **** @see com.androguide.apkreator.cards.CardSeekBar */
-                } else if (control.get(i).equalsIgnoreCase("seekbar")) {
-                    CardSeekBar card = new CardSeekBar(name.get(i), desc.get(i), unit.get(i), prop.get(i),
-                            max.get(i), def.get(i), fa, mActionModeCallback);
-                    mCardsView.addCard(card, true);
+                        /** SeekBar Card
+                         **** @see com.androguide.apkreator.cards.CardSeekBar */
+                    } else if (control.get(i).equalsIgnoreCase("seekbar")) {
+                        CardSeekBar card = new CardSeekBar(title.get(i), desc.get(i), unit.get(i), prop.get(i),
+                                max.get(i), def.get(i), fa, mActionModeCallback);
+                        mCardsView.addCard(card, true);
 
-                    /** Switch Card
-                     **** @see com.androguide.apkreator.cards.CardSwitchPlugin */
-                } else if (control.get(i).equalsIgnoreCase("switch")) {
-                    CardSwitchPlugin card = new CardSwitchPlugin(name.get(i), desc.get(i), prop.get(i), fa, new OnCheckedChangeListener() {
+                        /** EditText Card
+                         **** @see com.androguide.apkreator.cards.CardEditText */
+                    } else if (control.get(i).equalsIgnoreCase("edit-text")) {
+                        CardEditText card = new CardEditText(title.get(i), desc.get(i), unit.get(i), prop.get(i),
+                                max.get(i), def.get(i), fa, mActionModeCallback);
+                        mCardsView.addCard(card, true);
 
-                        @Override
-                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                            if (isChecked) {
-                                Helpers.applyBuildPropTweak(prop.get(posHolder), on.get(posHolder));
-                                SharedPreferences prefs = fa.getSharedPreferences(prop.get(posHolder), 0);
-                                prefs.edit().putBoolean("isChecked", true).commit();
-                            } else {
-                                Helpers.applyBuildPropTweak(prop.get(posHolder), off.get(posHolder));
-                                SharedPreferences prefs = fa.getSharedPreferences(prop.get(posHolder), 0);
-                                prefs.edit().putBoolean("isChecked", false).commit();
+                        /** Switch Card
+                         **** @see com.androguide.apkreator.cards.CardSwitchPlugin */
+                    } else if (control.get(i).equalsIgnoreCase("switch")) {
+                        CardSwitch card = new CardSwitch(title.get(i), desc.get(i), props.get(i), fa, new OnCheckedChangeListener() {
+
+                            @Override
+                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                if (isChecked) {
+                                    for (int i = 0; i < props.get(posHolder).length; i++) {
+                                        Helpers.applyBuildPropTweak(props.get(posHolder)[i], on.get(posHolder));
+                                        SharedPreferences prefs = fa.getSharedPreferences(props.get(posHolder)[i], 0);
+                                        prefs.edit().putBoolean("isChecked", true).commit();
+                                    }
+                                } else {
+                                    for (int i = 0; i < props.get(i).length; i++) {
+                                        Helpers.applyBuildPropTweak(props.get(posHolder)[i], off.get(posHolder));
+                                        SharedPreferences prefs = fa.getSharedPreferences(props.get(posHolder)[i], 0);
+                                        prefs.edit().putBoolean("isChecked", false).commit();
+                                    }
+                                }
                             }
-                        }
-                    });
-                    mCardsView.addCard(card, true);
+                        });
+                        mCardsView.addCard(card, true);
 
-                    /** Spinner Card
-                     **** @see com.androguide.apkreator.cards.CardSwitchPlugin */
-                } else if (control.get(i).equalsIgnoreCase("spinner")) {
-                    CardSpinner card = new CardSpinner(name.get(i), desc.get(i), prop.get(i), spinners.get(i), fa, new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            String bp = "";
-                            if (posHolder <= prop.size())
-                                bp = prop.get(posHolder);
-                            final String bProp = bp;
+                        /** Spinner Card
+                         **** @see com.androguide.apkreator.cards.CardSwitchPlugin */
+                    } else if (control.get(i).equalsIgnoreCase("spinner")) {
+                        CardSpinner card = new CardSpinner(title.get(i), desc.get(i), prop.get(i), spinners.get(i), fa, new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                String bp = "";
+                                if (posHolder <= prop.size())
+                                    bp = prop.get(posHolder);
+                                final String bProp = bp;
 
                             /* In order to avoid re-applying the current value in onCreate(),
                                I compare the saved spinner position with the current one and only
                                apply the value if they differ. This way root access isn't requested upon launch. */
-                            SharedPreferences p = fa.getSharedPreferences(name.get(posHolder), 0);
-                            int curr = p.getInt("CURRENT", 0);
-                            final int pos = position;
-                            if (pos != curr) {
-                                final String item = spinners.get(posHolder).get(pos);
+                                SharedPreferences p = fa.getSharedPreferences(title.get(posHolder), 0);
+                                int curr = p.getInt("CURRENT", 0);
+                                final int pos = position;
+                                if (pos != curr) {
+                                    final String item = spinners.get(posHolder).get(pos);
+                                    new Thread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            CMDProcessor.runSuCommand(Shell.MOUNT_SYSTEM_RW);
+                                            runSuCommand(Shell.SED + bProp + "/d\" " + Shell.BUILD_PROP);
+                                            runSuCommand(Shell.ECHO + "\"" + bProp + "=" + item + "\" >> " + Shell.BUILD_PROP);
+                                            runSuCommand("setprop " + bProp + " " + item);
+                                            SystemPropertiesReflection.set(fa, bProp, item + "");
+                                            CMDProcessor.runSuCommand(Shell.MOUNT_SYSTEM_RO);
+                                            SharedPreferences prefs = fa.getSharedPreferences(bProp, 0);
+                                            prefs.edit().putInt("CURRENT", pos).commit();
+                                        }
+                                    }).start();
+                                }
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+                            }
+                        });
+                        mCardsView.addCard(card, true);
+                    }
+
+
+                    /************************************************
+                     *             Shell Commands Cards             *
+                     ************************************************/
+                } else if (type.get(i).equalsIgnoreCase("shell")) {
+
+                    if (control.get(i).equalsIgnoreCase("button")) {
+
+                        /** Card with Button, which executes a shell command on click
+                         **** @see com.androguide.apkreator.cards.CardButton */
+                        CardButton card = new CardButton(title.get(i), desc.get(i), buttons.get(i), shellCmds.get(i), fa);
+                        mCardsView.addCard(card, true);
+
+                    } else if (control.get(i).equalsIgnoreCase("double-button")) {
+
+                        /** Card with 2 Buttons, which executes a shell command on click
+                         **** @see com.androguide.apkreator.cards.CardButtonDouble */
+                        CardButtonDouble card = new CardButtonDouble(title.get(i), desc.get(i), buttons.get(i), buttons2.get(i),
+                                shellCmds.get(i), shellCmds2.get(i), fa);
+                        mCardsView.addCard(card, true);
+
+                    } else if (control.get(i).equalsIgnoreCase("spinner")) {
+                        /** Card with a Spinner, which executes a different shell command for each entry
+                         **** @see com.androguide.apkreator.cards.CardSpinner */
+
+                        CardSpinner card = new CardSpinner(title.get(i), desc.get(i), prop.get(i), spinners.get(i), fa, new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            /* In order to avoid re-applying the current value in onCreate(),
+                               I compare the saved spinner position with the current one and only
+                               apply the value if they differ. This way root access isn't requested upon launch. */
+                                final int pos = position;
+                                final ArrayList<String> item = spinnerCmds.get(posHolder);
                                 new Thread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        CMDProcessor.runSuCommand(Shell.MOUNT_SYSTEM_RW);
-                                        runSuCommand(Shell.SED + bProp + "/d\" " + Shell.BUILD_PROP);
-                                        runSuCommand(Shell.ECHO + "\"" + bProp + "=" + item + "\" >> " + Shell.BUILD_PROP);
-                                        runSuCommand("setprop " + bProp + " " + item);
-                                        SystemPropertiesReflection.set(fa, bProp, item + "");
-                                        CMDProcessor.runSuCommand(Shell.MOUNT_SYSTEM_RO);
-                                        SharedPreferences prefs = fa.getSharedPreferences(bProp, 0);
+                                        SharedPreferences prefs = fa.getSharedPreferences(title.get(posHolder), 0);
                                         prefs.edit().putInt("CURRENT", pos).commit();
+                                        for (int i = 0; i < item.size(); i++)
+                                            CMDProcessor.runSuCommand(item.get(pos));
                                     }
                                 }).start();
                             }
-                        }
 
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-                        }
-                    });
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+                            }
+                        });
+                        mCardsView.addCard(card, true);
+                    }
+
+                    /************************************************
+                     *              Miscellaneous Cards             *
+                     ************************************************/
+                } else if (type.get(i).equalsIgnoreCase("download")) {
+
+                    /** Card for downloading from a URL
+                     **** @see com.androguide.apkreator.cards.CardDownload */
+                    CardDownload card = new CardDownload(title.get(i), desc.get(i), urls.get(i), paths.get(i), buttons.get(i), fa);
+                    mCardsView.addCard(card, true);
+
+                } else if (type.get(i).equalsIgnoreCase("special")) {
+
+                    if (control.get(i).equalsIgnoreCase("presentation")) {
+                        /** Card with a button which launches an Activity with a webview, intended for Reveal-JS presentations
+                         **** @see com.androguide.apkreator.cards.CardPresentation */
+                        CardPresentation card = new CardPresentation(title.get(i), desc.get(i), buttons.get(i), null, fa);
+                        mCardsView.addCard(card);
+                    }
+
+                    /************************************************
+                     *               Plain Text Cards               *
+                     ************************************************/
+                } else if (type.get(i).equalsIgnoreCase("text")) {
+
+                    /** Plain Text Card
+                     **** @see com.androguide.apkreator.cards.CardText */
+                    SharedPreferences p = fa.getSharedPreferences("CONFIG", 0);
+                    CardText card = new CardText(title.get(i), desc.get(i), p.getString("APP_COLOR", "#96AA39"), false, false);
+                    mCardsView.addCard(card, true);
+
+                } else if (type.get(i).equalsIgnoreCase("text-stripe")) {
+
+                    /** Plain Text Card with colored stripe
+                     **** @see com.androguide.apkreator.cards.CardTextStripe */
+                    SharedPreferences p = fa.getSharedPreferences("CONFIG", 0);
+                    CardTextStripe card = new CardTextStripe(title.get(i), desc.get(i), stripeColor.get(i), false, false);
+                    mCardsView.addCard(card, true);
+
+                } else if (type.get(i).equalsIgnoreCase("image")) {
+                    SharedPreferences p = fa.getSharedPreferences("CONFIG", 0);
+                    CardImage card = new CardImage(title.get(i), desc.get(i), p.getString("APP_COLOR", "#96AA39"), urls.get(i));
                     mCardsView.addCard(card, true);
                 }
-
-
-                /************************************************
-                 *             Shell Commands Cards             *
-                 ************************************************/
-            } else if (type.get(i).equalsIgnoreCase("shell")) {
-
-                if (control.get(i).equalsIgnoreCase("button")) {
-
-                    /** Card with Button, which executes a shell command on click
-                     **** @see com.androguide.apkreator.cards.CardButton */
-                    CardButton card = new CardButton(name.get(i), desc.get(i), buttons.get(i), shellCmds.get(i), fa);
-                    mCardsView.addCard(card, true);
-
-                } else if (control.get(i).equalsIgnoreCase("double-button")) {
-
-                    /** Card with 2 Buttons, which executes a shell command on click
-                     **** @see com.androguide.apkreator.cards.CardButtonDouble */
-                    CardButtonDouble card = new CardButtonDouble(name.get(i), desc.get(i), buttons.get(i), buttons2.get(i),
-                            shellCmds.get(i), shellCmds2.get(i), fa);
-                    mCardsView.addCard(card, true);
-
-                } else if (control.get(i).equalsIgnoreCase("spinner")) {
-                    /** Card with a Spinner, which executes a different shell command for each entry
-                     **** @see com.androguide.apkreator.cards.CardSpinner */
-
-                    CardSpinner card = new CardSpinner(name.get(i), desc.get(i), prop.get(i), spinners.get(i), fa, new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            /* In order to avoid re-applying the current value in onCreate(),
-                               I compare the saved spinner position with the current one and only
-                               apply the value if they differ. This way root access isn't requested upon launch. */
-                            final int pos = position;
-                            final ArrayList<String> item = spinnerCmds.get(posHolder);
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    SharedPreferences prefs = fa.getSharedPreferences(name.get(posHolder), 0);
-                                    prefs.edit().putInt("CURRENT", pos).commit();
-                                    for (int i = 0; i < item.size(); i++)
-                                        CMDProcessor.runSuCommand(item.get(pos));
-                                }
-                            }).start();
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-                        }
-                    });
-                    mCardsView.addCard(card, true);
-                }
-
-                /************************************************
-                 *              Miscellaneous Cards             *
-                 ************************************************/
-            } else if (type.get(i).equalsIgnoreCase("download")) {
-
-                /** Card for downloading from a URL
-                 **** @see com.androguide.apkreator.cards.CardDownload */
-                CardDownload card = new CardDownload(name.get(i), desc.get(i), urls.get(i), paths.get(i), buttons.get(i), fa);
-                mCardsView.addCard(card, true);
-
-                /************************************************
-                 *               Plain Text Cards               *
-                 ************************************************/
-            } else if (type.get(i).equalsIgnoreCase("text")) {
-
-                /** Plain Text Card
-                 **** @see com.androguide.apkreator.cards.CardText */
-                SharedPreferences p = fa.getSharedPreferences("CONFIG", 0);
-                CardText card = new CardText(name.get(i), desc.get(i), p.getString("APP_COLOR", "#96AA39"), false, false);
-                mCardsView.addCard(card, true);
-
-            } else if (type.get(i).equalsIgnoreCase("text-stripe")) {
-
-                /** Plain Text Card with colored stripe
-                 **** @see com.androguide.apkreator.cards.CardTextStripe */
-                SharedPreferences p = fa.getSharedPreferences("CONFIG", 0);
-                CardTextStripe card = new CardTextStripe(name.get(i), desc.get(i), p.getString("APP_COLOR", "#96AA39"), false, false);
-                mCardsView.addCard(card, true);
-
-            } else if (type.get(i).equalsIgnoreCase("image")) {
-                SharedPreferences p = fa.getSharedPreferences("CONFIG", 0);
-                CardImage card = new CardImage(name.get(i), desc.get(i), p.getString("APP_COLOR", "#96AA39"), urls.get(i));
-                mCardsView.addCard(card, true);
             }
+        } catch (Exception e) {
+            Log.e("PluginFragment", e.getMessage() + "");
         }
-
         return ll;
     }
 

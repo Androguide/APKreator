@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+   Copyright (C) 2013  Louis Teboul (a.k.a Androguide)
+
+   admin@pimpmyrom.org  || louisteboul@gmail.com
+   http://pimpmyrom.org || http://androguide.fr
+   71 quai Clémenceau, 69300 Caluire-et-Cuire, FRANCE.
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License along
+   with this program; if not, write to the Free Software Foundation, Inc.,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+-->
+
+<resources>
+
+    <!-- ================= General Stuff ================= -->
+    <string name="app_name">APKreator</string>
+    <string name="presentation">Presentation</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- ================= Colours in String form ================= -->
+    <string name="background_window">#FFE5E5E5</string>
+    <string name="holoblue">#33b6ea</string>
+    <string name="play_blue">#FF3F9FE0</string>
+    <string name="play_green">#FF96AA39</string>
+    <string name="play_orange">#FFF4842D</string>
+    <string name="play_red">#FFC74B46</string>
+    <string name="play_gray">#FF666666</string>
+
+    <!-- ================= Drawer Entries ================= -->
+    <string name="drawer_website">Website</string>
+    <string name="drawer_xda">XDA Thread</string>
+    <string name="drawer_twitter">Follow Me</string>
+    <string name="drawer_gplus">Add Me To Your Circles</string>
+    <string name="drawer_facebook">Become a Fan</string>
+    <string name="drawer_donate">Donate With PayPal</string>
+
+    <!-- ================= Cards ================= -->
+    <string name="card_title">Card Title</string>
+    <string name="lorem_ipsum">umque ibi diu moratur commeatus opperiens, quorum translationem ex Aquitania verni imbres solito crebriores prohibebant auctique torrentes, Herculanus advenit protector domesticus</string>
+    <string name="card_icon_accessibility">Card Icon</string>
+
+    <!-- ================= Menu ================= -->
+    <string name="menu_apply">Apply</string>
+    <string name="button_text">Button Text</string>
+    <string name="video_title">Video Title</string>
+    <string name="username">Username</string>
+    <string name="shared_this">XXX originally shared this</string>
+</resources>

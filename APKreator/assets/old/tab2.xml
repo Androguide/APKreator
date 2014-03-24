@@ -1,0 +1,23 @@
+<plugin>
+    <tweak type="build.prop">
+        <name>3nd Tab Tweak!!</name>
+        <description>This is a test 3rd-party pluggable tweak</description>
+        <prop>ro.mytweak.pwns.ass</prop>
+        <control type="seekbar-combo"/>
+        <min-value>0</min-value>
+        <max-value>150</max-value>
+        <default-value>45</default-value>
+        <unit>€</unit>
+    </tweak>
+	
+    <tweak type="build.prop">
+        <name>It Works Well!</name>
+        <description>Lorem ipsum dolor sit amet sin et alpha beta epsilon</description>
+        <prop>ro.lorem.ipsum</prop>
+        <control type="seekbar-combo"/>
+        <min-value>0</min-value>
+        <max-value>80</max-value>
+        <default-value>10</default-value>
+        <unit>$</unit>
+    </tweak>
+</plugin>

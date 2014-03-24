@@ -249,9 +249,7 @@ public class CardUI extends FrameLayout {
     }
 
     public void addSeparateCards(Card[] cards) {
-
         addSeparateCards(cards, false);
-
     }
 
     public void addSeparateCards(Card[] cards, boolean refresh) {
@@ -267,19 +265,32 @@ public class CardUI extends FrameLayout {
     }
 
     public void addCard(Card card) {
-
         addCard(card, false);
-
     }
 
     public void addCard(Card card, boolean refresh) {
-
         CardStack stack = new CardStack();
         stack.add(card);
         mStacks.add(stack);
         if (refresh)
             refresh();
+    }
 
+    public void addAsyncCard(Card card, boolean refresh, Context ctx) {
+        final Card asyncCard = card;
+        final Context context = ctx;
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                asyncCard.getCardContent(context);
+            }
+        }).start();
+
+        CardStack stack = new CardStack();
+        stack.add(asyncCard);
+        mStacks.add(stack);
+        if (refresh) refresh();
     }
 
     public void addCardToLastStack(Card card) {
@@ -296,9 +307,7 @@ public class CardUI extends FrameLayout {
         CardStack cardStack = (CardStack) mStacks.get(lastItemPos);
         cardStack.add(card);
         mStacks.set(lastItemPos, cardStack);
-        if (refresh)
-            refresh();
-
+        if (refresh) refresh();
     }
 
     public void addStack(CardStack stack) {
@@ -333,12 +342,14 @@ public class CardUI extends FrameLayout {
                     for (int j = 0; j < mColumnNumber; j++) {
                         if (i + j < mAdapter.getCount()) {
                             View card = mAdapter.getView(i + j, null, tr);
-                            if (card.getLayoutParams() != null) {
+                            if ((card != null ? card.getLayoutParams() : null) != null) {
                                 card.setLayoutParams(new TableRow.LayoutParams(card.getLayoutParams().width, card.getLayoutParams().height, 1f));
                             } else {
-                                card.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f));
+                                if (card != null) {
+                                    card.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f));
+                                    tr.addView(card);
+                                }
                             }
-                            tr.addView(card);
                         }
                     }
                     mTableLayout.addView(tr);

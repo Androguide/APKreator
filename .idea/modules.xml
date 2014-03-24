@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/APKreator.iml" filepath="$PROJECT_DIR$/APKreator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/APKreator/APKreator-APKreator.iml" filepath="$PROJECT_DIR$/APKreator/APKreator-APKreator.iml" />
       <module fileurl="file://$PROJECT_DIR$/libs/CardsUILib/CardsUILib.iml" filepath="$PROJECT_DIR$/libs/CardsUILib/CardsUILib.iml" />
       <module fileurl="file://$PROJECT_DIR$/libs/HoloGraphLibrary/HoloGraphLibrary.iml" filepath="$PROJECT_DIR$/libs/HoloGraphLibrary/HoloGraphLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/libs/PagerSlidingStrip/PagerSlidingStrip.iml" filepath="$PROJECT_DIR$/libs/PagerSlidingStrip/PagerSlidingStrip.iml" />

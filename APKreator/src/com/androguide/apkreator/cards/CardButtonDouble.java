@@ -31,8 +31,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.androguide.apkreator.R;
 import com.androguide.apkreator.helpers.CMDProcessor.CMDProcessor;
+import com.fima.cardsui.R;
 import com.fima.cardsui.objects.Card;
 
 public class CardButtonDouble extends Card {
@@ -58,12 +58,24 @@ public class CardButtonDouble extends Card {
 
             @Override
             public void onClick(View v) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        CMDProcessor.runSuCommand(cmd1);
-                    }
-                }).start();
+                if (cmd1.contains("@root: ") || cmd1.contains("@su: ")) {
+                    cmd1 = cmd1.replaceAll("@root: ", "");
+                    cmd2 = cmd2.replaceAll("@su: ", "");
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            CMDProcessor.runSuCommand(cmd1);
+                        }
+                    }).start();
+
+                } else {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            CMDProcessor.runShellCommand(cmd1);
+                        }
+                    }).start();
+                }
             }
         });
 
@@ -82,6 +94,15 @@ public class CardButtonDouble extends Card {
             }
         });
         return v;
+    }
+
+    public int getCardContentId() {
+        return R.layout.card_button_double;
+    }
+
+    @Override
+    public boolean convert(View convertCardView) {
+        return true;
     }
 }
 

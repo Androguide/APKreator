@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <color name="stroke">#dddddd</color>
     <color name="text_light">#66000000</color>
     <color name="card_text">#ff8d8d8d</color>
@@ -9,5 +8,13 @@
     <color name="card_grid_text">#ff707070</color>
     <color name="card_separator">#ffe5e5e5</color>
     <color name="card_border">#ffdedede</color>
-
+    <color name="background_window">#FFE5E5E5</color>
+    <color name="holoblue">#FF33b5e5</color>
+    <color name="play_blue">#FF3F9FE0</color>
+    <color name="play_green">#FF96AA39</color>
+    <color name="play_orange">#FFF4842D</color>
+    <color name="play_red">#FFC74B46</color>
+    <color name="play_gray">#FF666666</color>
+    <color name="play_user">#FF1337</color>
+    <color name="play_red_alpha">#88C74B46</color>
 </resources>

@@ -1,38 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <plugin>
-	<tweak type="text">
-		<name>Text Card</name>
-		<description>Lorem ipsum dolor sit amet habitant pellentesque morbit</description>
-	</tweak>
-	
-	<tweak type="build.prop">
-		<name>Spinner Card</name>
-		<description>This is a dropdown card, each entry is a value for the prop tag you defined</description>
-        <prop>ro.spinner.card</prop>
-		<control type="spinner"
-			values-amount="3"
-			value0="Pimp"
-			value1="My"
-			value2="Rom"/>
-	</tweak>
-	
-    <tweak type="build.prop">
-        <name>Test Tweak</name>
-        <description>This is a test 3rd-party pluggable tweak</description>
-        <prop>ro.mytweak.pwns.ass</prop>
-        <control type="seekbar"/>
+    <card type="text-stripe">
+        <title>No Configuration Found!</title>
+        <description>Welcome to APKreator. No configuration files were found, so we created these
+            basic ones for you.
+        </description>
+        <stripe-color>#444444</stripe-color>
+    </card>
+
+    <card type="text">
+        <title>Get Started</title>
+        <description>To get started, head-over to the documentation or start modifying the default
+            configuration files right-away in %sdcard%.APKreator
+        </description>
+    </card>
+
+    <card control="presentation" type="special">
+        <button>Start</button>
+        <title>Presentation</title>
+        <description>This card will launch a RevealJS presentation, or any index.html file packed in
+            the container's assets
+        </description>
+    </card>
+
+    <card control="switch" type="build.prop">
+        <prop>ro.apkreator.switch</prop>
+        <on>on</on>
+        <off>off</off>
+        <title>Switch Card</title>
+        <description>This card will toggle any build.prop value between any on/off values defined
+        </description>
+    </card>
+
+    <card control="button" type="shell">
+        <button>Create File</button>
+        <command>@su: echo root > /sdcard/file.txt</command>
+        <title>Button Card</title>
+        <description>card will execute a shell command when its button is clicked</description>
+    </card>
+
+    <card control="double-button" type="shell">
+        <title>Double Button Card</title>
+        <description>This card's two buttons can each execute a separate command.</description>
+        <button>Button 1</button>
+        <button2>Button 2</button2>
+        <command>touch %sdcard%btn1.txt</command>
+        <command2>@root touch %sdcard% root.txt</command2>
+    </card>
+
+    <card control="seekbar" type="build.prop">
+        <title>Wifi Scan Interval</title>
+        <description>This determines the interval of time at which the system automatically scans
+            for available Wi-Fi networks. A high value will help with battery life.
+        </description>
+        <prop>wifi.supplicant_scan_interval</prop>
         <min-value>0</min-value>
-        <max-value>150</max-value>
-        <default-value>45</default-value>
-        <unit>MB</unit>
-    </tweak>
-	
-    <tweak type="build.prop">
-		<control
-			type="switch"
-			on="true"
-			off="false"/>
-        <name>My Tweak</name>
-        <description>Lorem ipsum dolor sit amet sin et alpha beta epsilon</description>
-        <prop>ro.boolean.tweak</prop>
-    </tweak>
+        <max-value>120</max-value>
+        <default-value>15</default-value>
+        <unit>sec.</unit>
+    </card>
+
+    <card control="switch" type="build.prop">
+        <on>3</on>
+        <off>2</off>
+        <title>Enable HSUPA</title>
+        <description>Enable or disable HSUPA network mode</description>
+        <prop>ro.ril.hsxpa</prop>
+    </card>
+
+    <card control="button" type="shell">
+        <button>Apply</button>
+        <command>busybox sysctl -e -w net.ipv4.conf.default.accept_redirects=0;</command>
+        <title>Block Redirects</title>
+        <description>Blocks all internet redirections. Warning: some websites might become
+            unavailable.
+        </description>
+    </card>
+
+    <card control="spinner" type="build.prop">
+        <title>Wifi Connect Speed</title>
+        <description>Reduces or increases the built-in delay for connecting to Wi-Fi</description>
+        <prop>ro.mot.eri.losalert.delay</prop>
+        <entries>200|400|600|800|1000</entries>
+    </card>
 </plugin>

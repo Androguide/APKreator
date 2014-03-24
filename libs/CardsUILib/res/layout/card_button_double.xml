@@ -1,0 +1,80 @@
+<!--
+
+   Copyright (C) 2013  Louis Teboul (a.k.a Androguide)
+
+   admin@pimpmyrom.org  || louisteboul@gmail.com
+   http://pimpmyrom.org || http://androguide.fr
+   71 quai Clémenceau, 69300 Caluire-et-Cuire, FRANCE.
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License along
+   with this program; if not, write to the Free Software Foundation, Inc.,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="8dp"
+    android:paddingLeft="12dip"
+    android:paddingRight="12dip"
+    android:paddingBottom="8dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/card_title"
+        android:textColor="#33B6EA"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:ellipsize="end"
+        android:maxLines="50"
+        android:fontFamily="sans-serif-light"
+        android:textSize="15sp"
+        android:autoLink="all"
+        android:text="@string/lorem_ipsum" />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dip"
+        android:weightSum="100">
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textColor="@color/play_gray"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_weight="50"
+            android:text="@string/button_text" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textColor="@color/play_gray"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_weight="50"
+            android:text="@string/button_text" />
+    </LinearLayout>
+</LinearLayout>

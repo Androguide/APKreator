@@ -29,7 +29,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.androguide.apkreator.R;
 import com.androguide.apkreator.helpers.CMDProcessor.CMDProcessor;
@@ -37,8 +36,8 @@ import com.fima.cardsui.objects.Card;
 
 public class CardButton extends Card {
 
-    public CardButton(String title, String desc, String buttonText, String cmd, ActionBarActivity fa) {
-        super(title, desc, buttonText, cmd, fa);
+    public CardButton(String title, String desc, String buttonText, String cmd1, ActionBarActivity fa) {
+        super(title, desc, buttonText, cmd1, fa);
     }
 
     @Override
@@ -58,15 +57,37 @@ public class CardButton extends Card {
 
             @Override
             public void onClick(View v) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        CMDProcessor.runSuCommand(cmd1);
-                    }
-                }).start();
+
+                if (cmd1.contains("@root: ") || cmd1.contains("@su: ")) {
+                    cmd1 = cmd1.replaceAll("@root: ", "");
+                    cmd1 = cmd1.replaceAll("@su: ", "");
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            CMDProcessor.runSuCommand(cmd1);
+                        }
+                    }).start();
+
+                } else {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            CMDProcessor.runShellCommand(cmd1);
+                        }
+                    }).start();
+                }
             }
         });
         return v;
+    }
+
+    public int getCardContentId() {
+        return R.layout.card_button;
+    }
+
+    @Override
+    public boolean convert(View convertCardView) {
+        return true;
     }
 }
 

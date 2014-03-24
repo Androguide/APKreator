@@ -8,8 +8,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/APKreator" />
             <option value="$PROJECT_DIR$/libs" />
-            <option value="$PROJECT_DIR$/libs/APKreator" />
             <option value="$PROJECT_DIR$/libs/CardsUILib" />
             <option value="$PROJECT_DIR$/libs/HoloGraphLibrary" />
             <option value="$PROJECT_DIR$/libs/PagerSlidingStrip" />
