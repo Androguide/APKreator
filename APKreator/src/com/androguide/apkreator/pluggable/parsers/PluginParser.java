@@ -119,23 +119,6 @@ public class PluginParser {
                                 } catch (Exception e) {
                                     Log.e("Parser", e.getMessage() + "");
                                 }
-                                try {
-                                    cardPlugin.setControl(parser.getAttributeValue(null, "control"));
-                                } catch (Exception e) {
-                                    Log.e("Parser", e.getMessage() + "");
-                                }
-
-                                try {
-                                    cardPlugin.setProp(parser.getAttributeValue(null, "prop"));
-                                } catch (Exception e) {
-                                    Log.e("Parser", e.getMessage() + "");
-                                }
-
-                                try {
-                                    cardPlugin.setProps(parser.getAttributeValue(null, "prop").split("#"));
-                                } catch (Exception e) {
-                                    Log.e("Parser", e.getMessage() + "");
-                                }
 
                                 try {
                                     cardPlugin.setTitle(parser.getAttributeValue(null, "title"));
@@ -150,19 +133,19 @@ public class PluginParser {
                                 }
 
                                 try {
+                                    cardPlugin.setUnit(parser.getAttributeValue(null, "unit"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
                                     cardPlugin.setUrl(parser.getAttributeValue(null, "url"));
                                 } catch (Exception e) {
                                     Log.e("Parser", e.getMessage() + "");
                                 }
 
                                 try {
-                                    cardPlugin.setBooleanOn(parser.getAttributeValue(null, "on"));
-                                } catch (Exception e) {
-                                    Log.e("Parser", e.getMessage() + "");
-                                }
-
-                                try {
-                                    cardPlugin.setBooleanOff(parser.getAttributeValue(null, "off"));
+                                    cardPlugin.setFilePath(parser.getAttributeValue(null, "path"));
                                 } catch (Exception e) {
                                     Log.e("Parser", e.getMessage() + "");
                                 }
@@ -190,8 +173,57 @@ public class PluginParser {
                                 } catch (Exception e) {
                                     Log.e("Parser", e.getMessage() + "");
                                 }
+
                                 try {
                                     cardPlugin.setStripeColor(parser.getAttributeValue(null, "stripe-color"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setMin(Integer.parseInt(parser.getAttributeValue(null, "min-value")));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setMax(Integer.parseInt(parser.getAttributeValue(null, "max-value")));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setDef(Integer.parseInt(parser.getAttributeValue(null, "default-value")));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setControl(parser.getAttributeValue(null, "control"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setProp(parser.getAttributeValue(null, "prop"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setProps(parser.getAttributeValue(null, "props").split("\\|"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setBooleanOn(parser.getAttributeValue(null, "on"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setBooleanOff(parser.getAttributeValue(null, "off"));
                                 } catch (Exception e) {
                                     Log.e("Parser", e.getMessage() + "");
                                 }
@@ -201,8 +233,17 @@ public class PluginParser {
                                     String[] e = parser.getAttributeValue(null, "entries").split("\\|");
                                     for (int i = 0; i < e.length; i++)
                                         entries.add(i, e[i]);
-
                                     cardPlugin.setSpinnerEntries(entries);
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    ArrayList<String> commands = new ArrayList<String>();
+                                    String[] c = parser.getAttributeValue(null, "commands").split("\\|");
+                                    for (int i = 0; i < c.length; i++)
+                                        commands.add(i, c[i]);
+                                    cardPlugin.setSpinnerEntries(commands);
                                 } catch (Exception e) {
                                     Log.e("Parser", e.getMessage() + "");
                                 }
@@ -229,6 +270,8 @@ public class PluginParser {
                                 cardPlugin.setFilePath(text);
                             else if (tagName.equalsIgnoreCase("button"))
                                 cardPlugin.setButtonText(text);
+                            else if (tagName.equalsIgnoreCase("button2"))
+                                cardPlugin.setButtonText2(text);
                             else if (tagName.equalsIgnoreCase("command"))
                                 cardPlugin.setShellCmd(text);
                             else if (tagName.equalsIgnoreCase("command1"))
@@ -243,8 +286,33 @@ public class PluginParser {
                                 cardPlugin.setMax(Integer.parseInt(text));
                             else if (tagName.equalsIgnoreCase("default-value"))
                                 cardPlugin.setDef(Integer.parseInt(text));
+                            else if (tagName.equalsIgnoreCase("control"))
+                                cardPlugin.setControl(text);
+                            else if (tagName.equalsIgnoreCase("prop"))
+                                cardPlugin.setProp(text);
+                            else if (tagName.equalsIgnoreCase("props"))
+                                cardPlugin.setProps(text.split("\\|"));
                             else if (tagName.equalsIgnoreCase("card"))
                                 cardPlugins.add(cardPlugin);
+                            else if (tagName.equalsIgnoreCase("on"))
+                                cardPlugin.setBooleanOn(text);
+                            else if (tagName.equalsIgnoreCase("off"))
+                                cardPlugin.setBooleanOff(text);
+                            
+                            else if (tagName.equalsIgnoreCase("entries")) {
+                                ArrayList<String> entries = new ArrayList<String>();
+                                String[] e = text.split("\\|");
+                                for (int i = 0; i < e.length; i++)
+                                    entries.add(i, e[i]);
+                                cardPlugin.setSpinnerEntries(entries);
+
+                            } else if (tagName.equalsIgnoreCase("commands")) {
+                                ArrayList<String> commands = new ArrayList<String>();
+                                String[] c = text.split("\\|");
+                                for (int i = 0; i < c.length; i++)
+                                    commands.add(i, c[i]);
+                                cardPlugin.setSpinnerCommands(commands);
+                            }
                             break;
 
                         default:

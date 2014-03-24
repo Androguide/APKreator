@@ -47,7 +47,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/cards/CardTextStripe.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/pluggable/objects/Tweak.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/pluggable/parsers/PluginParser.java" afterPath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/pluggable/parsers/PluginParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/APKreator/assets/tab0.xml" afterPath="$PROJECT_DIR$/APKreator/assets/tab0.xml" />
     </list>
     <ignored path="APKreator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -150,10 +149,13 @@
       <file leaf-file-name="PluginParser.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/pluggable/parsers/PluginParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.392022" vertical-offset="1303" max-vertical-offset="5616">
-              <caret line="204" column="74" selection-start="8980" selection-end="8980" />
+            <state vertical-scroll-proportion="2.2778542" vertical-offset="3114" max-vertical-offset="6840">
+              <caret line="300" column="28" selection-start="14437" selection-end="14437" />
               <folding>
-                <element signature="e#8655#8663#0" expanded="true" />
+                <element signature="e#10229#10237#0" expanded="true" />
+                <element signature="e#10835#10843#0" expanded="true" />
+                <element signature="e#14587#14595#0" expanded="true" />
+                <element signature="e#15013#15021#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -190,8 +192,8 @@
       <file leaf-file-name="tab0.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/APKreator/assets/tab0.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.4" vertical-offset="0" max-vertical-offset="1224">
-              <caret line="58" column="83" selection-start="2745" selection-end="2745" />
+            <state vertical-scroll-proportion="-18.833334" vertical-offset="497" max-vertical-offset="1224">
+              <caret line="59" column="10" selection-start="2756" selection-end="2757" />
               <folding />
             </state>
           </provider>
@@ -3098,8 +3100,8 @@
         <option value="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/fragments/PluginFragment.java" />
         <option value="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/pluggable/parsers/ParserInterface.java" />
         <option value="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/pluggable/objects/CardPlugin.java" />
-        <option value="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/pluggable/parsers/PluginParser.java" />
         <option value="$PROJECT_DIR$/APKreator/assets/tab0.xml" />
+        <option value="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/pluggable/parsers/PluginParser.java" />
       </list>
     </option>
   </component>
@@ -3631,7 +3633,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290461" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15648445" sideWeight="0.4997236" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15648445" sideWeight="0.4997236" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
@@ -3809,14 +3811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/APKreator/assets/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414">
-          <caret line="5" column="21" selection-start="131" selection-end="138" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/fragments/PluginFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="49.666668" vertical-offset="3200" max-vertical-offset="6498">
@@ -3825,6 +3819,22 @@
             <element signature="e#9113#10372#0" expanded="true" />
             <element signature="e#10345#10346#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/APKreator/assets/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414">
+          <caret line="5" column="21" selection-start="131" selection-end="138" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/APKreator/assets/tab0.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.833334" vertical-offset="497" max-vertical-offset="1224">
+          <caret line="59" column="10" selection-start="2756" selection-end="2757" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3844,20 +3854,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/APKreator/assets/tab0.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.4" vertical-offset="0" max-vertical-offset="1224">
-          <caret line="58" column="83" selection-start="2745" selection-end="2745" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/pluggable/parsers/PluginParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.392022" vertical-offset="1303" max-vertical-offset="5616">
-          <caret line="204" column="74" selection-start="8980" selection-end="8980" />
+        <state vertical-scroll-proportion="2.2778542" vertical-offset="3114" max-vertical-offset="6840">
+          <caret line="300" column="28" selection-start="14437" selection-end="14437" />
           <folding>
-            <element signature="e#8655#8663#0" expanded="true" />
+            <element signature="e#10229#10237#0" expanded="true" />
+            <element signature="e#10835#10843#0" expanded="true" />
+            <element signature="e#14587#14595#0" expanded="true" />
+            <element signature="e#15013#15021#0" expanded="true" />
           </folding>
         </state>
       </provider>
