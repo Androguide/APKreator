@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.androguide.apkreator.R;
 import com.androguide.apkreator.helpers.CMDProcessor.CMDProcessor;
 import com.androguide.apkreator.helpers.CPUHelper;
+import com.androguide.apkreator.helpers.Helpers;
 import com.echo.holographlibrary.Line;
 import com.echo.holographlibrary.LineGraph;
 import com.echo.holographlibrary.LinePoint;
@@ -99,7 +100,7 @@ public class CPUControl extends Fragment implements
         graph.setLineToFill(0);
 
         availableFrequencies = new String[0];
-        String availableFrequenciesLine = CPUHelper.readOneLine(STEPS);
+        String availableFrequenciesLine = Helpers.readOneLineNotRoot(STEPS);
         if (availableFrequenciesLine != null) {
             availableFrequencies = availableFrequenciesLine.split(" ");
             Arrays.sort(availableFrequencies, new Comparator<String>() {
@@ -113,13 +114,13 @@ public class CPUControl extends Fragment implements
 
         int frequenciesNum = availableFrequencies.length - 1;
 
-        String currentGovernor = CPUHelper.readOneLine(GOVERNOR);
+        String currentGovernor = Helpers.readOneLineNotRoot(GOVERNOR);
         String currentIo = CPUHelper.getIOScheduler();
-        String curMaxSpeed = CPUHelper.readOneLine(MAX_FREQ);
-        String curMinSpeed = CPUHelper.readOneLine(MIN_FREQ);
+        String curMaxSpeed = Helpers.readOneLineNotRoot(MAX_FREQ);
+        String curMinSpeed = Helpers.readOneLineNotRoot(MIN_FREQ);
 
         if (mIsTegra3) {
-            String curTegraMaxSpeed = CPUHelper.readOneLine(TEGRA_MAX_FREQ);
+            String curTegraMaxSpeed = Helpers.readOneLineNotRoot(TEGRA_MAX_FREQ);
             int curTegraMax = 0;
             try {
                 curTegraMax = Integer.parseInt(curTegraMaxSpeed);
@@ -131,7 +132,7 @@ public class CPUControl extends Fragment implements
             }
         }
 
-        String numOfCpus = CPUHelper.readOneLine(NUM_OF_CPUS);
+        String numOfCpus = Helpers.readOneLineNotRoot(NUM_OF_CPUS);
         String[] cpuCount = numOfCpus.split("-");
         if (cpuCount.length > 1) {
             try {
@@ -166,7 +167,7 @@ public class CPUControl extends Fragment implements
         mMinSlider.setOnSeekBarChangeListener(this);
 
         mGovernor = (Spinner) view.findViewById(R.id.governor);
-        String[] availableGovernors = CPUHelper.readOneLine(GOVERNORS_LIST)
+        String[] availableGovernors = Helpers.readOneLineNotRoot(GOVERNORS_LIST)
                 .split(" ");
         ArrayAdapter<CharSequence> governorAdapter = new ArrayAdapter<CharSequence>(
                 mActivity, android.R.layout.simple_spinner_item);
@@ -345,7 +346,7 @@ public class CPUControl extends Fragment implements
             try {
                 while (!mInterrupt) {
                     sleep(400);
-                    final String curFreq = CPUHelper.readOneLine(CURRENT_CPU);
+                    final String curFreq = Helpers.readOneLineNotRoot(CURRENT_CPU);
                     mCurCPUHandler.sendMessage(mCurCPUHandler.obtainMessage(0,
                             curFreq));
                 }

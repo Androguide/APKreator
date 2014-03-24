@@ -19,34 +19,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="839e9d44-3b59-409d-9a14-e031cce2e2cc" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/drawable-hdpi/ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/drawable-hdpi/ic_launcher_actionbar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/drawable-mdpi/ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/drawable-mdpi/ic_launcher_actionbar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/drawable-xhdpi/ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/drawable-xhdpi/ic_launcher_actionbar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/drawable-xxhdpi/ic_launcher_actionbar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/layout/card_button.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/layout/card_button_double.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/layout/card_cpu_control.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/layout/card_download.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/layout/card_image.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/layout/card_seekbar.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/layout/card_seekbar_combo.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/layout/card_spinner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/layout/card_switch.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/layout/card_text.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/layout/card_text_icon.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/res/layout/card_text_stripe.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/cards/CardDownload.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/cards/CardImage.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/cards/CardSeekBar.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/cards/CardSpinner.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/cards/CardSwitchPlugin.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/cards/CardText.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/cards/CardTextStripe.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/pluggable/objects/Tweak.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/pluggable/parsers/PluginParser.java" afterPath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/pluggable/parsers/PluginParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/fragments/CPUControl.java" afterPath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/fragments/CPUControl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/helpers/Helpers.java" afterPath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/helpers/Helpers.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/MainActivity.java" afterPath="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/MainActivity.java" />
     </list>
     <ignored path="APKreator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -110,14 +85,63 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.666667" vertical-offset="5578" max-vertical-offset="10368">
+              <caret line="347" column="74" selection-start="13636" selection-end="13636" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="PluginFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/fragments/PluginFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="49.666668" vertical-offset="3200" max-vertical-offset="6498">
-              <caret line="164" column="23" selection-start="6928" selection-end="6935" />
+            <state vertical-scroll-proportion="-14.533334" vertical-offset="3632" max-vertical-offset="6498">
+              <caret line="300" column="45" selection-start="15991" selection-end="15991" />
               <folding>
                 <element signature="e#9113#10372#0" expanded="true" />
                 <element signature="e#10345#10346#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Helpers.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/helpers/Helpers.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="8423" max-vertical-offset="9306">
+              <caret line="577" column="5" selection-start="19636" selection-end="19636" />
+              <folding>
+                <element signature="e#18474#18640#0" expanded="true" />
+                <element signature="e#18625#18626#0" expanded="true" />
+                <element signature="e#18752#18921#0" expanded="true" />
+                <element signature="e#18906#18907#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CPUControl.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/fragments/CPUControl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.36195508" vertical-offset="1562" max-vertical-offset="7344">
+              <caret line="102" column="42" selection-start="3988" selection-end="3988" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4189#4460#0" expanded="true" />
+                <element signature="e#4445#4446#0" expanded="true" />
+                <element signature="e#6875#6889#0" expanded="true" />
+                <element signature="e#7603#7617#0" expanded="true" />
+                <element signature="e#12991#12992#0" expanded="true" />
+                <element signature="e#13032#13033#0" expanded="true" />
+                <element signature="e#13609#14924#0" expanded="true" />
+                <element signature="e#13839#14898#0" expanded="true" />
+                <element signature="e#14883#14884#0" expanded="true" />
+                <element signature="e#14917#14918#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -146,10 +170,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PluginParser.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="PluginParser.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/pluggable/parsers/PluginParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.2778542" vertical-offset="3114" max-vertical-offset="6840">
+            <state vertical-scroll-proportion="-55.2" vertical-offset="3114" max-vertical-offset="6840">
               <caret line="300" column="28" selection-start="14437" selection-end="14437" />
               <folding>
                 <element signature="e#10229#10237#0" expanded="true" />
@@ -194,38 +218,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-18.833334" vertical-offset="497" max-vertical-offset="1224">
               <caret line="59" column="10" selection-start="2756" selection-end="2757" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tab1.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/APKreator/assets/tab1.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1440">
-              <caret line="14" column="35" selection-start="712" selection-end="720" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CardSwitch.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs/CardsUILib/src/com/fima/cardsui/views/CardSwitch.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="94" max-vertical-offset="954">
-              <caret line="38" column="13" selection-start="1426" selection-end="1426" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CardText.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs/CardsUILib/src/com/fima/cardsui/views/CardText.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="702">
-              <caret line="32" column="13" selection-start="1265" selection-end="1265" />
               <folding />
             </state>
           </provider>
@@ -3095,13 +3087,15 @@
         <option value="$PROJECT_DIR$/libs/PagerSlidingStrip/build.gradle" />
         <option value="$PROJECT_DIR$/APKreator/build.gradle" />
         <option value="$PROJECT_DIR$/libs/CardsUILib/build.gradle" />
-        <option value="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/MainActivity.java" />
         <option value="$PROJECT_DIR$/APKreator/assets/tab1.xml" />
         <option value="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/fragments/PluginFragment.java" />
         <option value="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/pluggable/parsers/ParserInterface.java" />
         <option value="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/pluggable/objects/CardPlugin.java" />
         <option value="$PROJECT_DIR$/APKreator/assets/tab0.xml" />
         <option value="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/pluggable/parsers/PluginParser.java" />
+        <option value="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/MainActivity.java" />
+        <option value="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/helpers/Helpers.java" />
+        <option value="$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/fragments/CPUControl.java" />
       </list>
     </option>
   </component>
@@ -3165,94 +3159,6 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="APKreator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="APKreator" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CardsUILib" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="APKreator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="APKreator" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CardsUILib" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cardsui" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="APKreator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="APKreator" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CardsUILib" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cardsui" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="APKreator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="APKreator" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="APKreator" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -3276,66 +3182,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="apkreator" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="APKreator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="APKreator" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="APKreator" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apkreator" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pluggable" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="parsers" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="APKreator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="APKreator" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="APKreator" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apkreator" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pluggable" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="objects" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3756,16 +3602,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.2" vertical-offset="3924" max-vertical-offset="10602">
-          <caret line="266" column="25" selection-start="10315" selection-end="10315" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/libs/CardsUILib/src/com/fima/cardsui/views/CardText.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="702">
@@ -3811,17 +3647,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/fragments/PluginFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="49.666668" vertical-offset="3200" max-vertical-offset="6498">
-          <caret line="164" column="23" selection-start="6928" selection-end="6935" />
-          <folding>
-            <element signature="e#9113#10372#0" expanded="true" />
-            <element signature="e#10345#10346#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/APKreator/assets/config.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414">
@@ -3856,13 +3681,67 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/pluggable/parsers/PluginParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.2778542" vertical-offset="3114" max-vertical-offset="6840">
+        <state vertical-scroll-proportion="-55.2" vertical-offset="3114" max-vertical-offset="6840">
           <caret line="300" column="28" selection-start="14437" selection-end="14437" />
           <folding>
             <element signature="e#10229#10237#0" expanded="true" />
             <element signature="e#10835#10843#0" expanded="true" />
             <element signature="e#14587#14595#0" expanded="true" />
             <element signature="e#15013#15021#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.666667" vertical-offset="5578" max-vertical-offset="10368">
+          <caret line="347" column="74" selection-start="13636" selection-end="13636" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/fragments/PluginFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.533334" vertical-offset="3632" max-vertical-offset="6498">
+          <caret line="300" column="45" selection-start="15991" selection-end="15991" />
+          <folding>
+            <element signature="e#9113#10372#0" expanded="true" />
+            <element signature="e#10345#10346#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/helpers/Helpers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="8423" max-vertical-offset="9306">
+          <caret line="577" column="5" selection-start="19636" selection-end="19636" />
+          <folding>
+            <element signature="e#18474#18640#0" expanded="true" />
+            <element signature="e#18625#18626#0" expanded="true" />
+            <element signature="e#18752#18921#0" expanded="true" />
+            <element signature="e#18906#18907#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/APKreator/src/com/androguide/apkreator/fragments/CPUControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36195508" vertical-offset="1562" max-vertical-offset="7344">
+          <caret line="102" column="42" selection-start="3988" selection-end="3988" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4189#4460#0" expanded="true" />
+            <element signature="e#4445#4446#0" expanded="true" />
+            <element signature="e#6875#6889#0" expanded="true" />
+            <element signature="e#7603#7617#0" expanded="true" />
+            <element signature="e#12991#12992#0" expanded="true" />
+            <element signature="e#13032#13033#0" expanded="true" />
+            <element signature="e#13609#14924#0" expanded="true" />
+            <element signature="e#13839#14898#0" expanded="true" />
+            <element signature="e#14883#14884#0" expanded="true" />
+            <element signature="e#14917#14918#0" expanded="true" />
           </folding>
         </state>
       </provider>

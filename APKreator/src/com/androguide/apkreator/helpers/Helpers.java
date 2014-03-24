@@ -533,5 +533,48 @@ public class Helpers {
 
         Helpers.remountSystemRo();
     }
+
+    public static class CMDProcessorWrapper {
+        public static void runSuCommand(final String command) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    CMDProcessor.runSuCommand(command);
+                }
+            }).start();
+        }
+
+        public static void runShellCommand(final String command) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    CMDProcessor.runShellCommand(command);
+                }
+            }).start();
+        }
+    }
+
+    public static String readOneLineNotRoot(String fname) {
+        if (new File(fname).exists()) {
+            BufferedReader br;
+            String line = null;
+            try {
+                br = new BufferedReader(new FileReader(fname), 512);
+                try {
+                    line = br.readLine();
+                } finally {
+                    br.close();
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "IO Exception when reading sys file", e);
+                // attempt to do magic!
+                return readFileViaShell(fname, false);
+            }
+            return line;
+
+        } else {
+            return "";
+        }
+    }
 }
 

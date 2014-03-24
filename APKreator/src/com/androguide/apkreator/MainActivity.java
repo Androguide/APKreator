@@ -563,19 +563,6 @@ public class MainActivity extends ActionBarActivity implements
 
             if (position == prefs.getInt("CPU_CONTROL_POS", 0) && position != 0)
                 return new CPUControl();
-
-//            else if (position == 0)
-//                return new WelcomeFragment();
-//
-//            else if (position == 1)
-//                return new YouTubeFragment();
-//
-//            else if (position == 2)
-//                return new GplusFragment();
-//
-//            else if (position == 4)
-//                return new SupportMapFragment();
-
             else
                 return PluginFragment.newInstance(position);
         }
