@@ -116,34 +116,97 @@ public class PluginParser {
                                 cardPlugin = new CardPlugin();
                                 try {
                                     cardPlugin.setType(parser.getAttributeValue(null, "type"));
-                                    cardPlugin.setControl(parser.getAttributeValue(null, "control"));
-                                    cardPlugin.setProp(parser.getAttributeValue(null, "prop"));
-                                    cardPlugin.setProps(parser.getAttributeValue(null, "prop").split("#"));
-                                    cardPlugin.setTitle(parser.getAttributeValue(null, "title"));
-                                    cardPlugin.setDesc(parser.getAttributeValue(null, "description"));
-                                    cardPlugin.setUrl(parser.getAttributeValue(null, "url"));
-                                    cardPlugin.setBooleanOn(parser.getAttributeValue(null, "on"));
-                                    cardPlugin.setBooleanOff(parser.getAttributeValue(null, "off"));
-                                    cardPlugin.setButtonText(parser.getAttributeValue(null, "button"));
-                                    cardPlugin.setButtonText2(parser.getAttributeValue(null, "button2"));
-                                    cardPlugin.setShellCmd(parser.getAttributeValue(null, "command"));
-                                    cardPlugin.setShellCmd2(parser.getAttributeValue(null, "command2"));
-                                    cardPlugin.setStripeColor(parser.getAttributeValue(null, "stripe-color"));
-
-                                    ArrayList<String> entries = new ArrayList<String>();
-                                    ArrayList<String> cmds = new ArrayList<String>();
-                                    String[] e = parser.getAttributeValue(null, "entries").split("|");
-                                    String[] c = parser.getAttributeValue(null, "entries").split("|");
-                                    for (int i = 0; i < e.length; i++)
-                                        entries.add(i, e[i]);
-                                    for (int i = 0; i < c.length; i++)
-                                        entries.add(i, c[i]);
-
-                                    cardPlugin.setSpinnerEntries(entries);
-                                    cardPlugin.setSpinnerCommands(cmds);
                                 } catch (Exception e) {
                                     Log.e("Parser", e.getMessage() + "");
                                 }
+                                try {
+                                    cardPlugin.setControl(parser.getAttributeValue(null, "control"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setProp(parser.getAttributeValue(null, "prop"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setProps(parser.getAttributeValue(null, "prop").split("#"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setTitle(parser.getAttributeValue(null, "title"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setDesc(parser.getAttributeValue(null, "description"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setUrl(parser.getAttributeValue(null, "url"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setBooleanOn(parser.getAttributeValue(null, "on"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setBooleanOff(parser.getAttributeValue(null, "off"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setButtonText(parser.getAttributeValue(null, "button"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setButtonText2(parser.getAttributeValue(null, "button2"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setShellCmd(parser.getAttributeValue(null, "command"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    cardPlugin.setShellCmd2(parser.getAttributeValue(null, "command2"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+                                try {
+                                    cardPlugin.setStripeColor(parser.getAttributeValue(null, "stripe-color"));
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
+                                try {
+                                    ArrayList<String> entries = new ArrayList<String>();
+                                    String[] e = parser.getAttributeValue(null, "entries").split("\\|");
+                                    for (int i = 0; i < e.length; i++)
+                                        entries.add(i, e[i]);
+
+                                    cardPlugin.setSpinnerEntries(entries);
+                                } catch (Exception e) {
+                                    Log.e("Parser", e.getMessage() + "");
+                                }
+
                             }
                             break;
 
@@ -180,13 +243,6 @@ public class PluginParser {
                                 cardPlugin.setMax(Integer.parseInt(text));
                             else if (tagName.equalsIgnoreCase("default-value"))
                                 cardPlugin.setDef(Integer.parseInt(text));
-                            else if (tagName.equalsIgnoreCase("entries")) {
-                                ArrayList<String> entries = new ArrayList<String>();
-                                String[] e = text.split("\\|");
-                                for (int i = 0; i < e.length; i++)
-                                    entries.add(i, e[i]);
-                                cardPlugin.setSpinnerEntries(entries);
-                            }
                             else if (tagName.equalsIgnoreCase("card"))
                                 cardPlugins.add(cardPlugin);
                             break;

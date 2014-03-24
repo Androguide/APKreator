@@ -1,46 +1,29 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <plugin>
-    <card type="text-stripe">
-        <title>No Configuration Found!</title>
-        <description>Welcome to APKreator. No configuration files were found, so we created these
-            basic ones for you.
-        </description>
+    <card description="Welcome to APKreator. No configuration files were found, so we created these
+            basic ones for you." title="No Configuration Found!" type="text-stripe">
         <stripe-color>#444444</stripe-color>
     </card>
 
-    <card type="text">
-        <title>Get Started</title>
-        <description>To get started, head-over to the documentation or start modifying the default
-            configuration files right-away in %sdcard%.APKreator
-        </description>
-    </card>
+    <card description="To get started, head-over to the documentation or start modifying the default
+            configuration files right-away in %sdcard%.APKreator" title="Get Started" type="text" />
 
-    <card control="presentation" type="special">
-        <button>Start</button>
-        <title>Presentation</title>
-        <description>This card will launch a RevealJS presentation, or any index.html file packed in
-            the container's assets
-        </description>
-    </card>
+    <card button="Start" control="presentation" description="This card will launch a RevealJS presentation, or any index.html file packed in
+            the container's assets" title="Presentation" type="special" />
 
-    <card control="switch" type="build.prop">
+    <card control="switch"
+        description="This card will toggle any build.prop value between any on/off values defined"
+        title="Switch Card" type="build.prop">
         <prop>ro.apkreator.switch</prop>
         <on>on</on>
         <off>off</off>
-        <title>Switch Card</title>
-        <description>This card will toggle any build.prop value between any on/off values defined
-        </description>
     </card>
 
-    <card control="button" type="shell">
-        <button>Create File</button>
-        <command>@su: echo root > /sdcard/file.txt</command>
-        <title>Button Card</title>
-        <description>card will execute a shell command when its button is clicked</description>
-    </card>
+    <card button="Create File" command="@su: echo root > /sdcard/file.txt" control="button"
+        description="This card will execute a shell command when its button is clicked"
+        title="Button Card" type="shell" />
 
-    <card control="double-button" type="shell">
-        <title>Double Button Card</title>
+    <card control="double-button" title="Double Button Card" type="shell">
         <description>This card's two buttons can each execute a separate command.</description>
         <button>Button 1</button>
         <button2>Button 2</button2>
@@ -48,11 +31,9 @@
         <command2>@root touch %sdcard% root.txt</command2>
     </card>
 
-    <card control="seekbar" type="build.prop">
-        <title>Wifi Scan Interval</title>
-        <description>This determines the interval of time at which the system automatically scans
-            for available Wi-Fi networks. A high value will help with battery life.
-        </description>
+    <card control="seekbar" description="This determines the interval of time at which the system automatically scans
+            for available Wi-Fi networks. A high value will help with battery life."
+        title="Wifi Scan Interval" type="build.prop">
         <prop>wifi.supplicant_scan_interval</prop>
         <min-value>0</min-value>
         <max-value>120</max-value>
@@ -60,27 +41,22 @@
         <unit>sec.</unit>
     </card>
 
-    <card control="switch" type="build.prop">
+    <card control="switch" description="Enable or disable HSUPA network mode" title="Enable HSUPA"
+        type="build.prop">
         <on>3</on>
         <off>2</off>
-        <title>Enable HSUPA</title>
-        <description>Enable or disable HSUPA network mode</description>
         <prop>ro.ril.hsxpa</prop>
     </card>
 
-    <card control="button" type="shell">
+    <card control="button" description="Blocks all internet redirections. Warning: some websites might become
+            unavailable." title="Block Redirects" type="shell">
         <button>Apply</button>
         <command>busybox sysctl -e -w net.ipv4.conf.default.accept_redirects=0;</command>
-        <title>Block Redirects</title>
-        <description>Blocks all internet redirections. Warning: some websites might become
-            unavailable.
-        </description>
     </card>
 
-    <card control="spinner" type="build.prop">
-        <title>Wifi Connect Speed</title>
-        <description>Reduces or increases the built-in delay for connecting to Wi-Fi</description>
+    <card control="spinner"
+        description="Reduces or increases the built-in delay for connecting to Wi-Fi"
+        entries="200|400|600|800|1000" title="Wifi Connect Speed" type="build.prop">
         <prop>ro.mot.eri.losalert.delay</prop>
-        <entries>200|400|600|800|1000</entries>
     </card>
 </plugin>
