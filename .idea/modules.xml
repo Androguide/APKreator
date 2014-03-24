@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/APKreator/APKreator.iml" filepath="$PROJECT_DIR$/APKreator/APKreator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/APKreatorProject.iml" filepath="$PROJECT_DIR$/APKreatorProject.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CardsUILib/CardsUILib.iml" filepath="$PROJECT_DIR$/CardsUILib/CardsUILib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/PagerSlidingStrip/PagerSlidingStrip.iml" filepath="$PROJECT_DIR$/PagerSlidingStrip/PagerSlidingStrip.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SwitchCompatLibrary/SwitchCompatLibrary.iml" filepath="$PROJECT_DIR$/SwitchCompatLibrary/SwitchCompatLibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/APKreator.iml" filepath="$PROJECT_DIR$/APKreator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs/CardsUILib/CardsUILib.iml" filepath="$PROJECT_DIR$/libs/CardsUILib/CardsUILib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs/HoloGraphLibrary/HoloGraphLibrary.iml" filepath="$PROJECT_DIR$/libs/HoloGraphLibrary/HoloGraphLibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs/PagerSlidingStrip/PagerSlidingStrip.iml" filepath="$PROJECT_DIR$/libs/PagerSlidingStrip/PagerSlidingStrip.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs/SwitchCompatLibrary/SwitchCompatLibrary.iml" filepath="$PROJECT_DIR$/libs/SwitchCompatLibrary/SwitchCompatLibrary.iml" />
     </modules>
   </component>
 </project>

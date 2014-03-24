@@ -1,19 +1,11 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:0.5.+'
-    }
-}
 apply plugin: 'android'
 
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
-    compile project(':PagerSlidingStrip')
-    compile project(':SwitchCompatLibrary')
-    compile project(':CardsUILib')
-    compile project(':HoloGraphLibrary')
+    compile project(':libs:PagerSlidingStrip')
+    compile project(':libs:SwitchCompatLibrary')
+    compile project(':libs:CardsUILib')
+    compile project(':libs:HoloGraphLibrary')
     compile files('libs/picasso-1.1.1.jar')
     compile('com.android.support:appcompat-v7:18.0.+')
     compile('com.android.support:support-v4:18.0.+')
@@ -21,7 +13,7 @@ dependencies {
 
 android {
     compileSdkVersion 18
-    buildToolsVersion "18.0.1"
+    buildToolsVersion "19.0.3"
 
     defaultConfig {
         packageName 'com.androguide.apkreator'

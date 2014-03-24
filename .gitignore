@@ -18,6 +18,10 @@ build/
 .*
 !/.gradle
 !./idea
+*.iml
+*.idea
+libs/*/*.iml
+libs/*/*.idea
 
 # Local configuration file (sdk path, etc)
 local.properties
